@@ -3,39 +3,25 @@
 //using System.Linq;
 //using System.Text;
 //using System.Threading.Tasks;
+//using System.Diagnostics;
+//using System.Xml.Linq;
 
 namespace DO;
+using static DO.Enums;
 
+/// <summary>
+/// 
+/// </summary>
 public struct Order
 
 {
-    int Id;
-    void setId(int i) { Id = i; }
-    int getId() { return Id; }
-
-    string CustomerName;
-    void setCustomerName(string c) { CustomerName = c; }
-    string getCustomerName() { return CustomerName; }
-
-    string Mail;
-    void setMail(string m) { Mail = m; }
-    string getMail() { return Mail; }
-
-    string Adress;
-    void setAdress(string a) { Adress = a; }
-    string getAdress() { return Adress; }
-
-    DateTime CreatingOrder;
-    void setCreatingOrder(DateTime d) { CreatingOrder =d ; }
-    DateTime getCreatingOrder() { return CreatingOrder; }
-
-    DateTime OrderTime;
-    void setOrderTime(DateTime d) { OrderTime = d; }
-    DateTime getOrderTime() { return OrderTime; }
-
-    DateTime Delivery;
-    void setDelivery(DateTime d) { Delivery = d; }
-    DateTime getDelivery() { return Delivery; }
-
+    public int ID { get; set; }
+    public string CustomerName { get; set; }
+    public string CustomerEmail { get; set; }
+    public string CustomerAdress { get; set; }
+    public DateTime OrderDate { get; set; }
+    public DateTime ShipDate { get; set; }
+    public DateTime DeliveryrDate { get; set; }
+    public override string ToString() => $@"Order-id={ID}, Customer-name={CustomerName},Mail={CustomerEmail},Adress= {CustomerAdress},CreatingOrder= {OrderDate},OrderTime={DeliveryrDate}, Delivery={ShipDate}";
 
 }

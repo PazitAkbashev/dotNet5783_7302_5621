@@ -3,11 +3,18 @@
 //using System.Linq;
 //using System.Text;
 //using System.Threading.Tasks;
+//using DO;
 
-namespace DO
+namespace DO;
+
+public struct Enums
 {
-    internal class Enums
-
+    public enum Category 
     {
-    }
+        Starters,
+        MainCourses,
+        SideDishes,
+        Drinks,
+        Deserts
+    };
 }
