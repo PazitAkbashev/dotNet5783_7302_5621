@@ -1,9 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using DO;
+﻿
 
 namespace DO;
 /// <summary>
@@ -19,4 +14,11 @@ public struct Enums
         Drinks,
         Deserts
     };
+
+    public enum Starters {Salmon, BeefFilleTartar, SoupOfTheDay, crispyChickenWings }
+    public enum MainCourses { RibEyeSteak, RoastedChickenBreast, GrilledBeefFillet, DuckBreast }
+    public enum SideDishes { Rice,Fries, ChoppedSalad, Antipasto }
+    public enum Drinks {Beer,RedWine,Water, Cocktail }
+    public enum Deserts { HomemadeIceCream, HotSouffle, CoconutCrèmeBrulee, PistachioMousse }
+
 }

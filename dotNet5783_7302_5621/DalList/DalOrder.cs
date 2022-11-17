@@ -1,12 +1,25 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
+﻿
+using DO;
+using DalApi;
 namespace Dal;
 
-public class DalOrder
+public class DalOrder:IOrder
 {
+    public void add(Order o)
+    {
+
+    }
+    public void delete(Order o, int index)
+    {
+
+    }
+    public void update(Order o, int index)
+    {
+
+    }
+    public Order get(int index)
+    {
+
+    }
 }
-}
+
