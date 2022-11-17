@@ -6,7 +6,9 @@
 //using DO;
 
 namespace DO;
-
+/// <summary>
+/// The 5 catagories our food store provides
+/// </summary>
 public struct Enums
 {
     public enum Category 
