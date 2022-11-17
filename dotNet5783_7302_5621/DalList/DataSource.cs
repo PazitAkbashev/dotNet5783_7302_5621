@@ -70,9 +70,24 @@ internal static class DataSource
             productArray[i] = product;
         }
     }
+   
+    
     private static void order_Initialize()
     {
+        for (int i = 0; i < 20; i++)
+        {
+            Order order = new Order();
+            Order.ID = myRandom.Next(100000, 1000000);
+            for (int j = 0; j < i; j++)
+            {
+                if (Order.ID == orderArray[j].ID)
+                {
+                    product.ID = myRandom.Next(100000, 1000000);
+                    j = 0;
+                }
+            }
 
+        }
     }
 
     private static void s_Initialize()
@@ -83,4 +98,4 @@ internal static class DataSource
     }
 
 }
-
+}
