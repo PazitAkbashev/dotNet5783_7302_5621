@@ -5,6 +5,7 @@
 //using System.Threading.Tasks;
 
 using DO;
+using static DO.Enums;
 
 namespace Dal;
 
@@ -43,13 +44,13 @@ internal static class DataSource
     private static void s_Initialize()
     {
         int myNum = 1234567;
-
-        for(int i=0;i<10;i++)
+        for (int i=0;i<10;i++)
         {
             Product p= new Product();
             p.ID = myNum + i;
 
-           // addProduct(p);
+
+           
         }
     }
 }
