@@ -1,10 +1,8 @@
 ﻿
 using static DO.Enums;
 
-namespace DO; //parit
-/// <summary>
-/// 
-/// </summary>
+namespace DO; 
+
 public struct OrderItem
 {
     public int ID { get; set; }

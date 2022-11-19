@@ -1,23 +1,52 @@
 ﻿using DO;
 using DalApi;
 namespace Dal;
+using static Dal.DataSource;
+
 
 public class DalProduct: IProduct
 {
-    public void add(Product p)
+    public int Add(Product p)
     {
-
+        p.ID = myRandom.Next(100000, 1000000);
+        productArray[Config._nextEmptyProduct++] = p;
+        return p.ID;
     }
-    public void delete(Product p, int index)
-    {
 
-    }
-    public void update(Product p, int index)
+    public void Delete(int ID)
     {
+        for (int i = 0; i < Config._nextEmptyProduct; i++)
+        {
+            if (ID == productArray[i].ID)
+            {
+                productArray[i] = productArray[--Config._nextEmptyProduct];
+                return;
+            }
+        }
+        throw new Exception("this product wasn't found");
+    }
 
-    }
-    public Product get(int index)
+    public void Update(Product p)
     {
+        for (int i = 0; i < Config._nextEmptyProduct; i++)
+        {
+            if (p.ID == productArray[i].ID)
+            {
+                productArray[i] = p;
+                return;
+            }
+        }
+        throw new Exception("this product wasn't found");
+    }
+
+    public Product Get(int index)
+    {
+        for (int i = 0; i < Config._nextEmptyProduct; i++)
+        {
+            if (index == productArray[i].ID)
+                return productArray[i];
+        }
+        throw new Exception("this product wasn't found");
 
     }
 }
