@@ -47,6 +47,5 @@ public class DalProduct: IProduct
                 return productArray[i];
         }
         throw new Exception("this product wasn't found");
-
     }
 }
