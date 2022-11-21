@@ -3,7 +3,6 @@ using DalApi;
 namespace Dal;
 using static Dal.DataSource;
 
-
 public class DalProduct: IProduct
 {
     public int Add(Product p)
@@ -39,11 +38,11 @@ public class DalProduct: IProduct
         throw new Exception("this product wasn't found");
     }
 
-    public Product Get(int index)
+    public Product Get(int ID)
     {
         for (int i = 0; i < Config._nextEmptyProduct; i++)
         {
-            if (index == productArray[i].ID)
+            if (ID == productArray[i].ID)
                 return productArray[i];
         }
         throw new Exception("this product wasn't found");

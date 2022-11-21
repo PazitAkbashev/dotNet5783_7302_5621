@@ -53,7 +53,7 @@ public class DalOrderItem : IOrderItem
     public OrderItem[] GetAll()
     {
         if (Config._nextEmptyOrderItem == 0)
-            throw new Exception("there is no order items");
+            throw new Exception("there are no order items");
         OrderItem[] newArr = new OrderItem[Config._nextEmptyOrderItem];
         for (int i = 0; i < Config._nextEmptyOrderItem; i++)
         {
