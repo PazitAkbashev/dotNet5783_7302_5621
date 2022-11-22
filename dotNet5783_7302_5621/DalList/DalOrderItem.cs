@@ -4,16 +4,23 @@ using DalApi;
 using static Dal.DataSource;
 using System;
 namespace Dal;
-
+/// <summary>
+/// the Implementations file of order item
+/// </summary>
 public class DalOrderItem : IOrderItem
 {
+    /// <summary>
+    /// adding order item to the order items array
+    /// </summary>
     public int Add(OrderItem o)
     {
         o.ID = Config.getorderItemRunIndex();
         orderItemArray[Config._nextEmptyOrderItem++] = o;
         return o.ID;
     }
-
+    /// <summary>
+    /// deleting order item from the order items array
+    /// </summary>
     public void Delete( int ID)
     {
         for (int i = 0; i < Config._nextEmptyOrderItem; i++)
@@ -26,7 +33,9 @@ public class DalOrderItem : IOrderItem
         }
         throw new Exception("this order item wasn't found");
     }
-
+    /// <summary>
+    /// updating order item in the order items array
+    /// </summary>
     public void Update(OrderItem o)
     {
         for (int i = 0; i < Config._nextEmptyOrderItem; i++)
@@ -39,7 +48,9 @@ public class DalOrderItem : IOrderItem
         }
         throw new Exception("this order item wasn't found");
     }
-
+    /// <summary>
+    /// getting an order item from the order items array 
+    /// </summary>
     public OrderItem Get(int index)
     {
         for (int i = 0; i < Config._nextEmptyOrderItem; i++)
@@ -49,7 +60,9 @@ public class DalOrderItem : IOrderItem
         }
         throw new Exception("this order item wasn't found");
     }
-
+    /// <summary>
+    /// getting the all order items from the order items array
+    /// </summary>
     public OrderItem[] GetAll()
     {
         if (Config._nextEmptyOrderItem == 0)

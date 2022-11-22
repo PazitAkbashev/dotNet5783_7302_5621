@@ -1,7 +1,8 @@
 ﻿
-
 namespace DO;
-
+/// <summary>
+/// including the all enums in the project
+/// </summary>
 public struct Enums
 {
     public enum Category { Starters, MainCourses, SideDishes , Drinks, Deserts }

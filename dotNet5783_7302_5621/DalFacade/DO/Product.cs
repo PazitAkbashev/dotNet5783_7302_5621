@@ -1,7 +1,9 @@
 ﻿
 namespace DO;
 using static DO.Enums;
-
+/// <summary>
+/// the product class
+/// </summary>
 public struct Product
 {
     public int ID { get; set; }

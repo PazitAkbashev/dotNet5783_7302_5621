@@ -1,8 +1,9 @@
 ﻿
 using static DO.Enums;
-
 namespace DO; 
-
+/// <summary>
+/// the order item class
+/// </summary>
 public struct OrderItem
 {
     public int ID { get; set; }
