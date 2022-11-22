@@ -2,17 +2,10 @@
 using DO;
 using System.Collections.Generic;
 using static DO.Enums;
-//using DalApi;
-//using DalList;
-//using System.Text;
-//using System.ComponentModel;
-//namespace Dal;
 
 
 public class Program
 {
-    DalProduct dalProduct = new DalProduct();
-
     static void Main(string[] args)
     {
         int choice;
@@ -29,6 +22,7 @@ public class Program
                 case 0:
                     break;
                 case 1:
+                    DalProduct dalProduct = new DalProduct();
                     Console.WriteLine("Enter your choice:");
                     Console.WriteLine("1 to add a product");
                     Console.WriteLine("2 to delete a product");
@@ -43,13 +37,12 @@ public class Program
                             myP.Name=Console.ReadLine();
                             myP.Category = (Category)int.Parse(Console.ReadLine());
                             myP.Price = Console.Read();
-                            Console.WriteLine($"The product ID is:{DalProduct.Add(myP)}");
+                            Console.WriteLine($"The product ID is:{dalProduct.Add(myP)}");
                             break;
                         case 2:
                             Console.WriteLine("Enter the ID of the product to delete:");
-                            int ID;
-                            ID= Console.Read();
-                            //לשלוח למחיקה
+                           int ID= Console.Read();
+                            dalProduct.Delete(ID);
                             break;
                         case 3:
                             Console.WriteLine("Enter the details of the product to update:");
@@ -57,24 +50,29 @@ public class Program
                             myP2.Name = Console.ReadLine();
                             myP2.Category = (Category)int.Parse(Console.ReadLine());
                             myP2.Price = Console.Read();
-                            //לשלוח לעידכון
+                            dalProduct.Update(myP2);
                             break;
                         case 4:
                             Console.WriteLine("Enter the ID of the product to get:");
-                            int ID3;
-                            ID3 = Console.Read();
-                            Console.WriteLine(DalProduct.Get(ID3));
+                            int ID2;
+                            ID2 = Console.Read();
+                            Console.WriteLine(dalProduct.Get(ID2));
+                            break;
+                        default:
                             break;
                     }
                     break;
                 case 2:
+                    DalOrder dalOrder=new DalOrder();
+                    TimeSpan OrderToShip = new(5, 0, 0, 0);
+                    TimeSpan ShipToDelivery = new(4, 0, 0, 0);
                     Console.WriteLine("Enter your choice:");
                     Console.WriteLine("1 to add an order");
                     Console.WriteLine("2 to delete an order");
                     Console.WriteLine("3 to update an order");
                     Console.WriteLine("4 to get an order");
                     choice = Console.Read();
-                    switch(choice)
+                    switch (choice)
                     {
                         case 1:
                             Console.WriteLine("Enter details of the order to add:");
@@ -82,15 +80,15 @@ public class Program
                             myO.CustomerName = Console.ReadLine();
                             myO.CustomerEmail = Console.ReadLine();
                             myO.CustomerAdress = Console.ReadLine();
-                            myO.OrderDate = Console.ReadLine();
-                            myO.ShipDate= Console.ReadLine();
-                            myO.DeliveryrDate= Console.ReadLine();
-                            //Console.WriteLine(//קריאה לפונקצית הוספה);
+                            myO.OrderDate = DateTime.Now;
+                            myO.ShipDate= myO.OrderDate.Add(OrderToShip);
+                            myO.DeliveryrDate= myO.ShipDate.Add(ShipToDelivery);
+                            Console.WriteLine($"The order ID is:{dalOrder.Add(myO)}");
                             break;
                         case 2:
                             Console.WriteLine("Enter ID of the order to delete:");
-                            choice= Console.Read();
-                            //לשלוח למחיקה
+                            int ID3= Console.Read();
+                            dalOrder.Delete(choice);
                             break;
                         case 3:
                             Console.WriteLine("Enter the details of the order to update:");
@@ -98,21 +96,22 @@ public class Program
                             myO2.CustomerName =Console.ReadLine();
                             myO2.CustomerEmail = Console.ReadLine();
                             myO2.CustomerAdress = Console.ReadLine();
-                            myO2.OrderDate = Console.ReadLine();
-                            myO2.ShipDate = Console.ReadLine();
-                            myO2.DeliveryrDate = Console.ReadLine();
-                            //לשלוח לעידכון
+                            myO2.OrderDate = DateTime.Now;
+                            myO2.ShipDate = myO2.OrderDate.Add(OrderToShip);
+                            myO2.DeliveryrDate = myO2.ShipDate.Add(ShipToDelivery);
+                            dalOrder.Update(myO2);
                             break;
                         case 4:
                             Console.WriteLine("Enter the ID of the order to get:");
-                            int ID3;
-                            ID3 = Console.Read();
-                            //לקרוא לטו סטרינג
-                            //לשלוח לגט
+                            int ID4 = Console.Read();
+                            Console.WriteLine(dalOrder.Get(ID4));
+                            break;
+                        default:
                             break;
                     }
                     break;
                 case 3:
+                    DalOrderItem dalOrderItem = new DalOrderItem();
                     Console.WriteLine("Enter your choice:");
                     Console.WriteLine("1 to add an order item");
                     Console.WriteLine("2 to delete an order item");
@@ -124,39 +123,47 @@ public class Program
                     {
                         case 1:
                             Console.WriteLine("Enter details of the order item to add:");
-                            OrderItem myO = new OrderItem();
-                            myO.ProductId = Console.Read();
-                            myO.OrderId = Console.Read();
-                            myO.Price = Console.Read();
-                            myO.Amount = Console.Read();
-                            //Console.WriteLine(//קריאה לפונקצית הוספה);
+                            OrderItem myOI = new OrderItem();
+                            myOI.ProductId = Console.Read();
+                            myOI.OrderId = Console.Read();
+                            myOI.Price = Console.Read();
+                            myOI.Amount = Console.Read();
+                            Console.WriteLine($"The order ID is:{dalOrderItem.Add(myOI)}");
                             break;
                         case 2:
                             Console.WriteLine("Enter ID of the order item to delete:");
-                            choice = Console.Read();
-                            //לשלוח למחיקה
+                            int ID5 = Console.Read();
+                            dalOrderItem.Delete(ID5);
                             break;
                         case 3:
                             Console.WriteLine("Enter the details of the order item to update:");
-                            OrderItem myO2 = new OrderItem();
-                            myO2.ProductId = Console.Read();
-                            myO2.OrderId = Console.Read();
-                            myO2.Price = Console.Read();
-                            myO2.Amount = Console.Read();
-                            //לשלוח לעידכון
+                            OrderItem myOI2 = new OrderItem();
+                            myOI2.ProductId = Console.Read();
+                            myOI2.OrderId = Console.Read();
+                            myOI2.Price = Console.Read();
+                            myOI2.Amount = Console.Read();
+                            dalOrderItem.Update(myOI2);
                             break;
                         case 4:
                             Console.WriteLine("Enter the ID of the order item to get:");
-                            int ID3;
-                            ID3 = Console.Read();
-                            //לקרוא לטו סטרינג
-                            //לשלוח לגט
+                            int ID6;
+                            ID6 = Console.Read();
+                            Console.WriteLine(dalOrderItem.Get(ID6));
+
                             break;
                         case 5:
-                            //להפעיל את גט אול
-                            //להדפיס עי פור איטש את המערך שהוחזר
+                            IEnumerable<OrderItem> orderItems = new List<OrderItem>();
+                            orderItems = dalOrderItem.GetAll();
+                            foreach (OrderItem orderItem in orderItems)
+                            {
+                                Console.WriteLine(orderItem);
+                            }
+                            break;
+                        default:
                             break;
                     }
+                    break;
+                default:
                     break;
             }
             
