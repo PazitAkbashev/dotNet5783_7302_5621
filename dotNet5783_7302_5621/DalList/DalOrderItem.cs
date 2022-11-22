@@ -15,7 +15,7 @@ public class DalOrderItem : IOrderItem
     public int Add(OrderItem o)
     {
         o.ID = Config.getorderItemRunIndex();
-        orderItemArray[Config._nextEmptyOrderItem++] = o;
+        orderItemList[orderItemList.Count] = o;
         return o.ID;
     }
     /// <summary>
@@ -23,11 +23,11 @@ public class DalOrderItem : IOrderItem
     /// </summary>
     public void Delete( int ID)
     {
-        for (int i = 0; i < Config._nextEmptyOrderItem; i++)
+        for (int i = 0; i < orderItemList.Count; i++)
         {
-            if(ID == orderItemArray[i].ID)
+            if(ID == orderItemList[i].ID)
             {
-                orderItemArray[i] = orderItemArray[--Config._nextEmptyOrderItem];
+                orderItemList[i] = orderItemList[orderItemList.Count];
                 return;
             }
         }
@@ -38,11 +38,11 @@ public class DalOrderItem : IOrderItem
     /// </summary>
     public void Update(OrderItem o)
     {
-        for (int i = 0; i < Config._nextEmptyOrderItem; i++)
+        for (int i = 0; i < orderItemList.Count; i++)
         {
-            if (o.ID == orderItemArray[i].ID)
+            if (o.ID == orderItemList[i].ID)
             {
-                orderItemArray[i] = o;
+                orderItemList[i] = o;
                 return;
             }
         }
@@ -53,10 +53,10 @@ public class DalOrderItem : IOrderItem
     /// </summary>
     public OrderItem Get(int index)
     {
-        for (int i = 0; i < Config._nextEmptyOrderItem; i++)
+        for (int i = 0; i < orderItemList.Count; i++)
         {
-            if (index == orderItemArray[i].ID)
-                return orderItemArray[i];
+            if (index == orderItemList[i].ID)
+                return orderItemList[i];
         }
         throw new Exception("this order item wasn't found");
     }
@@ -65,12 +65,12 @@ public class DalOrderItem : IOrderItem
     /// </summary>
     public OrderItem[] GetAll()
     {
-        if (Config._nextEmptyOrderItem == 0)
+        if (orderItemList.Count == 0)
             throw new Exception("there are no order items");
-        OrderItem[] newArr = new OrderItem[Config._nextEmptyOrderItem];
-        for (int i = 0; i < Config._nextEmptyOrderItem; i++)
+        OrderItem[] newArr = new OrderItem[orderItemList.Count];
+        for (int i = 0; i < orderItemList.Count; i++)
         {
-            newArr[i] = orderItemArray[i];
+            newArr[i] = orderItemList[i];
         }
         return newArr;  
     }
