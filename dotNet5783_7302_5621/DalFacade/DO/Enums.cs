@@ -4,15 +4,7 @@ namespace DO;
 
 public struct Enums
 {
-    public enum Category 
-    {
-        Starters,
-        MainCourses,
-        SideDishes,
-        Drinks,
-        Deserts
-    };
-
+    public enum Category { Starters, MainCourses, SideDishes , Drinks, Deserts }
     public enum Starters {Salmon, BeefFilleTartar, SoupOfTheDay, crispyChickenWings }
     public enum MainCourses { RibEyeSteak, RoastedChickenBreast, GrilledBeefFillet, DuckBreast }
     public enum SideDishes { Rice,Fries, ChoppedSalad, Antipasto }

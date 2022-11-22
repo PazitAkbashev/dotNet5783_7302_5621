@@ -3,7 +3,6 @@ using DO;
 using System.Collections.Generic;
 using static DO.Enums;
 
-
 public class Program
 {
     static void Main(string[] args)
@@ -16,7 +15,7 @@ public class Program
             Console.WriteLine("1 to Product");
             Console.WriteLine("2 to Order");
             Console.WriteLine("3 to Order-Item");
-            choice = Console.Read();
+            choice = int.Parse(Console.ReadLine());
             switch (choice)
             {
                 case 0:
@@ -28,34 +27,38 @@ public class Program
                     Console.WriteLine("2 to delete a product");
                     Console.WriteLine("3 to update a product");
                     Console.WriteLine("4 to get a product");
-                    choice = Console.Read();
-                    switch(choice)
+                    choice = (int.Parse(Console.ReadLine()));
+                    switch (choice)
                     {
                         case 1:
-                            Console.WriteLine("Enter the details of the product to add:");
+                            Console.WriteLine("for adding a product please enter the folowing: name,price,category(0-9),how many in stock:");
                             Product myP=new Product();
                             myP.Name=Console.ReadLine();
+                            myP.Price = double.Parse(Console.ReadLine());
                             myP.Category = (Category)int.Parse(Console.ReadLine());
-                            myP.Price = Console.Read();
+                            myP.inStock= int.Parse(Console.ReadLine());
                             Console.WriteLine($"The product ID is:{dalProduct.Add(myP)}");
                             break;
                         case 2:
                             Console.WriteLine("Enter the ID of the product to delete:");
-                           int ID= Console.Read();
+                           int ID= int.Parse(Console.ReadLine());
                             dalProduct.Delete(ID);
                             break;
                         case 3:
-                            Console.WriteLine("Enter the details of the product to update:");
+                            Console.WriteLine("Enter the ID of the product you wants to update:");
+                            int upID= int.Parse(Console.ReadLine());
+                            Console.WriteLine($"the product you wants to update is:{dalProduct.Get(upID)}");
+                            Console.WriteLine("for the new product, enter the folowing: id name,price,category(0-9),how many in stock:");
                             Product myP2 = new Product();
                             myP2.Name = Console.ReadLine();
+                            myP2.Price = int.Parse(Console.ReadLine());
                             myP2.Category = (Category)int.Parse(Console.ReadLine());
-                            myP2.Price = Console.Read();
                             dalProduct.Update(myP2);
                             break;
                         case 4:
                             Console.WriteLine("Enter the ID of the product to get:");
                             int ID2;
-                            ID2 = Console.Read();
+                            ID2 = int.Parse(Console.ReadLine());
                             Console.WriteLine(dalProduct.Get(ID2));
                             break;
                         default:
@@ -71,11 +74,11 @@ public class Program
                     Console.WriteLine("2 to delete an order");
                     Console.WriteLine("3 to update an order");
                     Console.WriteLine("4 to get an order");
-                    choice = Console.Read();
+                    choice = int.Parse(Console.ReadLine());
                     switch (choice)
                     {
                         case 1:
-                            Console.WriteLine("Enter details of the order to add:");
+                            Console.WriteLine("for adding an order please enter the folowing: name, email, address:");
                             Order myO = new Order();
                             myO.CustomerName = Console.ReadLine();
                             myO.CustomerEmail = Console.ReadLine();
@@ -83,15 +86,18 @@ public class Program
                             myO.OrderDate = DateTime.Now;
                             myO.ShipDate= myO.OrderDate.Add(OrderToShip);
                             myO.DeliveryrDate= myO.ShipDate.Add(ShipToDelivery);
-                            Console.WriteLine($"The order ID is:{dalOrder.Add(myO)}");
+                            Console.WriteLine($"Your order ID is:{dalOrder.Add(myO)}");
                             break;
                         case 2:
                             Console.WriteLine("Enter ID of the order to delete:");
-                            int ID3= Console.Read();
+                            int ID3= int.Parse(Console.ReadLine());
                             dalOrder.Delete(choice);
                             break;
                         case 3:
-                            Console.WriteLine("Enter the details of the order to update:");
+                            Console.WriteLine("Enter the ID of the order you wants to update:");
+                            int upID2 = int.Parse(Console.ReadLine());
+                            Console.WriteLine($"the order you wants to update is:{dalOrder.Get(upID2)}");
+                            Console.WriteLine("for the new order, enter the folowing: customer-name,customer-email,customer-adress,order-date,ship-date,deliveryr-date:");
                             Order myO2 = new Order();
                             myO2.CustomerName =Console.ReadLine();
                             myO2.CustomerEmail = Console.ReadLine();
@@ -103,7 +109,7 @@ public class Program
                             break;
                         case 4:
                             Console.WriteLine("Enter the ID of the order to get:");
-                            int ID4 = Console.Read();
+                            int ID4 = int.Parse(Console.ReadLine());
                             Console.WriteLine(dalOrder.Get(ID4));
                             break;
                         default:
@@ -118,36 +124,39 @@ public class Program
                     Console.WriteLine("3 to update an order item");
                     Console.WriteLine("4 to get an order item");
                     Console.WriteLine("5 to get all the order items");
-                    choice = Console.Read();
-                    switch(choice)
+                    choice = int.Parse(Console.ReadLine());
+                    switch (choice)
                     {
                         case 1:
-                            Console.WriteLine("Enter details of the order item to add:");
+                            Console.WriteLine("for adding an order item please enter the folowing: product id, order id, amount:");
                             OrderItem myOI = new OrderItem();
-                            myOI.ProductId = Console.Read();
-                            myOI.OrderId = Console.Read();
-                            myOI.Price = Console.Read();
-                            myOI.Amount = Console.Read();
+                            myOI.ProductId = int.Parse(Console.ReadLine());
+                            myOI.OrderId = int.Parse(Console.ReadLine());
+                            myOI.Price = double.Parse(Console.ReadLine());
+                            myOI.Amount = int.Parse(Console.ReadLine());
                             Console.WriteLine($"The order ID is:{dalOrderItem.Add(myOI)}");
                             break;
                         case 2:
                             Console.WriteLine("Enter ID of the order item to delete:");
-                            int ID5 = Console.Read();
+                            int ID5 = int.Parse(Console.ReadLine());
                             dalOrderItem.Delete(ID5);
                             break;
                         case 3:
-                            Console.WriteLine("Enter the details of the order item to update:");
+                            Console.WriteLine("Enter the ID of the order item you wants to update:");
+                            int upID3 = int.Parse(Console.ReadLine());
+                            Console.WriteLine($"the order item you wants to update is:{dalOrderItem.Get(upID3)}");
+                            Console.WriteLine("for the new order item, enter the folowing: product ID, order ID, price, amount:");
                             OrderItem myOI2 = new OrderItem();
-                            myOI2.ProductId = Console.Read();
-                            myOI2.OrderId = Console.Read();
-                            myOI2.Price = Console.Read();
-                            myOI2.Amount = Console.Read();
+                            myOI2.ProductId = int.Parse(Console.ReadLine());
+                            myOI2.OrderId = int.Parse(Console.ReadLine());
+                            myOI2.Price = int.Parse(Console.ReadLine());
+                            myOI2.Amount = int.Parse(Console.ReadLine());
                             dalOrderItem.Update(myOI2);
                             break;
                         case 4:
                             Console.WriteLine("Enter the ID of the order item to get:");
                             int ID6;
-                            ID6 = Console.Read();
+                            ID6 = int.Parse(Console.ReadLine());
                             Console.WriteLine(dalOrderItem.Get(ID6));
 
                             break;
