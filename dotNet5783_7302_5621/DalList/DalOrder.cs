@@ -15,7 +15,7 @@ public class DalOrder:IOrder
     public int Add(Order o)
     {
         o.ID = myRandom.Next(100000, 1000000);
-        orderArray[Config._nextEmptyOrder++] = o;
+        orderList[orderList.Count] = o;
         return o.ID;
     }
     /// <summary>
@@ -23,11 +23,11 @@ public class DalOrder:IOrder
     /// </summary>
     public void Delete(int ID)
     {
-        for (int i = 0; i < Config._nextEmptyOrder; i++)
+        for (int i = 0; i < orderList.Count; i++)
         {
-            if (ID == orderArray[i].ID)
+            if (ID == orderList[i].ID)
             {
-                orderArray[i] = orderArray[--Config._nextEmptyOrder];
+                orderList[i] = orderList[orderList.Count];
                 return;
             }
         }
@@ -38,11 +38,11 @@ public class DalOrder:IOrder
     /// </summary>
     public void Update(Order o)
     {
-        for (int i = 0; i < Config._nextEmptyOrder; i++)
+        for (int i = 0; i < orderList.Count; i++)
         {
-            if (o.ID == orderArray[i].ID)
+            if (o.ID == orderList[i].ID)
             {
-                orderArray[i] = o;
+                orderList[i] = o;
                 return;
             }
         }
@@ -53,10 +53,10 @@ public class DalOrder:IOrder
     /// </summary>
     public Order Get(int index)
     {
-        for (int i = 0; i < Config._nextEmptyOrder; i++)
+        for (int i = 0; i < orderList.Count; i++)
         {
-            if (index == orderArray[i].ID)
-                return orderArray[i];
+            if (index == orderList[i].ID)
+                return orderList[i];
         }
         throw new Exception("this order wasn't found");
     }

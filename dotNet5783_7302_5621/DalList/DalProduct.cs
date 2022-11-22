@@ -13,7 +13,7 @@ public class DalProduct: IProduct
     public int Add(Product p)
     {
         p.ID = myRandom.Next(100000, 1000000);
-        productArray[Config._nextEmptyProduct++] = p;
+        productList[productList.Count] = p;
         return p.ID;
     }
     /// <summary>
@@ -21,11 +21,11 @@ public class DalProduct: IProduct
     /// </summary>
     public void Delete(int ID)
     {
-        for (int i = 0; i < Config._nextEmptyProduct; i++)
+        for (int i = 0; i < productList.Count; i++)
         {
-            if (ID == productArray[i].ID)
+            if (ID == productList[i].ID)
             {
-                productArray[i] = productArray[--Config._nextEmptyProduct];
+                productList[i] = productList[productList.Count];
                 return;
             }
         }
@@ -36,11 +36,11 @@ public class DalProduct: IProduct
     /// </summary>
     public void Update(Product p)
     {
-        for (int i = 0; i < Config._nextEmptyProduct; i++)
+        for (int i = 0; i < productList.Count; i++)
         {
-            if (p.ID == productArray[i].ID)
+            if (p.ID == productList[i].ID)
             {
-                productArray[i] = p;
+                productList[i] = p;
                 return;
             }
         }
@@ -51,10 +51,10 @@ public class DalProduct: IProduct
     /// </summary>
     public Product Get(int ID)
     {
-        for (int i = 0; i < Config._nextEmptyProduct; i++)
+        for (int i = 0; i < productList.Count; i++)
         {
-            if (ID == productArray[i].ID)
-                return productArray[i];
+            if (ID == productList[i].ID)
+                return productList[i];
         }
         throw new Exception("this product wasn't found");
     }
