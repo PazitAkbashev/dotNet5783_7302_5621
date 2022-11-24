@@ -1,14 +1,15 @@
 ﻿using Dal;
 using DO;
-using DalList;
+//using DalList;
 using System.Collections.Generic;
 using static DO.Enums;
+using DalApi;
 
 void productFunction()
 {
     try
     {
-        DalProduct dalProduct = new DalProduct();
+        IDal dalProduct = new Dal.DalList();
         Console.WriteLine("Enter your choice:");
         Console.WriteLine("1 to add a product");
         Console.WriteLine("2 to delete a product");
@@ -61,7 +62,7 @@ void orderFunction()
 {
     try
     {
-        DalOrder dalOrder = new DalOrder();
+        IDal dalOrder = new Dal.DalList();
         TimeSpan OrderToShip = new(5, 0, 0, 0);
         TimeSpan ShipToDelivery = new(4, 0, 0, 0);
         Console.WriteLine("Enter your choice:");
@@ -122,7 +123,7 @@ void orderItemFunction()
     try
     {
 
-        DalOrderItem dalOrderItem = new DalOrderItem();
+        IDal dalOrderItem = new Dal.DalList();
         Console.WriteLine("Enter your choice:");
         Console.WriteLine("1 to add an order item");
         Console.WriteLine("2 to delete an order item");
@@ -168,9 +169,9 @@ void orderItemFunction()
             case 5:
                 IEnumerable<OrderItem> orderItems = new List<OrderItem>();
                 orderItems = dalOrderItem.GetAll();
-                foreach (OrderItem orderItem in orderItems)
+                for(int i=0;i< orderItems.Count-1;i++)
                 {
-                    Console.WriteLine(orderItem);
+                    Console.WriteLine(orderItems[i]);
                 }
                 break;
             default:
@@ -182,7 +183,6 @@ void orderItemFunction()
         Console.WriteLine(ex);
     }
 }
-
 int choice;
 do
 {

@@ -5,6 +5,8 @@ using DalApi;
 using static Dal.DataSource;
 using System.Collections.Generic;
 using System;
+using System.Collections;
+
 namespace Dal;
 /// <summary>
 /// the Implementations file of order item
@@ -76,7 +78,7 @@ internal class DalOrderItem : IOrderItem
     /// <summary>
     /// getting the all order items from the order items array
     /// </summary>
-    public List<OrderItem> GetAll()
+    public IEnumerable<OrderItem> GetAll()
     {
         if (orderItemList.Count == 0)
         {
