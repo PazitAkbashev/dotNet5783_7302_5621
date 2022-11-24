@@ -1,6 +1,5 @@
 ﻿using Dal;
 using DO;
-//using DalList;
 using System.Collections.Generic;
 using static DO.Enums;
 using DalApi;
@@ -25,29 +24,29 @@ void productFunction()
                 myP.Price = double.Parse(Console.ReadLine());
                 myP.Category = (Category)int.Parse(Console.ReadLine());
                 myP.inStock = int.Parse(Console.ReadLine());
-                Console.WriteLine($"The product ID is:{dalProduct.Add(myP)}");
+                Console.WriteLine($"The product ID is:{dalProduct.Product.Add(myP)}");
                 break;
             case 2:
                 Console.WriteLine("Enter the ID of the product to delete:");
                 int ID = int.Parse(Console.ReadLine());
-                dalProduct.Delete(ID);
+                dalProduct.Product.Delete(ID);
                 break;
             case 3:
                 Console.WriteLine("Enter the ID of the product you wants to update:");
                 int upID = int.Parse(Console.ReadLine());
-                Console.WriteLine($"the product you wants to update is:{dalProduct.Get(upID)}");
+                Console.WriteLine($"the product you wants to update is:{dalProduct.Product.Get(upID)}");
                 Console.WriteLine("for the new product, enter the folowing: id name,price,category(0-9),how many in stock:");
                 Product myP2 = new Product();
                 myP2.Name = Console.ReadLine();
                 myP2.Price = int.Parse(Console.ReadLine());
                 myP2.Category = (Category)int.Parse(Console.ReadLine());
-                dalProduct.Update(myP2);
+                dalProduct.Product.Update(myP2);
                 break;
             case 4:
                 Console.WriteLine("Enter the ID of the product to get:");
                 int ID2;
                 ID2 = int.Parse(Console.ReadLine());
-                Console.WriteLine(dalProduct.Get(ID2));
+                Console.WriteLine(dalProduct.Product.Get(ID2));
                 break;
             default:
                 break;
@@ -82,17 +81,17 @@ void orderFunction()
                 myO.OrderDate = DateTime.Now;
                 myO.ShipDate = myO.OrderDate.Add(OrderToShip);
                 myO.DeliveryrDate = myO.ShipDate.Add(ShipToDelivery);
-                Console.WriteLine($"Your order ID is:{dalOrder.Add(myO)}");
+                Console.WriteLine($"Your order ID is:{dalOrder.Order.Add(myO)}");
                 break;
             case 2:
                 Console.WriteLine("Enter ID of the order to delete:");
                 int ID3 = int.Parse(Console.ReadLine());
-                dalOrder.Delete(choice);
+                dalOrder.Order.Delete(choice);
                 break;
             case 3:
                 Console.WriteLine("Enter the ID of the order you wants to update:");
                 int upID2 = int.Parse(Console.ReadLine());
-                Console.WriteLine($"the order you wants to update is:{dalOrder.Get(upID2)}");
+                Console.WriteLine($"the order you wants to update is:{dalOrder.Order.Get(upID2)}");
                 Console.WriteLine("for the new order, enter the folowing: customer-name,customer-email,customer-adress,order-date,ship-date,deliveryr-date:");
                 Order myO2 = new Order();
                 myO2.CustomerName = Console.ReadLine();
@@ -101,12 +100,12 @@ void orderFunction()
                 myO2.OrderDate = DateTime.Now;
                 myO2.ShipDate = myO2.OrderDate.Add(OrderToShip);
                 myO2.DeliveryrDate = myO2.ShipDate.Add(ShipToDelivery);
-                dalOrder.Update(myO2);
+                dalOrder.Order.Update(myO2);
                 break;
             case 4:
                 Console.WriteLine("Enter the ID of the order to get:");
                 int ID4 = int.Parse(Console.ReadLine());
-                Console.WriteLine(dalOrder.Get(ID4));
+                Console.WriteLine(dalOrder.Order.Get(ID4));
                 break;
             default:
                 break;
@@ -140,38 +139,39 @@ void orderItemFunction()
                 myOI.OrderId = int.Parse(Console.ReadLine());
                 myOI.Price = double.Parse(Console.ReadLine());
                 myOI.Amount = int.Parse(Console.ReadLine());
-                Console.WriteLine($"The order ID is:{dalOrderItem.Add(myOI)}");
+                Console.WriteLine($"The order ID is:{dalOrderItem.OrderItem.Add(myOI)}");
                 break;
             case 2:
                 Console.WriteLine("Enter ID of the order item to delete:");
                 int ID5 = int.Parse(Console.ReadLine());
-                dalOrderItem.Delete(ID5);
+                dalOrderItem.OrderItem.Delete(ID5);
                 break;
             case 3:
                 Console.WriteLine("Enter the ID of the order item you wants to update:");
                 int upID3 = int.Parse(Console.ReadLine());
-                Console.WriteLine($"the order item you wants to update is:{dalOrderItem.Get(upID3)}");
+                Console.WriteLine($"the order item you wants to update is:{dalOrderItem.OrderItem.Get(upID3)}");
                 Console.WriteLine("for the new order item, enter the folowing: product ID, order ID, price, amount:");
                 OrderItem myOI2 = new OrderItem();
                 myOI2.ProductId = int.Parse(Console.ReadLine());
                 myOI2.OrderId = int.Parse(Console.ReadLine());
                 myOI2.Price = int.Parse(Console.ReadLine());
                 myOI2.Amount = int.Parse(Console.ReadLine());
-                dalOrderItem.Update(myOI2);
+                dalOrderItem.OrderItem.Update(myOI2);
                 break;
             case 4:
                 Console.WriteLine("Enter the ID of the order item to get:");
                 int ID6;
                 ID6 = int.Parse(Console.ReadLine());
-                Console.WriteLine(dalOrderItem.Get(ID6));
+                Console.WriteLine(dalOrderItem.OrderItem.Get(ID6));
 
                 break;
             case 5:
                 IEnumerable<OrderItem> orderItems = new List<OrderItem>();
-                orderItems = dalOrderItem.GetAll();
-                for(int i=0;i< orderItems.Count-1;i++)
+                orderItems = dalOrderItem.OrderItem.GetAll();
+                IEnumerator<OrderItem> myIE= orderItems.GetEnumerator();
+                while(myIE.MoveNext())
                 {
-                    Console.WriteLine(orderItems[i]);
+                    Console.WriteLine(myIE.Current);
                 }
                 break;
             default:
