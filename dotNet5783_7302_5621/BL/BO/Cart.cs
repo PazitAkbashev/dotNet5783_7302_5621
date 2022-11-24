@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    internal class Cart
+    public class Cart
     {
+        public string CustomerName;
+        public string CustomerEmail;
+        public string CustomerAddress;
+        public OrderItem Items;
+        public double TotalPrice;
     }
 }

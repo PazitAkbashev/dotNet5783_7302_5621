@@ -11,9 +11,14 @@ namespace BO
         public int ID;
         public string CustomerName;
         public string CustomerEmail;
-        public string CustomerAdress;
+        public string CustomerAddress;
         public OrderStatus Status;
-        public 
+        public DateTime OrderDate;
+        public DateTime PaymentDate;
+        public DateTime ShipDate;
+        public DateTime DeliveryrDate;
+        public OrderItem Items;
+        public double TotalPrice;
 
     }
 }

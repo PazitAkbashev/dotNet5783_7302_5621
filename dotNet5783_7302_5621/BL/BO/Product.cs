@@ -11,7 +11,7 @@ namespace BO
     {
         public int ID;
         public string Name;
-        public float Price;
+        public double Price;
         public Category Category;
         public int InStock;
     }
