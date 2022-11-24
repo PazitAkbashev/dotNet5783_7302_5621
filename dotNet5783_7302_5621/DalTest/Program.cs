@@ -1,5 +1,6 @@
 ﻿using Dal;
 using DO;
+using DalList;
 using System.Collections.Generic;
 using static DO.Enums;
 
@@ -110,7 +111,7 @@ void orderFunction()
                 break;
         }
     }
-    catch(Exception ex)
+    catch(wasntFound ex)
     {
         Console.WriteLine(ex);
     }
@@ -132,7 +133,7 @@ void orderItemFunction()
         switch (choice)
         {
             case 1:
-                Console.WriteLine("for adding an order item please enter the folowing: product id, order id, amount:");
+                Console.WriteLine("for adding an order item please enter the folowing: product id, order id, price, amount:");
                 OrderItem myOI = new OrderItem();
                 myOI.ProductId = int.Parse(Console.ReadLine());
                 myOI.OrderId = int.Parse(Console.ReadLine());

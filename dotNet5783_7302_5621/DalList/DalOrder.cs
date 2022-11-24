@@ -1,21 +1,31 @@
 ﻿using System;
 using DO;
+using DalList;
 using DalApi;
+using System.Collections.Generic;
 namespace Dal;
 using static Dal.DataSource;
 
 /// <summary>
 /// the Implementations file of order
 /// </summary>
-public class DalOrder:IOrder
+internal class DalOrder:IOrder
 {
     /// <summary>
     /// adding an order to the orders array
     /// </summary>
     public int Add(Order o)
     {
+        for (int i=0;i<orderList.Count-1;i++)
+        {
+            if (o.ID == orderList[i].ID)
+            {
+                duplicationID d =new duplicationID();
+                throw new Exception(d.ToString());
+            }
+        }
         o.ID = myRandom.Next(100000, 1000000);
-        orderList[orderList.Count] = o;
+        orderList.Add(o);
         return o.ID;
     }
     /// <summary>
@@ -23,22 +33,23 @@ public class DalOrder:IOrder
     /// </summary>
     public void Delete(int ID)
     {
-        for (int i = 0; i < orderList.Count; i++)
+        for (int i = 0; i < orderList.Count-1; i++)
         {
             if (ID == orderList[i].ID)
             {
-                orderList[i] = orderList[orderList.Count];
+                orderList.Remove(orderList[i]);
                 return;
             }
         }
-        throw new Exception("this order wasn't found");
+        wasntFound w = new wasntFound();
+        throw new Exception(w.ToString());
     }
     /// <summary>
     /// updating an order in the orders array
     /// </summary>
     public void Update(Order o)
     {
-        for (int i = 0; i < orderList.Count; i++)
+        for (int i = 0; i < orderList.Count-1; i++)
         {
             if (o.ID == orderList[i].ID)
             {
@@ -46,19 +57,21 @@ public class DalOrder:IOrder
                 return;
             }
         }
-        throw new Exception("this order wasn't found");
+        wasntFound w = new wasntFound();
+        throw new Exception(w.ToString());
     }
     /// <summary>
     /// getting an order from the orders array
     /// </summary>
-    public Order Get(int index)
+    public Order Get(int ID)
     {
-        for (int i = 0; i < orderList.Count; i++)
+        for (int i = 0; i < orderList.Count-1; i++)
         {
-            if (index == orderList[i].ID)
+            if (orderList[i].ID == ID)
                 return orderList[i];
         }
-        throw new Exception("this order wasn't found");
+        wasntFound w = new wasntFound();
+        throw new Exception(w.ToString());
     }
 }
 

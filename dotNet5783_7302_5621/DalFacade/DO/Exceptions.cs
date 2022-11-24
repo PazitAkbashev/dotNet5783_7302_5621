@@ -6,19 +6,24 @@ using System.Threading.Tasks;
 
 namespace DO;
 
-int num = int.Parse("aaa");
-public static Exceptin ProductsException(Exception exception)
+public class wasntFound:Exception
 {
-    return exception;
+
+    public override string Message=>"The object doesn't exist";
+    public override string ToString()
+    {
+        return Message;
+    }
 }
 
-public static Exception OrderException(Exception exception)
+public class duplicationID:Exception
 {
-    return exception;
+    public override string Message => "The object already exist";
+    public override string ToString()
+    {
+        return Message;
+    }
+
 }
 
-public static Exception OrderItemException(Exception exception)
-{
-    return exception;
-}
 

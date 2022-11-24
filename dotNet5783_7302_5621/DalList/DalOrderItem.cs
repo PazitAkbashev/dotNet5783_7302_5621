@@ -1,21 +1,31 @@
 ﻿
 using DO;
+using DalList;
 using DalApi;
 using static Dal.DataSource;
+using System.Collections.Generic;
 using System;
 namespace Dal;
 /// <summary>
 /// the Implementations file of order item
 /// </summary>
-public class DalOrderItem : IOrderItem
+internal class DalOrderItem : IOrderItem
 {
     /// <summary>
     /// adding order item to the order items array
     /// </summary>
     public int Add(OrderItem o)
     {
+        for (int i = 0; i < orderItemList.Count-1; i++)
+        {
+            if (o.ID == orderItemList[i].ID)
+            {
+                duplicationID d = new duplicationID();
+                throw new Exception(d.ToString());
+            }
+        }
         o.ID = Config.getorderItemRunIndex();
-        orderItemList[orderItemList.Count] = o;
+        orderItemList.Add(o);
         return o.ID;
     }
     /// <summary>
@@ -23,22 +33,23 @@ public class DalOrderItem : IOrderItem
     /// </summary>
     public void Delete( int ID)
     {
-        for (int i = 0; i < orderItemList.Count; i++)
+        for (int i = 0; i < orderItemList.Count-1; i++)
         {
             if(ID == orderItemList[i].ID)
             {
-                orderItemList[i] = orderItemList[orderItemList.Count];
+                orderItemList.Remove(orderItemList[i]);
                 return;
             }
         }
-        throw new Exception("this order item wasn't found");
+        wasntFound w = new wasntFound();
+        throw new Exception(w.ToString());
     }
     /// <summary>
     /// updating order item in the order items array
     /// </summary>
     public void Update(OrderItem o)
     {
-        for (int i = 0; i < orderItemList.Count; i++)
+        for (int i = 0; i < orderItemList.Count-1; i++)
         {
             if (o.ID == orderItemList[i].ID)
             {
@@ -46,33 +57,38 @@ public class DalOrderItem : IOrderItem
                 return;
             }
         }
-        throw new Exception("this order item wasn't found");
+        wasntFound w = new wasntFound();
+        throw new Exception(w.ToString());
     }
     /// <summary>
     /// getting an order item from the order items array 
     /// </summary>
-    public OrderItem Get(int index)
+    public OrderItem Get(int ID)
     {
-        for (int i = 0; i < orderItemList.Count; i++)
+        for (int i = 0; i < orderItemList.Count-1; i++)
         {
-            if (index == orderItemList[i].ID)
+            if (orderList[i].ID == ID)
                 return orderItemList[i];
         }
-        throw new Exception("this order item wasn't found");
+        wasntFound w = new wasntFound();
+        throw new Exception(w.ToString());
     }
     /// <summary>
     /// getting the all order items from the order items array
     /// </summary>
-    public OrderItem[] GetAll()
+    public List<OrderItem> GetAll()
     {
         if (orderItemList.Count == 0)
-            throw new Exception("there are no order items");
-        OrderItem[] newArr = new OrderItem[orderItemList.Count];
-        for (int i = 0; i < orderItemList.Count; i++)
         {
-            newArr[i] = orderItemList[i];
+            wasntFound w = new wasntFound();
+            throw new Exception(w.ToString());
         }
-        return newArr;  
+        List<OrderItem> newList = new List<OrderItem>(orderItemList.Count);
+        for (int i = 0; i < orderItemList.Count-1; i++)
+        {
+            newList.Add(orderItemList[i]);
+        }
+        return newList;  
     }
 }
 
