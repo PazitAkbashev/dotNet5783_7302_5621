@@ -8,5 +8,10 @@ namespace BO
 {
     public class OrderForList
     {
+        public int ID;
+        public string CustomerName;
+        public OrderStatus status;
+        public int AmountOfItems;
+        public double TotalPrice;
     }
 }

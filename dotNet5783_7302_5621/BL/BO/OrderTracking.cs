@@ -8,5 +8,7 @@ namespace BO
 {
     public class OrderTracking
     {
+        public int ID;
+        public OrderStatus Status;
     }
 }
