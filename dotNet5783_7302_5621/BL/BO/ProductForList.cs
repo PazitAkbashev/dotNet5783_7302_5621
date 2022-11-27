@@ -14,5 +14,4 @@ public class ProductForList
     public double price;
     public Category category;
 
-    public ProductForList getProductList();
 }
