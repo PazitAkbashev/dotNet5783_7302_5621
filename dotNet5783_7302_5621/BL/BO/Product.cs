@@ -5,14 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using static DO.Enums;
 
-namespace BO
+namespace BO;
+public class Product
 {
-    public class Product
-    {
-        public int ID;
-        public string Name;
-        public double Price;
-        public Category Category;
-        public int InStock;
-    }
+    public int ID;
+    public string Name;
+    public double Price;
+    public Category Category;
+    public int InStock;
 }

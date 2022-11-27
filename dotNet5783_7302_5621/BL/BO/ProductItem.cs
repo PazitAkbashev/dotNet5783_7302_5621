@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 using static DO.Enums;
 
 
-namespace BO
+namespace BO;
+
+public class ProductItem
 {
-    public class ProductItem
-    {
-        public int ID;
-        public string Name;
-        public double Price;
-        public Caterory caterory;
-        public int Amount;
-        public bool InStock;
-    }
+    public int ID;
+    public string Name;
+    public double Price;
+    public Caterory caterory;
+    public int Amount;
+    public bool InStock;
 }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BO;
-
-public class OrderTracking
+namespace BlApi;
+/// <summary>
+/// 
+/// </summary>
+public interface IBl
 {
-    public int ID;
-    public OrderStatus Status;
 }

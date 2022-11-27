@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BO
+namespace BO;
+
+public class Cart
 {
-    public class Cart
-    {
-        public string CustomerName;
-        public string CustomerEmail;
-        public string CustomerAddress;
-        public OrderItem Items;
-        public double TotalPrice;
-    }
+    public string CustomerName;
+    public string CustomerEmail;
+    public string CustomerAddress;
+    public OrderItem Items;
+    public double TotalPrice;
 }
