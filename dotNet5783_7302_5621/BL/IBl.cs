@@ -8,9 +8,6 @@ namespace BlApi;
 /// <summary>
 /// 
 /// </summary>
-public interface ICart
+public interface IBl
 {
-    public Cart addProductToCart(Cart,int);
-    public Cart updateAmountOfProduct(Cart, int, int);
-    public void confirmCart(Cart);
 }
