@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace BlApi;
 /// </summary>
 public interface ICart
 {
-    public Cart addProductToCart(Cart,int);
+    public Cart addProductToCart(Cart, int);
     public Cart updateAmountOfProduct(Cart, int, int);
     public void confirmCart(Cart);
 }
