@@ -73,5 +73,19 @@ internal class DalOrder:IOrder
         wasntFound w = new wasntFound();
         throw new Exception(w.ToString());
     }
+    public IEnumerable<Order> GetAll()
+    {
+        if (orderList.Count == 0)
+        {
+            wasntFound w = new wasntFound();
+            throw new Exception(w.ToString());
+        }
+        List<Order> newList = new List<Order>(orderList.Count);
+        for (int i = 0; i < orderList.Count - 1; i++)
+        {
+            newList.Add(orderList[i]);
+        }
+        return newList;
+    }
 }
 

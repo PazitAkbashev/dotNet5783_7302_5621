@@ -70,4 +70,18 @@ internal class DalProduct: IProduct
         wasntFound w = new wasntFound();
         throw new Exception(w.ToString());
     }
+    public IEnumerable<Product> GetAll()
+    {
+        if (productList.Count == 0)
+        {
+            wasntFound w = new wasntFound();
+            throw new Exception(w.ToString());
+        }
+        List<Product> newList = new List<Product>(productList.Count);
+        for (int i = 0; i < productList.Count - 1; i++)
+        {
+            newList.Add(productList[i]);
+        }
+        return newList;
+    }
 }

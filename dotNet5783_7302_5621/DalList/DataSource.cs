@@ -14,11 +14,16 @@ internal static class DataSource
         public static int getOrderRunIndex() { return ++orderRunIndex; }
         public static int getorderItemRunIndex() { return ++orderItemRunIndex; }
     }
+
     static DataSource() { s_Initialize(); }
     internal readonly static Random myRandom = new Random();
+
+
     internal static List<Product> productList = new List<Product>(50);
     internal static List<Order> orderList = new List<Order>(100);
     internal static List<OrderItem> orderItemList = new List<OrderItem>(200);
+
+
     private static void  product_Initialize()
     {
         for (int i=0 ; i<10; i++)
