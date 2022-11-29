@@ -11,7 +11,7 @@ namespace BlApi;
 /// </summary>
 public interface ICart
 {
-    public Cart addProductToCart(Cart, int);
-    public Cart updateAmountOfProduct(Cart, int, int);
-    public void confirmCart(Cart);
+    public Cart addProductToCart(Cart cart, int productID);
+    public Cart updateAmountOfProduct(Cart cart, int productID, int newAmount);
+    public void confirmCart(Cart cart);
 }
