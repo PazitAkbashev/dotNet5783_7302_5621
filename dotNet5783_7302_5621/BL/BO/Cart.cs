@@ -15,6 +15,6 @@ namespace BO
         public List<BO.OrderItem> Items { get; set; }
         public double TotalPrice { get; set; }
         public override string ToString() => $@"customer-name={CustomerName},Mail={CustomerEmail},Adress= {CustomerAddress},
-Cart-items= {Items},total-price={TotalPrice}";
+        Cart-items= {Items},total-price={TotalPrice}";
     }
 }

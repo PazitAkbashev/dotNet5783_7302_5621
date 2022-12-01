@@ -11,19 +11,38 @@ using BO;
 
 namespace BlImplementation;
  
-internal class Product : /*BlApi.*/IProduct
+internal class Product :IProduct
 {
     private DalApi.IDal dalProduct = new Dal.DalList();
     public IEnumerable<BO.ProductForList> getProductList()
     {
         IEnumerable<DO.Product> tempList = dalProduct.Product.GetAll();
         List<BO.ProductForList> productsForList=new List<BO.ProductForList>();
-        ProductForList productForList = new ProductForList();
-        for()
+        BO.ProductForList tempProduct = new BO.ProductForList();
+        foreach (var item in tempList)
+        {
+            tempProduct.ID= item.ID;
+            tempProduct.Name= item.Name;
+            tempProduct.Price= item.Price;
+            tempProduct.category= item.Category;
 
-
-        return productsForList;
+        }
+            return productsForList;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public Product getProductDetailsD(int productID)
     {
 
