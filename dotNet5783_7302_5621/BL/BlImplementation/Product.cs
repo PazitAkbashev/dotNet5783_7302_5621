@@ -16,9 +16,9 @@ internal class Product :IProduct
     private DalApi.IDal dalProduct = new Dal.DalList();
     public IEnumerable<BO.ProductForList> getProductList()
     {
-        IEnumerable<DO.Product> tempList = dalProduct.Product.GetAll();
-        List<BO.ProductForList> productsForList=new List<BO.ProductForList>();
-        BO.ProductForList tempProduct = new BO.ProductForList();
+        IEnumerable<DO.Product> tempList = dalProduct.Product.GetAll(); //creat list product type
+        List<BO.ProductForList> productsForList=new List<BO.ProductForList>();  //?
+        BO.ProductForList tempProduct = new BO.ProductForList();  //??
         foreach (var item in tempList)
         {
             tempProduct.ID= item.ID;
