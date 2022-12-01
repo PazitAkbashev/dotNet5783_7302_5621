@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BO.Enums;
 
 namespace BO
 {
@@ -12,7 +13,7 @@ namespace BO
         public string ?CustomerName { get; set; }
         public string ?CustomerEmail { get; set; }
         public string ?CustomerAddress { get; set; }
-        public OrderStatus Status { get; set; }
+        public orderStatus Status { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime PaymentDate { get; set; }
         public DateTime ShipDate { get; set; }
