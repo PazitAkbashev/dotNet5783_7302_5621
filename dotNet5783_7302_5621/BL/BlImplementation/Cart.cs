@@ -96,8 +96,68 @@ internal class Cart : BlApi.ICart
         }
         return cart;
     }
-    public void confirmCart(Cart cart)
+    public void confirmCart(BO.Cart cart)
     {
+        if(string.IsNullOrEmpty(cart.CustomerName))
+            throw new BO.MyException("");
+        
+        if (string.IsNullOrEmpty(cart.CustomerAddress))
+            throw new BO.MyException("");
+        
+        if (string.IsNullOrEmpty(cart.CustomerEmail)||!cart.CustomerEmail.Contains("@gmail.com"))
+            throw new BO.MyException("");
+     
+        foreach(var item in cart.Items)
+        {
+            DO.Product tempProduct = dalCart.Product.Get(item.ID);
+            if (item.Amount <= 0)
+                throw new BO.MyException("");
 
+            if (tempProduct.inStock < item.Amount)
+                throw new BO.MyException("");
+            try
+            {
+                tempProduct = dalCart.Product.Get(item.ID);
+            }
+            catch(Exception ex)
+            {
+                throw new BO.MyException("");
+            }
+        }
+        DO.Order tempOrder = new DO.Order();
+        tempOrder.CustomerName = cart.CustomerName;
+        tempOrder.CustomerAdress = cart.CustomerAddress;
+        tempOrder.CustomerEmail = cart.CustomerEmail;
+        tempOrder.OrderDate = DateTime.Now;
+        tempOrder.ShipDate = DateTime.MinValue;
+        tempOrder.DeliveryrDate= DateTime.MinValue;
+        int returnID;
+        try
+        {
+            returnID = dalCart.Order.Add(tempOrder);
+        }
+        catch(Exception ex)
+        {
+            throw new BO.MyException("");
+        }
+        foreach(var item in cart.Items)
+        {
+            DO.OrderItem tempOrderItem=new DO.OrderItem();
+            tempOrderItem.ID=item.ID;
+            tempOrderItem.Price=item.Price;
+            tempOrderItem.Amount=item.Amount;
+            tempOrderItem.ProductId = item.ProductID;
+            tempOrderItem.OrderId = returnID;
+            try
+            {
+                dalCart.OrderItem.Add(tempOrderItem);
+            }
+            catch (Exception ex)
+            {
+                throw new BO.MyException("");
+            }
+            DO.Product tempProduct = dalCart.Product.Get(item.ID);
+            tempProduct.inStock -= item.Amount;
+        }
     }
 }
