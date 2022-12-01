@@ -5,48 +5,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
-using BO;
-//using BO;
-//using DalApi;
+
 
 namespace BlImplementation;
  
 internal class Product :IProduct
 {
+
+
     private DalApi.IDal dalProduct = new Dal.DalList();
+
     public IEnumerable<BO.ProductForList> getProductList()
     {
-        IEnumerable<DO.Product> tempList = dalProduct.Product.GetAll(); //creat list product type
-        List<BO.ProductForList> productsForList=new List<BO.ProductForList>();  //?
-        BO.ProductForList tempProduct = new BO.ProductForList();  //??
-        foreach (var item in tempList)
+        IEnumerable<DO.Product> prod = dalProduct.Product.GetAll();  //asking for the product data.
+        List<BO.ProductForList> tempProdForList = new List<BO.ProductForList>();
+        foreach(var item in prod)
         {
-            tempProduct.ID= item.ID;
-            tempProduct.Name= item.Name;
-            tempProduct.Price= item.Price;
-            tempProduct.category= item.Category;
+            BO.ProductForList tempProduct = new ProductForList();
+            tempProduct.ID = item.ID;
+            tempProduct.Name = item.Name;
+            tempProduct.Price=item.Price;
+            tempProduct.category = item.Category;
+
+            tempProdForList.Add(tempProduct);
+        }
+        return tempProdForList;
+    }
+
+
+
+    public BO.Product getProductDetailsD(int productID)
+    {
+        BO.Product prod2 = new BO.Product();
+        if(productID > 0)
+        {
+            DO.Product prod = dalProduct.Product.Get(productID);   //asking for the product data.
+            
+            prod2.ID = prod.ID;
+            prod2.Name = prod.Name;
+            prod2.InStock = prod.inStock;
+            prod2.category = prod.Category;
+            prod2.Price = prod.Price;
 
         }
-            return productsForList;
-    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public Product getProductDetailsD(int productID)
-    {
-
-    }
+        return prod2; 
+     
+    }   
     public BO.ProductItem getProductDetailsC(int productID)
     {
 
