@@ -14,7 +14,7 @@ public interface IProduct
     public IEnumerable<ProductForList> getProductList();
     public Product getProductDetailsD(int productID);
     public ProductItem getProductDetailsC(int productID,Cart cart);
-    public void addProduct(IProduct product);
+    public void addProduct(Product product);
     public void deleteProduct(int productID);
     public void updateProduct(Product product);
 }

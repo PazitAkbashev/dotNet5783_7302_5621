@@ -9,7 +9,7 @@ using BlApi;
 
 namespace BlImplementation;
  
-internal class Product :IProduct
+internal class Product : BlApi.IProduct
 {
     private DalApi.IDal dalProduct = new Dal.DalList();
 
@@ -46,7 +46,7 @@ internal class Product :IProduct
         return prod2; 
     }   
 
-    public BO.ProductItem getProductDetailsC(int productID,Cart cart)
+    public BO.ProductItem getProductDetailsC(int productID,BO.Cart cart)
     {
         BO.ProductItem tempProdItem = new BO.ProductItem();
         if (productID>0)
@@ -96,7 +96,13 @@ internal class Product :IProduct
 
     public void deleteProduct(int productID)
     {
-        
+        IEnumerable<DO.Order> tempList = dalProduct.Order.GetAll();
+        foreach(var item in tempList)
+        {
+            if(item.ID==productID)
+                throw new BO.MyException("");
+        }
+        ///////לא גמור////////////
     }
 
     public void updateProduct(BO.Product product)

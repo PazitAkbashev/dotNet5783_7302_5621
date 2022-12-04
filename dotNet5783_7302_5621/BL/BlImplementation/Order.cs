@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
-using DalApi;
+//using DalApi;
 
 namespace BlImplementation;
 
-internal class Order : BlApi.IOrder
+internal class Order :BlApi.IOrder
 {
     private DalApi.IDal dalOrder = new Dal.DalList();
 
