@@ -6,13 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static BO.Enums;
 
 namespace BO
 {
     public class OrderTracking
     {
         public int ID { get; set; }
-        public OrderStatus Status { get; set; }
+        public orderStatus Status { get; set; }
         public override string ToString() => $@"Order-tracking-id={ID},status={Status}";
     }
 }

@@ -96,13 +96,25 @@ internal class Product : BlApi.IProduct
 
     public void deleteProduct(int productID)
     {
-        IEnumerable<DO.Order> tempList = dalProduct.Order.GetAll();
-        foreach(var item in tempList)
+        IEnumerable<DO.Order> tempList1 = dalProduct.Order.GetAll();
+        IEnumerable<DO.Product> tempList2 = dalProduct.Product.GetAll();
+        bool flag = false;
+        foreach (var item in tempList1)
         {
             if(item.ID==productID)
                 throw new BO.MyException("");
         }
-        ///////לא גמור////////////
+        foreach (var item in tempList2)
+        {
+            if (item.ID == productID)
+            {
+                flag = true;
+                break;
+            }
+        }
+        if (flag == false)
+            throw new BO.MyException("");
+        dalProduct.Product.Delete(productID);
     }
 
     public void updateProduct(BO.Product product)
