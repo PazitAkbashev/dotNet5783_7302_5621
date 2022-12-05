@@ -17,5 +17,4 @@ public class Enums
     public enum customerName { Miriam, Pazit, Yehudit, Shira, Yael, Tehila, Tamar, Michal, Yosef, Beni }
     public enum customerAdress { Jerusalem, TelAviv, Ashdod, Netania, BeerSheva, Eilat }
     public enum orderStatus {Confirmed, Shipped, Supplied}
-
 }
