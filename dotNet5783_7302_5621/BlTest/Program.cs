@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Dal;
 using System.Collections.Generic;
-using static DO.Enums;
 using DalApi;
 using BlApi;
 using BlImplementation;
@@ -69,7 +68,8 @@ void productFunction()
             myProduct.ID= int.Parse(Console.ReadLine());
             myProduct.Name= Console.ReadLine();
             myProduct.Price= double.Parse(Console.ReadLine());
-            myProduct.category=;
+            string cat= Console.ReadLine(); 
+            myProduct.category=(BO.Enums.category)Enum.Parse(typeof(BO.Enums.category?),cat);
             myProduct.InStock= int.Parse(Console.ReadLine());
             blProduct.Product.addProduct(myProduct);
             /////////////////////הדפסת חריגה////////////////////
@@ -86,7 +86,9 @@ void productFunction()
             myProduct2.ID = int.Parse(Console.ReadLine());
             myProduct2.Name = Console.ReadLine();
             myProduct2.Price = double.Parse(Console.ReadLine());
-            myProduct2.category =;
+            string cat2= Console.ReadLine();
+            myProduct2.category = (BO.Enums.category)Enum.Parse(typeof(BO.Enums.category?), cat2);
+            myProduct2.InStock = int.Parse(Console.ReadLine());
             myProduct2.InStock = int.Parse(Console.ReadLine());
             blProduct.Product.updateProduct(myProduct2);
             /////////////////////הדפסת חריגה////////////////////
