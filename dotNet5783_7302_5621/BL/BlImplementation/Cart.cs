@@ -15,7 +15,7 @@ internal class Cart : BlApi.ICart
     {
         DO.Product tempProduct = dalCart.Product.Get(productID);
         bool flag = false;
-        foreach(var item in cart.Items)
+        foreach(var item in cart.Items!)
         {
             if(item.ProductID== productID)
             {
@@ -50,7 +50,7 @@ internal class Cart : BlApi.ICart
     public BO.Cart updateAmountOfProduct(BO.Cart cart, int productID, int newAmount)
     {
         DO.Product tempProduct = dalCart.Product.Get(productID);
-        foreach (var item in cart.Items)
+        foreach (var item in cart.Items!)
         {
             if (item.ProductID == productID)
             {
@@ -106,7 +106,7 @@ internal class Cart : BlApi.ICart
         if (string.IsNullOrEmpty(cart.CustomerEmail)||!cart.CustomerEmail.Contains("@gmail.com"))
             throw new BO.MyException("");
      
-        foreach(var item in cart.Items)
+        foreach(var item in cart.Items!)
         {
             DO.Product tempProduct = dalCart.Product.Get(item.ID);
             if (item.Amount <= 0)

@@ -80,7 +80,7 @@ internal class Order :BlApi.IOrder
                     myOrder.Price=item.Price;
                     myOrder.Amount = item.Amount;
                     myOrder.TotalPrice =item.Price*item.Amount;
-                    tempOrder2.Items.Add(myOrder);
+                    tempOrder2.Items!.Add(myOrder);
                 }
             }
             tempOrder2.TotalPrice = myTotalPrice;
@@ -124,7 +124,7 @@ internal class Order :BlApi.IOrder
                         myOrderItem.Price = item2.Price;
                         myOrderItem.Amount = item2.Amount;
                         myOrderItem.TotalPrice =item2.Price*item2.Amount;
-                        order2.Items.Add(myOrderItem);
+                        order2.Items!.Add(myOrderItem);
                     }
                 }
                 order2.TotalPrice = myTotalPrice;
@@ -167,7 +167,7 @@ internal class Order :BlApi.IOrder
                         myOrderItem.Price = item2.Price;
                         myOrderItem.Amount = item2.Amount;
                         myOrderItem.TotalPrice = item2.Price * item2.Amount;
-                        order2.Items.Add(myOrderItem);
+                        order2.Items!.Add(myOrderItem);
                     }
                 }
                 order2.TotalPrice = myTotalPrice;

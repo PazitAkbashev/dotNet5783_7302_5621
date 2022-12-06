@@ -5,9 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
-using 
-
-
 namespace BlImplementation;
  
 internal class Product : BlApi.IProduct
@@ -25,7 +22,6 @@ internal class Product : BlApi.IProduct
             tempProduct.Name = item.Name;
             tempProduct.Price=item.Price;
             tempProduct.category = item.Category;
-
             tempProdForList.Add(tempProduct);
         }
         return tempProdForList;
@@ -41,7 +37,7 @@ internal class Product : BlApi.IProduct
             prod2.ID = prod.ID;
             prod2.Name = prod.Name;
             prod2.InStock = prod.inStock;
-            prod2.category = prod.Category;
+            prod2.category = (BO.Enums.category)prod.Category;
             prod2.Price = prod.Price;
         }
         return prod2; 
@@ -84,7 +80,7 @@ internal class Product : BlApi.IProduct
         tempProduct.Name = product.Name;
         tempProduct.Price = product.Price;
         tempProduct.inStock = product.InStock;
-        tempProduct.Category = product.category;
+        tempProduct.Category = (DO.Enums.Category)product.category;
         try
         {
             dalProduct.Product.Add(tempProduct);
@@ -133,7 +129,7 @@ internal class Product : BlApi.IProduct
         tempProduct.Name = product.Name;
         tempProduct.Price = product.Price;
         tempProduct.inStock = product.InStock;
-        tempProduct.Category = product.category;
+        tempProduct.Category = (DO.Enums.Category)product.category;
         try
         {
             dalProduct.Product.Update(tempProduct);
