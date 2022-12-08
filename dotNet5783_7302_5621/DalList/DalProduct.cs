@@ -17,8 +17,7 @@ internal class DalProduct: IProduct
         {
             if (p.ID == productList[i].ID)
             {
-                duplicationID d = new duplicationID();
-                throw new Exception(d.ToString());
+                throw new DalAlreadyExistsException("the product");
             }
         }
         p.ID = myRandom.Next(100000, 1000000);
@@ -30,57 +29,51 @@ internal class DalProduct: IProduct
     /// </summary>
     public void Delete(int ID)
     {
-        for (int i = 0; i < productList.Count-1; i++)
+        foreach(var item in productList)
         {
-            if (ID == productList[i].ID)
+            if (ID == item.ID)
             {
-                productList.Remove(productList[i]);
+                productList.Remove(item);
                 return;
             }
         }
-        wasntFound w = new wasntFound();
-        throw new Exception(w.ToString());
+        throw new DalDoesNoExistException("the product");
     }
-    /// <summary>
-    /// updating product in the products array
-    /// </summary>
+ 
     public void Update(Product p)
     {
-        for (int i = 0; i < productList.Count-1; i++)
+        int counter = 0;
+        foreach (var item in productList)
         {
-            if (p.ID == productList[i].ID)
+            if (p.ID == item.ID)
             {
-                productList[i] = p;
+                productList[counter] = p;
                 return;
             }
+            counter++;
         }
-        wasntFound w = new wasntFound();
-        throw new Exception(w.ToString());
+        throw new DalDoesNoExistException("the product");
     }
-    /// <summary>
-    /// getting product from the products array
-    /// </summary>
+
     public Product Get(int ID)
     {
-        for (int i = 0; i < productList.Count-1; i++)
+        foreach (var item in productList)
         {
-            if (productList[i].ID == ID)
-                return productList[i];
+            if (item.ID == ID)
+                return item;
         }
-        wasntFound w = new wasntFound();
-        throw new Exception(w.ToString());
+        throw new DalDoesNoExistException("the product");
     }
     public IEnumerable<Product> GetAll()
     {
         if (productList.Count == 0)
         {
-            wasntFound w = new wasntFound();
-            throw new Exception(w.ToString());
+            throw new DalDoesNoExistException("the product");
         }
         List<Product> newList = new List<Product>(productList.Count);
-        for (int i = 0; i < productList.Count - 1; i++)
+        foreach (var item in productList)
         {
-            newList.Add(productList[i]);
+            newList.Add(item);
         }
         return newList;
     }

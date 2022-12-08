@@ -18,12 +18,11 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     public int Add(OrderItem o)
     {
-        for (int i = 0; i < orderItemList.Count-1; i++)
+        foreach (var item in orderItemList)
         {
-            if (o.ID == orderItemList[i].ID)
+            if (o.ID == item.ID)
             {
-                duplicationID d = new duplicationID();
-                throw new Exception(d.ToString());
+                throw new DalAlreadyExistsException("the order item");
             }
         }
         o.ID = Config.getorderItemRunIndex();
@@ -35,45 +34,44 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     public void Delete( int ID)
     {
-        for (int i = 0; i < orderItemList.Count-1; i++)
+        foreach (var item in orderItemList)
         {
-            if(ID == orderItemList[i].ID)
+            if (ID == item.ID)
             {
-                orderItemList.Remove(orderItemList[i]);
+                orderItemList.Remove(item);
                 return;
             }
         }
-        wasntFound w = new wasntFound();
-        throw new Exception(w.ToString());
+        throw new DalDoesNoExistException("the order item");
     }
     /// <summary>
     /// updating order item in the order items array
     /// </summary>
     public void Update(OrderItem o)
     {
-        for (int i = 0; i < orderItemList.Count-1; i++)
+        int counter = 0;
+        foreach (var item in orderItemList)
         {
-            if (o.ID == orderItemList[i].ID)
+            if (o.ID == item.ID)
             {
-                orderItemList[i] = o;
+                orderItemList[counter] = o;
                 return;
             }
+            counter++;
         }
-        wasntFound w = new wasntFound();
-        throw new Exception(w.ToString());
+        throw new DalDoesNoExistException("the order item");
     }
     /// <summary>
     /// getting an order item from the order items array 
     /// </summary>
     public OrderItem Get(int ID)
     {
-        for (int i = 0; i < orderItemList.Count-1; i++)
+        foreach (var item in orderItemList)
         {
-            if (orderList[i].ID == ID)
-                return orderItemList[i];
+            if (item.ID == ID)
+                return item;
         }
-        wasntFound w = new wasntFound();
-        throw new Exception(w.ToString());
+        throw new DalDoesNoExistException("the order item");
     }
     /// <summary>
     /// getting the all order items from the order items array
@@ -82,13 +80,12 @@ internal class DalOrderItem : IOrderItem
     {
         if (orderItemList.Count == 0)
         {
-            wasntFound w = new wasntFound();
-            throw new Exception(w.ToString());
+            throw new DalDoesNoExistException("the order item");
         }
         List<OrderItem> newList = new List<OrderItem>(orderItemList.Count);
-        for (int i = 0; i < orderItemList.Count-1; i++)
+        foreach (var item in orderItemList)
         {
-            newList.Add(orderItemList[i]);
+            newList.Add(item);
         }
         return newList;  
     }

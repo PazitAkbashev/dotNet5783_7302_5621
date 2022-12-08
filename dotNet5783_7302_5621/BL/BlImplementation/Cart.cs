@@ -4,159 +4,163 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
-
+using Tools;
 
 namespace BlImplementation;
 
 internal class Cart : BlApi.ICart
 {
     private DalApi.IDal dalCart = new Dal.DalList();
+
+
     public BO.Cart addProductToCart(BO.Cart cart, int productID)
     {
-        DO.Product tempProduct = dalCart.Product.Get(productID);
-        bool flag = false;
-        foreach(var item in cart.Items!)
+        try
         {
-            if(item.ProductID== productID)
+            productID.negativeNumber();
+            cart.CustomerAddress.notNull();
+            cart.CustomerName.notNull();
+            cart.CustomerEmail.notNull();
+            DO.Product tempProduct = dalCart.Product.Get(productID);
+            bool flag = false;
+            foreach (var item in cart.Items!)
             {
-                flag = true;
-                if (tempProduct.inStock > 0)
+                if (item.ProductID == productID)
                 {
+                    flag = true;
+                    tempProduct.inStock.negativeNumber();
                     item.Amount++;
                     item.TotalPrice += item.Price;
                     cart.TotalPrice += item.Price;
                 }
-                else
-                    throw new BO.MyException("");  
             }
-        }
-        if(flag==false)
-        {
-            if (tempProduct.inStock > 0)
+            if (flag == false)
             {
-                BO.OrderItem neworderitem=new BO.OrderItem();
-                neworderitem.ProductID = productID; 
-                neworderitem.Price=tempProduct.Price;
+                tempProduct.inStock.negativeNumber();
+                BO.OrderItem neworderitem = new BO.OrderItem();
+                neworderitem.ProductID = productID;
+                neworderitem.Price = tempProduct.Price;
                 neworderitem.TotalPrice = tempProduct.Price;
                 neworderitem.Amount = 1;
-                neworderitem.ProductName=tempProduct.Name;
+                neworderitem.ProductName = tempProduct.Name;
                 cart.Items.Add(neworderitem);
             }
-            else
-                throw new BO.MyException("");
+            return cart;
         }
-        return cart;
+        catch (DalApi.DalDoesNoExistException ex)
+        {
+            throw new BO.BoDoesNotExist("DO Exception", ex);
+        }
     }
+
+
+
     public BO.Cart updateAmountOfProduct(BO.Cart cart, int productID, int newAmount)
     {
-        DO.Product tempProduct = dalCart.Product.Get(productID);
-        foreach (var item in cart.Items!)
+        try
         {
-            if (item.ProductID == productID)
+            cart.CustomerAddress.notNull();
+            cart.CustomerName.notNull();
+            cart.CustomerEmail.notNull();
+            productID.negativeNumber();
+            newAmount.negativeNumber();
+            DO.Product tempProduct = dalCart.Product.Get(productID);
+            foreach (var item in cart.Items!)
             {
-                if (item.Amount < newAmount)
+                if (item.ProductID == productID)
                 {
-                    if (tempProduct.inStock >= (newAmount - item.Amount))
+                    if (item.Amount < newAmount)
                     {
-                        item.Amount = newAmount;
-                        item.TotalPrice += ((newAmount - item.Amount) * tempProduct.Price);
-                        cart.TotalPrice += ((newAmount - item.Amount) * tempProduct.Price);
-                    }
-                    else
-                        throw new BO.MyException("");
-                }
-                else
-                {
-                    if (item.Amount > newAmount)
-                    {
-                        item.Amount = newAmount;
-                        item.TotalPrice -= ((item.Amount - newAmount) * tempProduct.Price);
-                        cart.TotalPrice -= ((item.Amount - newAmount) * tempProduct.Price);
-                    }
-                    else
-                    {
-                        if (newAmount == 0)
+                        if (tempProduct.inStock >= (newAmount - item.Amount))
                         {
-                            BO.OrderItem neworderitem = new BO.OrderItem();
-                            neworderitem.ProductID = tempProduct.ID;
-                            neworderitem.Price = tempProduct.Price;
-                            neworderitem.ProductName = tempProduct.Name;
-                            //maby there are some details that miss
-                            cart.Items.Remove(neworderitem);
-                            cart.TotalPrice =0;
+                            item.Amount = newAmount;
+                            item.TotalPrice += ((newAmount - item.Amount) * tempProduct.Price);
+                            cart.TotalPrice += ((newAmount - item.Amount) * tempProduct.Price);
+                        }
+                    }
+                    else
+                    {
+                        if (item.Amount > newAmount)
+                        {
+                            item.Amount = newAmount;
+                            item.TotalPrice -= ((item.Amount - newAmount) * tempProduct.Price);
+                            cart.TotalPrice -= ((item.Amount - newAmount) * tempProduct.Price);
                         }
                         else
                         {
-                            throw new BO.MyException("");
+                            if (newAmount == 0)
+                            {
+                                BO.OrderItem neworderitem = new BO.OrderItem();
+                                neworderitem.ProductID = tempProduct.ID;
+                                neworderitem.Price = tempProduct.Price;
+                                neworderitem.ProductName = tempProduct.Name;
+                                cart.Items.Remove(neworderitem);
+                                cart.TotalPrice = 0;
+                            }
                         }
                     }
                 }
             }
+            return cart;
         }
-        return cart;
+        catch (DalApi.DalDoesNoExistException ex)
+        {
+            throw new BO.BoDoesNotExist("DO Exception", ex);
+        }
     }
+
+
+
     public void confirmCart(BO.Cart cart)
     {
-        if(string.IsNullOrEmpty(cart.CustomerName))
-            throw new BO.MyException("");
-        
-        if (string.IsNullOrEmpty(cart.CustomerAddress))
-            throw new BO.MyException("");
-        
-        if (string.IsNullOrEmpty(cart.CustomerEmail)||!cart.CustomerEmail.Contains("@gmail.com"))
-            throw new BO.MyException("");
-     
-        foreach(var item in cart.Items!)
-        {
-            DO.Product tempProduct = dalCart.Product.Get(item.ID);
-            if (item.Amount <= 0)
-                throw new BO.MyException("");
-
-            if (tempProduct.inStock < item.Amount)
-                throw new BO.MyException("");
-            try
-            {
-                tempProduct = dalCart.Product.Get(item.ID);
-            }
-            catch(Exception ex)
-            {
-                throw new BO.MyException("");
-            }
-        }
-        DO.Order tempOrder = new DO.Order();
-        tempOrder.CustomerName = cart.CustomerName;
-        tempOrder.CustomerAdress = cart.CustomerAddress;
-        tempOrder.CustomerEmail = cart.CustomerEmail;
-        tempOrder.OrderDate = DateTime.Now;
-        tempOrder.ShipDate = DateTime.MinValue;
-        tempOrder.DeliveryrDate= DateTime.MinValue;
-        int returnID;
         try
         {
-            returnID = dalCart.Order.Add(tempOrder);
-        }
-        catch(Exception ex)
-        {
-            throw new BO.MyException("");
-        }
-        foreach(var item in cart.Items)
-        {
-            DO.OrderItem tempOrderItem=new DO.OrderItem();
-            tempOrderItem.ID=item.ID;
-            tempOrderItem.Price=item.Price;
-            tempOrderItem.Amount=item.Amount;
-            tempOrderItem.ProductId = item.ProductID;
-            tempOrderItem.OrderId = returnID;
+            cart.CustomerAddress.notNull();
+            cart.CustomerName.notNull();
+            cart.CustomerEmail.notNull();
+            foreach (var item in cart.Items!)
+            {
+                DO.Product tempProduct = dalCart.Product.Get(item.ID);
+                item.Amount.negativeNumber();
+                tempProduct.inStock.inStockSmallerThanAmount(item.Amount);
+            }
+            DO.Order tempOrder = new DO.Order();
+            tempOrder.CustomerName = cart.CustomerName;
+            tempOrder.CustomerAdress = cart.CustomerAddress;
+            tempOrder.CustomerEmail = cart.CustomerEmail;
+            tempOrder.OrderDate = DateTime.Now;
+            tempOrder.ShipDate = DateTime.MinValue;
+            tempOrder.DeliveryrDate = DateTime.MinValue;
+            int returnID;
             try
             {
-                dalCart.OrderItem.Add(tempOrderItem);
+                returnID = dalCart.Order.Add(tempOrder);
             }
-            catch (Exception ex)
+            catch (DalApi.DalAlreadyExistsException ex)
             {
-                throw new BO.MyException("");
+                throw new BO.BoAlreadyExist("DO Exception", ex);
             }
-            DO.Product tempProduct = dalCart.Product.Get(item.ID);
-            tempProduct.inStock -= item.Amount;
+            foreach (var item in cart.Items)
+            {
+                DO.OrderItem tempOrderItem = new DO.OrderItem();
+                tempOrderItem.ID = item.ID;
+                tempOrderItem.Price = item.Price;
+                tempOrderItem.Amount = item.Amount;
+                tempOrderItem.ProductId = item.ProductID;
+                tempOrderItem.OrderId = returnID;
+                try
+                {
+                    dalCart.OrderItem.Add(tempOrderItem);
+                }
+                catch (DalApi.DalAlreadyExistsException ex)
+                {
+                    throw new BO.BoAlreadyExist("DO Exception", ex);
+                }
+            }
+        }
+        catch (DalApi.DalDoesNoExistException ex)
+        {
+            throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
 }

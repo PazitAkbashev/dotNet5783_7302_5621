@@ -35,11 +35,12 @@ void productFunction()
                 Console.WriteLine("Enter the ID of the product you wants to update:");
                 int upID = int.Parse(Console.ReadLine()!);
                 Console.WriteLine($"the product you wants to update is:{dalProduct.Product.Get(upID)}");
-                Console.WriteLine("for the new product, enter the folowing: id name,price,category(0-9),how many in stock:");
+                Console.WriteLine("for the new product, enter the folowing: name,price,category(0-9),how many in stock:");
                 Product myP2 = new Product();
                 myP2.Name = Console.ReadLine()!;
                 myP2.Price = int.Parse(Console.ReadLine()!);
                 myP2.Category = (Category)int.Parse(Console.ReadLine()!);
+                myP2.inStock= int.Parse(Console.ReadLine()!);
                 dalProduct.Product.Update(myP2);
                 break;
             case 4:
@@ -111,7 +112,7 @@ void orderFunction()
                 break;
         }
     }
-    catch(wasntFound ex)
+    catch(Exception ex)
     {
         Console.WriteLine(ex);
     } 

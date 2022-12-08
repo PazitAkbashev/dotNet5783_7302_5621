@@ -1,22 +1,150 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace BO;
 
 
-
 [Serializable]
-public class MyException : Exception
+internal class negativeNum : Exception
 {
-	public MyException() { }
-	public MyException(string message) : base(message) { }
-	public MyException(string message, Exception inner) : base(message, inner) { }
-	protected MyException(
-	  System.Runtime.Serialization.SerializationInfo info,
-	  System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+    public negativeNum()
+    {
+    }
+
+    public negativeNum(string? message) : base(message)
+    {
+    }
+
+    public negativeNum(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+
+    protected negativeNum(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+    }
 }
 
 
+[Serializable]
+public class BoDoesNotExist : Exception
+{
+    public BoDoesNotExist()
+    {
+    }
+
+    public BoDoesNotExist(string? message) : base(message)
+    {
+    }
+
+    public BoDoesNotExist(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+
+    protected BoDoesNotExist(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+    }
+}
+
+
+[Serializable]
+public class BoAlreadyExist : Exception
+{
+    public BoAlreadyExist()
+    {
+    }
+
+    public BoAlreadyExist(string? message) : base(message)
+    {
+    }
+
+    public BoAlreadyExist(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+
+    protected BoAlreadyExist(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+    }
+}
+
+[Serializable]
+internal class nullStr : Exception
+{
+    public nullStr()
+    {
+    }
+
+    public nullStr(string? message) : base(message)
+    {
+    }
+
+    public nullStr(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+
+    protected nullStr(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+    }
+}
+
+[Serializable]
+internal class negativeDNum : Exception
+{
+    public negativeDNum()
+    {
+    }
+
+    public negativeDNum(string? message) : base(message)
+    {
+    }
+
+    public negativeDNum(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+
+    protected negativeDNum(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+    }
+}
+
+[Serializable]
+internal class theSameNumbers : Exception
+{
+    public theSameNumbers()
+    {
+    }
+
+    public theSameNumbers(string? message) : base(message)
+    {
+    }
+
+    public theSameNumbers(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+
+    protected theSameNumbers(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+    }
+}
+
+[Serializable]
+internal class notEnoughProducts : Exception
+{
+    public notEnoughProducts()
+    {
+    }
+
+    public notEnoughProducts(string? message) : base(message)
+    {
+    }
+
+    public notEnoughProducts(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+
+    protected notEnoughProducts(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+    }
+}

@@ -3,27 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+namespace DalApi;
 
-namespace DO;
 
-public class wasntFound:Exception
+public class DalDoesNoExistException : Exception
 {
-
-    public override string Message=>"The object doesn't exist";
-    public override string ToString()
-    {
-        return Message;
-    }
+    public DalDoesNoExistException(string type) : base($"{type} was not found") { }
 }
 
-public class duplicationID:Exception
-{
-    public override string Message => "The object already exist";
-    public override string ToString()
-    {
-        return Message;
-    }
 
+public class DalAlreadyExistsException : Exception
+{
+    public DalAlreadyExistsException(string type) : base($"{type} already exists") { }
 }
+
+
+public class DalDoesNoExistOrAlreadyShippedException : Exception
+{
+    public DalDoesNoExistOrAlreadyShippedException(string type) : base($"{type} was not found or order already shipped") { }
+}
+
+
+public class DalDoesNoExistOrAlreadyShippedButDidntSuppliedException : Exception
+{
+    public DalDoesNoExistOrAlreadyShippedButDidntSuppliedException(string type) : base($"{type} was not found or order already shipped") { }
+}
+
+
+
+
 
 

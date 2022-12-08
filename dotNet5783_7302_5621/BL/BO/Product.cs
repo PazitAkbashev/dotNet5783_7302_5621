@@ -14,7 +14,6 @@ namespace BO
         public double Price { get; set; }
         public Enums.category category { get; set; }
         public int InStock { get; set; }
-
         public override string ToString() => $@"product-id={ID}, product-name={Name},product-price={Price}, Product-category={category}, in-stock={InStock} ";
 
     }

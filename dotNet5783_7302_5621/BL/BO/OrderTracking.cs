@@ -14,6 +14,7 @@ namespace BO
     {
         public int ID { get; set; }
         public orderStatus Status { get; set; }
+        public List<Tuple<DateTime, string>>? myList { get; set; }
         public override string ToString() => $@"Order-tracking-id={ID},status={Status}";
     }
 }
