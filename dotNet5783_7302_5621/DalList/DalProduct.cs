@@ -9,7 +9,7 @@ using static Dal.DataSource;
 internal class DalProduct: IProduct
 {
     /// <summary>
-    /// adding product to the products array
+    /// adding product to the product list
     /// </summary>
     public int Add(Product p)
     {
@@ -25,7 +25,7 @@ internal class DalProduct: IProduct
         return p.ID;
     }
     /// <summary>
-    /// deleting product from the products array
+    /// deleting product from the product list
     /// </summary>
     public void Delete(int ID)
     {
@@ -39,7 +39,10 @@ internal class DalProduct: IProduct
         }
         throw new DalDoesNoExistException("the product");
     }
- 
+
+    /// <summary>
+    /// updating product in the product list
+    /// </summary>
     public void Update(Product p)
     {
         int counter = 0;
@@ -54,7 +57,9 @@ internal class DalProduct: IProduct
         }
         throw new DalDoesNoExistException("the product");
     }
-
+    /// <summary>
+    /// returning particular product by ID from the product list
+    /// </summary>
     public Product Get(int ID)
     {
         foreach (var item in productList)
@@ -64,6 +69,10 @@ internal class DalProduct: IProduct
         }
         throw new DalDoesNoExistException("the product");
     }
+
+    /// <summary>
+    /// returning the all products in the product list
+    /// </summary>
     public IEnumerable<Product> GetAll()
     {
         if (productList.Count == 0)

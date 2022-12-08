@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BlImplementation
 {
+    /// <summary>
+    /// the main implementation file
+    /// </summary>
     public class Bl:BlApi.IBl
     {
         public BlApi.ICart Cart => new Cart();

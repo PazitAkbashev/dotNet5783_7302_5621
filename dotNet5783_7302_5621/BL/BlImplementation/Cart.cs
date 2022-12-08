@@ -5,14 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using BlApi;
 using Tools;
-
 namespace BlImplementation;
-
+/// <summary>
+/// class with all the cart implementation functions 
+/// </summary>
 internal class Cart : BlApi.ICart
 {
     private DalApi.IDal dalCart = new Dal.DalList();
-
-
+    /// <summary>
+    /// adding product to cart
+    /// </summary>
     public BO.Cart addProductToCart(BO.Cart cart, int productID)
     {
         try
@@ -54,7 +56,9 @@ internal class Cart : BlApi.ICart
     }
 
 
-
+    /// <summary>
+    /// updating the amount of product in the cart
+    /// </summary>
     public BO.Cart updateAmountOfProduct(BO.Cart cart, int productID, int newAmount)
     {
         try
@@ -109,8 +113,9 @@ internal class Cart : BlApi.ICart
         }
     }
 
-
-
+    /// <summary>
+    ///confirming the order and cart 
+    /// </summary>
     public void confirmCart(BO.Cart cart)
     {
         try

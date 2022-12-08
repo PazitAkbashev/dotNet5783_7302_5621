@@ -8,11 +8,15 @@ using BlApi;
 using DalApi;
 using Tools;
 namespace BlImplementation;
-
+/// <summary>
+/// class with all the product implementation functions 
+/// </summary>
 internal class Product : BlApi.IProduct
 {
     private DalApi.IDal dalProduct = new Dal.DalList();
-
+    /// <summary>
+    /// returning the products list
+    /// </summary>
     public IEnumerable<BO.ProductForList> getProductList()
     {
         try
@@ -35,7 +39,9 @@ internal class Product : BlApi.IProduct
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
-
+    /// <summary>
+    /// returning the product details for both customer and manager
+    /// </summary>
     public BO.Product getProductDetailsD(int productID)
     {
         try
@@ -55,7 +61,10 @@ internal class Product : BlApi.IProduct
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
-
+    /// <summary>
+    /// returning the product details for customer
+    /// </summary>
+    /// <exception cref="BO.BoDoesNotExist"></exception>
     public BO.ProductItem getProductDetailsC(int productID, BO.Cart cart)
     {
         try
@@ -81,7 +90,9 @@ internal class Product : BlApi.IProduct
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
-
+    /// <summary>
+    /// adding a product to the products list
+    /// </summary>
     public void addProduct(BO.Product product)
     {
         try
@@ -103,7 +114,9 @@ internal class Product : BlApi.IProduct
             throw new BO.BoAlreadyExist("DO Exception", ex);
         }
     }
-
+    /// <summary>
+    /// deleting product from the products list
+    /// </summary>
     public void deleteProduct(int productID)
     {
         try
@@ -129,7 +142,9 @@ internal class Product : BlApi.IProduct
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
-
+    /// <summary>
+    /// updating product in the products list
+    /// </summary>
     public void updateProduct(BO.Product product)
     {
         try

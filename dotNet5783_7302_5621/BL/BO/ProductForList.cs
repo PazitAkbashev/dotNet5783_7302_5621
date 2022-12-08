@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static DO.Enums;
-
 namespace BO
 {
+    /// <summary>
+    /// the product for list methods
+    /// </summary>
     public class ProductForList
     {
         public int ID { get; set; }

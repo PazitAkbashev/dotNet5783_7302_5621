@@ -6,9 +6,10 @@ using DalApi;
 using BlApi;
 using BlImplementation;
 using BO;
+ ///the BL main program
 
 
-
+///the product function
 void productFunction()
 {
     IBl blProduct = new Bl();
@@ -135,6 +136,8 @@ void productFunction()
             break;
     }
 }
+
+///the order function
 void orderFunction()
 {
     IBl blOrder = new Bl();
@@ -235,6 +238,8 @@ void orderFunction()
             break;
     }
 }
+
+///the cart function
 void cartFunction()
 {
     IBl blCart = new Bl();
@@ -354,6 +359,9 @@ void cartFunction()
             break;
     }
 }
+
+
+///the main
 int choice;
 do
 {

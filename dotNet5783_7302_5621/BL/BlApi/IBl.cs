@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlApi;
 /// <summary>
-/// 
+/// the main interface
 /// </summary>
 public interface IBl
 {

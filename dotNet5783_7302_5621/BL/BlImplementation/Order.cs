@@ -8,13 +8,16 @@ using BO;
 using DalApi;
 using DO;
 using Tools;
-
 namespace BlImplementation;
-
+/// <summary>
+/// class with all the order implementation functions 
+/// </summary>
 internal class Order :BlApi.IOrder
 {
     private DalApi.IDal dalOrder = new Dal.DalList();
-
+    /// <summary>
+    /// returning the order list 
+    /// </summary>
     public IEnumerable<BO.OrderForList> getOrderList()
     {
         try
@@ -62,57 +65,56 @@ internal class Order :BlApi.IOrder
         }
     }
 
-
+    /// <summary>
+    /// returning the order details for both customer and manager
+    /// </summary>
     public BO.Order getOrderDetails(int orderID)
     {
         try
         {
             orderID.negativeNumber();
             BO.Order tempOrder2 = new BO.Order();
-            if (orderID > 0)
+            DO.Order tempOrder = dalOrder.Order.Get(orderID);
+            IEnumerable<DO.OrderItem> orderItems = dalOrder.OrderItem.GetAll();
+            tempOrder2.ID = tempOrder.ID;
+            tempOrder2.CustomerName = tempOrder.CustomerName;
+            tempOrder2.CustomerAddress = tempOrder.CustomerAdress;
+            tempOrder2.CustomerEmail = tempOrder.CustomerEmail;
+            tempOrder2.OrderDate = tempOrder.OrderDate;
+            tempOrder2.ShipDate = tempOrder.ShipDate;
+            tempOrder2.DeliveryrDate = tempOrder.DeliveryrDate;
+            if (tempOrder2.OrderDate > DateTime.Now && tempOrder2.ShipDate < DateTime.Now)
+                tempOrder2.Status = BO.Enums.orderStatus.Confirmed;
+            if (tempOrder2.ShipDate > DateTime.Now && tempOrder2.DeliveryrDate < DateTime.Now)
+                tempOrder2.Status = BO.Enums.orderStatus.Shipped;
+            if (tempOrder2.DeliveryrDate > DateTime.Now)
+                tempOrder2.Status = BO.Enums.orderStatus.Supplied;
+            double myTotalPrice = 0;
+            foreach (var item in orderItems)
             {
-                DO.Order tempOrder = dalOrder.Order.Get(orderID);
-                IEnumerable<DO.OrderItem> orderItems = dalOrder.OrderItem.GetAll();
-                tempOrder2.ID = tempOrder.ID;
-                tempOrder2.CustomerName = tempOrder.CustomerName;
-                tempOrder2.CustomerAddress = tempOrder.CustomerAdress;
-                tempOrder2.CustomerEmail = tempOrder.CustomerEmail;
-                tempOrder2.OrderDate = tempOrder.OrderDate;
-                tempOrder2.ShipDate = tempOrder.ShipDate;
-                tempOrder2.DeliveryrDate = tempOrder.DeliveryrDate;
-                if (tempOrder2.OrderDate > DateTime.Now && tempOrder2.ShipDate < DateTime.Now)
-                    tempOrder2.Status = BO.Enums.orderStatus.Confirmed;
-                if (tempOrder2.ShipDate > DateTime.Now && tempOrder2.DeliveryrDate < DateTime.Now)
-                    tempOrder2.Status = BO.Enums.orderStatus.Shipped;
-                if (tempOrder2.DeliveryrDate > DateTime.Now)
-                    tempOrder2.Status = BO.Enums.orderStatus.Supplied;
-                double myTotalPrice = 0;
-                foreach (var item in orderItems)
+                if (item.OrderId == orderID)
                 {
-                    if (item.OrderId == orderID)
+                    myTotalPrice += item.Price;
+                    BO.OrderItem myOrder = new BO.OrderItem();
+                    myOrder.ID = item.ID;
+                    DO.Product tempProduct = dalOrder.Product.Get(item.ProductId);
+                    myOrder.ProductName = tempProduct.Name;
+                    myOrder.ProductID = item.ProductId;
+                    myOrder.Price = item.Price;
+                    myOrder.Amount = item.Amount;
+                    myOrder.TotalPrice = item.Price * item.Amount;
+                    try
                     {
-                        myTotalPrice += item.Price;
-                        BO.OrderItem myOrder = new BO.OrderItem();
-                        myOrder.ID = item.ID;
-                        DO.Product tempProduct = dalOrder.Product.Get(item.ProductId);
-                        myOrder.ProductName = tempProduct.Name;
-                        myOrder.ProductID = item.ProductId;
-                        myOrder.Price = item.Price;
-                        myOrder.Amount = item.Amount;
-                        myOrder.TotalPrice = item.Price * item.Amount;
-                        try
-                        {
-                            tempOrder2.Items!.Add(myOrder);
-                        }
-                        catch (DalApi.DalAlreadyExistsException ex)
-                        {
-                            throw new BO.BoAlreadyExist("DO Exception", ex);
-                        }
+                        tempOrder2.Items!.Add(myOrder);
+                    }
+                    catch (DalApi.DalAlreadyExistsException ex)
+                    {
+                        throw new BO.BoAlreadyExist("DO Exception", ex);
                     }
                 }
-                tempOrder2.TotalPrice = myTotalPrice;
-                return tempOrder2;
             }
+            tempOrder2.TotalPrice = myTotalPrice;
+            return tempOrder2;
         }
         catch (DalApi.DalDoesNoExistException ex)
         {
@@ -120,7 +122,9 @@ internal class Order :BlApi.IOrder
         }
     }
 
-
+    /// <summary>
+    /// updating the order ship date
+    /// </summary>
     public BO.Order updateOrderShipping(int orderNumber)
     {
         try
@@ -188,7 +192,9 @@ internal class Order :BlApi.IOrder
         }
     }
 
-
+    /// <summary>
+    /// updating the order supply date
+    /// </summary>
     public BO.Order updateOrderSupply(int orderNumber)
     {
         try
@@ -256,7 +262,9 @@ internal class Order :BlApi.IOrder
     }
 
 
-
+    /// <summary>
+    /// returnung the order tracking
+    /// </summary>
     public BO.OrderTracking getOrderTracking(int orderNumber)
     {
         try
@@ -284,6 +292,14 @@ internal class Order :BlApi.IOrder
                     myOrderTracking.myList.Add(deliveryDate);
                     return myOrderTracking;
                 }
+            }
+            try
+            {
+                throw new DalApi.DalDoesNoExistException("the order item");
+            }
+            catch (DalApi.DalDoesNoExistException ex)
+            {
+                throw new BO.BoDoesNotExist("DO Exception", ex);
             }
         }
         catch (DalApi.DalDoesNoExistException ex)

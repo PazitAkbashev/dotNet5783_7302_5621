@@ -1,5 +1,9 @@
 ﻿
 namespace DalApi;
+
+/// <summary>
+/// the main Dal interface
+/// </summary>
 public interface ICrud<T>
 {
     public int Add(T t);

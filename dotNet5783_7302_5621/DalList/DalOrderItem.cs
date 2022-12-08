@@ -14,7 +14,7 @@ namespace Dal;
 internal class DalOrderItem : IOrderItem
 {
     /// <summary>
-    /// adding order item to the order items array
+    /// adding order item to the order item list
     /// </summary>
     public int Add(OrderItem o)
     {
@@ -30,7 +30,7 @@ internal class DalOrderItem : IOrderItem
         return o.ID;
     }
     /// <summary>
-    /// deleting order item from the order items array
+    /// deleting order item from the order item list
     /// </summary>
     public void Delete( int ID)
     {
@@ -45,7 +45,7 @@ internal class DalOrderItem : IOrderItem
         throw new DalDoesNoExistException("the order item");
     }
     /// <summary>
-    /// updating order item in the order items array
+    /// updating order item in the order item list
     /// </summary>
     public void Update(OrderItem o)
     {
@@ -62,7 +62,7 @@ internal class DalOrderItem : IOrderItem
         throw new DalDoesNoExistException("the order item");
     }
     /// <summary>
-    /// getting an order item from the order items array 
+    /// getting an order item from the order item list 
     /// </summary>
     public OrderItem Get(int ID)
     {
@@ -74,7 +74,7 @@ internal class DalOrderItem : IOrderItem
         throw new DalDoesNoExistException("the order item");
     }
     /// <summary>
-    /// getting the all order items from the order items array
+    /// getting the all order items from the order item list
     /// </summary>
     public IEnumerable<OrderItem> GetAll()
     {

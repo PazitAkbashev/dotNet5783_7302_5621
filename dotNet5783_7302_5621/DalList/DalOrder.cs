@@ -12,7 +12,7 @@ using static Dal.DataSource;
 internal class DalOrder:IOrder
 {
     /// <summary>
-    /// adding an order to the orders array
+    /// adding an order to the order list
     /// </summary>
     public int Add(Order o)
     {
@@ -27,7 +27,9 @@ internal class DalOrder:IOrder
         orderList.Add(o);
         return o.ID;
     }
- 
+    /// <summary>
+    /// deleting order from the order list
+    /// </summary>
     public void Delete(int ID)
     {
         foreach (var item in orderList)
@@ -41,7 +43,9 @@ internal class DalOrder:IOrder
         throw new DalDoesNoExistException("the order");
     }
    
-
+    /// <summary>
+    /// updating order in the order list
+    /// </summary>
     public void Update(Order o)
     {
         int counter = 0;
@@ -57,7 +61,9 @@ internal class DalOrder:IOrder
         throw new DalDoesNoExistException("the order");
     }
 
-
+    /// <summary>
+    /// returning particular order by ID
+    /// </summary>
     public Order Get(int ID)
     {
         foreach (var item in orderList)
@@ -67,6 +73,10 @@ internal class DalOrder:IOrder
         }
         throw new DalDoesNoExistException("the order");
     }
+
+    /// <summary>
+    /// returning the all orders in the list
+    /// </summary>
     public IEnumerable<Order> GetAll()
     {
         if (orderList.Count == 0)

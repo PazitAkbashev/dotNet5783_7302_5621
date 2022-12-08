@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using static DO.Enums;
 using DalApi;
 
+///the main DO program
+
+
+///the product function
 void productFunction()
 {
     try
@@ -58,6 +62,8 @@ void productFunction()
         Console.WriteLine(ex);
     }
 }
+
+///the order function
 void orderFunction()
 {
     try
@@ -117,6 +123,9 @@ void orderFunction()
         Console.WriteLine(ex);
     } 
 }
+
+
+///the order item function
 void orderItemFunction()
 {
     try

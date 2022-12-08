@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlApi;
 /// <summary>
-/// 
+/// the cart interface
 /// </summary>
 public interface ICart
 {

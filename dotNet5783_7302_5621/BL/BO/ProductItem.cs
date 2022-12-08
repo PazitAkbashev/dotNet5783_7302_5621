@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static DO.Enums;
-
-
 namespace BO
 {
+    /// <summary>
+    /// the product item methods
+    /// </summary>
     public class ProductItem
     {
         public int ID { get; set; }

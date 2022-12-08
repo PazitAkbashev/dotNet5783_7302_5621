@@ -2,7 +2,7 @@
 namespace DO;
 using static DO.Enums;
 /// <summary>
-/// the product class
+/// the product methods
 /// </summary>
 public struct Product
 {

@@ -2,7 +2,7 @@
 namespace DO;
 using static DO.Enums;
 /// <summary>
-/// the order class
+/// the order methods
 /// </summary>
 public struct Order
 {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlApi;
 /// <summary>
-/// 
+/// the order interface
 /// </summary>
 public interface IOrder
 {

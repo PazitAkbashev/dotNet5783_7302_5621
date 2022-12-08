@@ -4,9 +4,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Tools
 {
+    /// <summary>
+    /// Extension functions for the exceptions
+    /// </summary>
     public static class Tools
     {
         public static void negativeNumber(this int num)
