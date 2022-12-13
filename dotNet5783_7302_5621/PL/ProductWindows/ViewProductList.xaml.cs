@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlApi;
+using BlImplementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,21 @@ namespace PL.ProductWindows
         public ViewProductList()
         {
             InitializeComponent();
+            
+            //ProductListView.ItemsSource = bl.Product.getProductList(); //check this again
         }
+
+        private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private IBl bl = new Bl();
+
+
     }
 }

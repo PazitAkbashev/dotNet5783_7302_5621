@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlApi;
+using BlImplementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,13 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+
         }
+
+        private void Admin_Click(object sender, RoutedEventArgs e)
+        {
+            // MessageBox.Show("we are here. hello");
+        }
+        private IBl bl = new Bl();
     }
 }
