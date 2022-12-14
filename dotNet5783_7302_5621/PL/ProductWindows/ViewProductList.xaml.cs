@@ -24,8 +24,7 @@ namespace PL.ProductWindows
         public ViewProductList()
         {
             InitializeComponent();
-            
-            //ProductListView.ItemsSource = bl.Product.getProductList(); //check this again
+            ProductListView.ItemsSource = bl.Product.getProductList(); //check this again
         }
 
         private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
