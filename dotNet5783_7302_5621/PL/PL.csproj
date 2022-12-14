@@ -17,8 +17,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="OrderItemWindows\" />
-	  <Folder Include="OrderWindows\" />
+	  <Folder Include="OrderItems\" />
+	  <Folder Include="Orders\" />
 	</ItemGroup>
 
 </Project>

@@ -14,14 +14,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.ProductWindows
+namespace PL.Products
 {
     /// <summary>
     /// Interaction logic for ViewProductList.xaml
     /// </summary>
-    public partial class ViewProductList : Window
+    public partial class ProductListWindow : Window
     {
-        public ViewProductList()
+        private IBl bl = new Bl();
+        public ProductListWindow()
         {
             InitializeComponent();
             ProductListView.ItemsSource = bl.Product.getProductList(); //check this again
@@ -36,7 +37,6 @@ namespace PL.ProductWindows
         {
 
         }
-        private IBl bl = new Bl();
 
 
     }

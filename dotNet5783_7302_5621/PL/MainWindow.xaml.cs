@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using PL.Products;
 namespace PL
 {
     /// <summary>
@@ -25,13 +25,19 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
         private void Admin_Click(object sender, RoutedEventArgs e)
         {
-            // MessageBox.Show("we are here. hello");
+            //MessageBox.Show("we are here. hello"); 
         }
+
+
+        ///check this again
+        void ShowStudentsButton_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
+
+
+
         private IBl bl = new Bl();
     }
 }
