@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BlImplementation;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,14 +30,14 @@ namespace PL.Products
             InitializeComponent();
             ProductListView.ItemsSource = bl.Product.getProductList();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
-            ProductListView.ItemsSource = bl.Product.getProductList(); //part 9.3
+            ProductListView.ItemsSource = bl.Product.getProductList(); 
 
         }
 
         private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CategorySelector.SelectedItem; //part8
-           
+            BO.Enums.category myCategory=(BO.Enums.category)CategorySelector.SelectedItem;
+            ProductListView.ItemsSource = bl.Product.GetSelectionList(myCategory);
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -44,11 +45,8 @@ namespace PL.Products
 
         }
 
-        private void adminButtonClick(object sender, RoutedEventArgs e)//9.1
-        {
+        private void adminButtonClick(object sender, RoutedEventArgs e) => new ProductWindow().Show();
 
-        }
-        
 
     }
 }
