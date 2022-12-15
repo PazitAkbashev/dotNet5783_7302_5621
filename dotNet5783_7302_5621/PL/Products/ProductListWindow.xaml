@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-VerticalAlignment="Stretch" Width="auto">
+        VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -31,7 +31,7 @@ VerticalAlignment="Stretch" Width="auto">
         </Grid>
 
         <ListView 
-            Name ="ProductListView"
+            x:Name ="ProductListView"
             Grid.Row="1"
                   d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.View>

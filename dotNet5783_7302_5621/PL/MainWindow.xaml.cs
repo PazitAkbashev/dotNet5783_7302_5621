@@ -27,15 +27,8 @@ namespace PL
             InitializeComponent();
         }
 
-        private void Admin_Click(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show("we are here. hello"); 
-        }
-
-
-        ///check this again
-        void ShowStudentsButton_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
-
+        private void Admin_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
+      
 
 
         private IBl bl = new Bl();

@@ -22,10 +22,12 @@ namespace PL.Products
     public partial class ProductListWindow : Window
     {
         private IBl bl = new Bl();
+
+
         public ProductListWindow()
         {
             InitializeComponent();
-            ProductListView.ItemsSource = bl.Product.getProductList(); //check this again
+            ProductListView.ItemsSource = bl.Product.getProductList(); 
         }
 
         private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
