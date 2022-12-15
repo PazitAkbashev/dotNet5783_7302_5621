@@ -27,12 +27,13 @@ namespace PL.Products
         public ProductListWindow()
         {
             InitializeComponent();
-            ProductListView.ItemsSource = bl.Product.getProductList(); 
+            ProductListView.ItemsSource = bl.Product.getProductList();
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
         }
 
         private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            CategorySelector.SelectedItem.
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

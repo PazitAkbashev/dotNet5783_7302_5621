@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
+using BO;
 using DalApi;
 using Tools;
 namespace BlImplementation;
@@ -165,6 +166,25 @@ internal class Product : BlApi.IProduct
         {
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
+    }
+
+
+    public List<ProductForList> GetSelectionList(DO.Enums.Category myCategory)
+    {
+        IEnumerable<DO.Product> prod = dalProduct.Product.GetAll();
+        List<ProductForList> tempList = new List<ProductForList>();
+        foreach (var item in prod)
+        {
+            if(item.Category== myCategory)
+            {
+                ProductForList productForList = new ProductForList();
+                productForList.ID = item.ID;
+                productForList.Name = item.Name;
+                productForList.Price = item.Price;
+                tempList.Add(productForList);
+            }
+        }
+        return tempList;
     }
 
 }
