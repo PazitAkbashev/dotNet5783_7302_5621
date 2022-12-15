@@ -15,11 +15,12 @@
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
         VerticalAlignment="Stretch" Width="auto">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-
             </Grid.ColumnDefinitions >
+
             <ComboBox 
                 Name ="CategorySelector"
                 Grid.Column="1"
@@ -41,6 +42,9 @@
             </ListView.View>
         </ListView>
 
+        <Button Content="Add new Product"
+                Grid.Row="2" HorizontalAlignment="Left"
+                Margin="691,5,0,0" Padding="5" Click="adminButtonClick" Height="28" VerticalAlignment="Top"/>
     </Grid>
 
 </Window>
