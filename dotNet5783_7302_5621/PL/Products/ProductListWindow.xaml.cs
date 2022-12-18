@@ -35,7 +35,7 @@ namespace PL.Products
 
         private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CategorySelector.SelectedItem; //part8
+           // CategorySelector.SelectedItem; //part8
            
         }
 
