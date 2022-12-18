@@ -29,6 +29,7 @@
                 SelectionChanged="Selector_SelectionChanged"/>
 
             <Label Content="Label" HorizontalAlignment="Left" Margin="112,10,0,0" VerticalAlignment="Top" Grid.Column="0" />
+
         </Grid>
 
         <ListView 
@@ -43,8 +44,8 @@
         </ListView>
 
         <Button Content="Add new Product"
-                Grid.Row="2" HorizontalAlignment="Left"
-                Margin="691,5,0,0" Padding="5" Click="adminButtonClick" Height="28" VerticalAlignment="Top"/>
+                Grid.Row="2" HorizontalAlignment="Right"
+                Margin="5" Padding="5" Click="adminButtonClick"/>
     </Grid>
 
 </Window>

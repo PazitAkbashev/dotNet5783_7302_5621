@@ -169,13 +169,13 @@ internal class Product : BlApi.IProduct
     }
 
 
-    public List<ProductForList> GetSelectionList(DO.Enums.Category myCategory)
+    public List<ProductForList> GetSelectionList(BO.Enums.category myCategory)
     {
         IEnumerable<DO.Product> prod = dalProduct.Product.GetAll();
         List<ProductForList> tempList = new List<ProductForList>();
         foreach (var item in prod)
         {
-            if(item.Category== myCategory)
+            if(item.Category== (DO.Enums.Category)myCategory)
             {
                 ProductForList productForList = new ProductForList();
                 productForList.ID = item.ID;
