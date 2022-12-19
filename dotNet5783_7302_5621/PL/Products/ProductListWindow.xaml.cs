@@ -36,6 +36,7 @@ namespace PL.Products
 
         private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             BO.Enums.category myCategory=(BO.Enums.category)CategorySelector.SelectedItem;
             ProductListView.ItemsSource = bl.Product.GetSelectionList(myCategory);
         }
@@ -47,6 +48,9 @@ namespace PL.Products
 
         private void adminButtonClick(object sender, RoutedEventArgs e) => new ProductWindow().Show();
 
+        private void updateProductDoubleClick(object sender, MouseButtonEventArgs e)
+        {
 
+        }
     }
 }

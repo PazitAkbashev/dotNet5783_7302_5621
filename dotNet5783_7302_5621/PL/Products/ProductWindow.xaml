@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="ProductWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="id" HorizontalAlignment="Center" Margin="0,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" Text=""/>
-        <Label Content="Id:" HorizontalAlignment="Left" Margin="280,74,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="id" HorizontalAlignment="Center" Margin="0,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <Label x:Name="Id" Content="Id:" HorizontalAlignment="Left" Margin="280,74,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="name" HorizontalAlignment="Center" Margin="0,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_1"/>
         <Label Content="Name:" HorizontalAlignment="Left" Margin="269,199,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="price" HorizontalAlignment="Center" Margin="0,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="price_TextChanged"/>
