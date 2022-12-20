@@ -283,10 +283,10 @@ internal class Order :BlApi.IOrder
                         myOrderTracking.Status = BO.Enums.orderStatus.Shipped;
                     if (item.DeliveryrDate > DateTime.Now)
                         myOrderTracking.Status = BO.Enums.orderStatus.Supplied;
-                    Tuple<DateTime, string> orderDate = new Tuple<DateTime, string>(item.OrderDate, "order date");
-                    Tuple<DateTime, string> shipDate = new Tuple<DateTime, string>(item.ShipDate, "ship date");
-                    Tuple<DateTime, string> deliveryDate = new Tuple<DateTime, string>(item.DeliveryrDate, "delivery date");
-                    myOrderTracking.myList = new List<Tuple<DateTime, string>>();
+                    Tuple<DateTime?, string> orderDate = new Tuple<DateTime?, string>(item.OrderDate, "order date");
+                    Tuple<DateTime?, string> shipDate = new Tuple<DateTime?, string>(item.ShipDate, "ship date");
+                    Tuple<DateTime?, string> deliveryDate = new Tuple<DateTime?, string>(item.DeliveryrDate, "delivery date");
+                    myOrderTracking.myList = new List<Tuple<DateTime?, string?>>();
                     myOrderTracking.myList.Add(orderDate);
                     myOrderTracking.myList.Add(shipDate);
                     myOrderTracking.myList.Add(deliveryDate);

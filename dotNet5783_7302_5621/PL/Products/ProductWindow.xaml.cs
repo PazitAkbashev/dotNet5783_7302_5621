@@ -21,18 +21,26 @@ namespace PL.Products
 {
     public partial class ProductWindow : Window
     {
+        IBl blProduct = new Bl();
         BO.Product myProduct = new BO.Product();
-
+        
         public ProductWindow()
         {
             InitializeComponent();
             category.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
-
+            
         }
 
         public ProductWindow(int ID)
         {
-
+            InitializeComponent();
+            BO.Product myProduct2 = blProduct.Product.getProductDetailsD(ID);
+            id.Text = myProduct2.ID.ToString(); 
+            name.Text = myProduct2.Name;
+            in_stock.Text = myProduct2.InStock.ToString(); 
+            price.Text = myProduct2.Price.ToString();
+            category.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
+            category.Text= myProduct2.category.ToString();
         }
 
 
@@ -63,8 +71,11 @@ namespace PL.Products
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            IBl blProduct = new Bl();
             blProduct.Product.addProduct(myProduct);
+        }
+        private void Button_Click2(object sender, RoutedEventArgs e)
+        {
+            blProduct.Product.updateProduct(myProduct);
         }
     }
 }

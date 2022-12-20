@@ -31,7 +31,6 @@ namespace PL.Products
             ProductListView.ItemsSource = bl.Product.getProductList();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
             ProductListView.ItemsSource = bl.Product.getProductList(); 
-
         }
 
         private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -51,6 +50,12 @@ namespace PL.Products
         private void updateProductDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
+        }
+     
+        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int id= ((ProductForList)ProductListView.SelectedItem).ID;
+            new ProductWindow(id).ShowDialog();
         }
     }
 }

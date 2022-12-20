@@ -35,7 +35,7 @@
         <ListView 
             x:Name ="ProductListView"
             Grid.Row="1"
-                  d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="updateProductDoubleClick">
+                  d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="updateProductDoubleClick" SelectionChanged="ProductListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
