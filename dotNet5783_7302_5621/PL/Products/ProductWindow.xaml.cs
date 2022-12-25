@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime;
+using Microsoft.VisualBasic;
 
 namespace PL.Products
 {
@@ -23,24 +24,27 @@ namespace PL.Products
     {
         IBl blProduct = new Bl();
         BO.Product myProduct = new BO.Product();
-        
+
         public ProductWindow()
         {
             InitializeComponent();
+            act.Content = "Add";
+            id_label.Visibility= Visibility.Collapsed;
             category.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
-            
         }
 
         public ProductWindow(int ID)
         {
             InitializeComponent();
+            act.Content = "Update";
             BO.Product myProduct2 = blProduct.Product.getProductDetailsD(ID);
-            id.Text = myProduct2.ID.ToString(); 
             name.Text = myProduct2.Name;
-            in_stock.Text = myProduct2.InStock.ToString(); 
+            in_stock.Text = myProduct2.InStock.ToString();
             price.Text = myProduct2.Price.ToString();
             category.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
-            category.Text= myProduct2.category.ToString();
+            category.Text = myProduct2.category.ToString();
+            id_label.Content = myProduct2.ID.ToString(); 
+            id.Visibility = Visibility.Hidden;
         }
 
 
@@ -69,13 +73,13 @@ namespace PL.Products
             myProduct.InStock = int.Parse(in_stock.Text);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void act_click(object sender, RoutedEventArgs e)
         {
-            blProduct.Product.addProduct(myProduct);
-        }
-        private void Button_Click2(object sender, RoutedEventArgs e)
-        {
-            blProduct.Product.updateProduct(myProduct);
+            if ((string)act.Content == "Add")
+                blProduct.Product.addProduct(myProduct);
+            else
+                blProduct.Product.updateProduct(myProduct);
+            this.Close();
         }
     }
 }

@@ -47,9 +47,9 @@ namespace PL.Products
 
         private void adminButtonClick(object sender, RoutedEventArgs e) => new ProductWindow().Show();
 
+
         private void updateProductDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
         }
      
         private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
