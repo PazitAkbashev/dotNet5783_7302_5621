@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BlApi;
+using DalList;
+using BO;
+using BlImplementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,46 +15,71 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Runtime;
+using Microsoft.VisualBasic;
 
 namespace PL.Products
 {
-   
     public partial class ProductWindow : Window
     {
+        IBl blProduct = new Bl();
+        BO.Product myProduct = new BO.Product();
+
         public ProductWindow()
         {
             InitializeComponent();
+            act.Content = "Add";
+            id_label.Visibility= Visibility.Collapsed;
+            category.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
         }
+
+        public ProductWindow(int ID)
+        {
+            InitializeComponent();
+            act.Content = "Update";
+            BO.Product myProduct2 = blProduct.Product.getProductDetailsD(ID);
+            name.Text = myProduct2.Name;
+            in_stock.Text = myProduct2.InStock.ToString();
+            price.Text = myProduct2.Price.ToString();
+            category.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
+            category.Text = myProduct2.category.ToString();
+            id_label.Content = myProduct2.ID.ToString(); 
+            id.Visibility = Visibility.Hidden;
+        }
+
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            myProduct.ID = int.Parse(id.Text);
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            myProduct.category = (BO.Enums.category)category.SelectedItem;
         }
 
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
-
+            myProduct.Name = name.Text;
         }
 
         private void price_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            myProduct.Price = double.Parse(price.Text);
         }
 
         private void in_stock_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            myProduct.InStock = int.Parse(in_stock.Text);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void act_click(object sender, RoutedEventArgs e)
         {
-
-            //addProduct()
+            if ((string)act.Content == "Add")
+                blProduct.Product.addProduct(myProduct);
+            else
+                blProduct.Product.updateProduct(myProduct);
+            this.Close();
         }
     }
 }

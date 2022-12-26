@@ -19,9 +19,9 @@ internal static class DataSource
     }
     static DataSource() { s_Initialize(); }
     internal readonly static Random myRandom = new Random();
-    internal static List<Product> productList = new List<Product>(50);
-    internal static List<Order> orderList = new List<Order>(100);
-    internal static List<OrderItem> orderItemList = new List<OrderItem>(200);
+    internal static List<DO.Product> productList = new List<DO.Product>(50);
+    internal static List<DO.Order> orderList = new List<DO.Order>(100);
+    internal static List<DO.OrderItem> orderItemList = new List<DO.OrderItem>(200);
 
     /// <summary>
     /// Initializes the product list

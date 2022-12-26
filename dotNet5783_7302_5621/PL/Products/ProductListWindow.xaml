@@ -35,7 +35,7 @@
         <ListView 
             x:Name ="ProductListView"
             Grid.Row="1"
-                  d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProductListView_SelectionChanged" MouseDoubleClick="doubleClickListView">
+                  d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="updateProductDoubleClick" SelectionChanged="ProductListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -44,8 +44,8 @@
         </ListView>
 
         <Button Content="Add new Product"
-                Grid.Row="2" HorizontalAlignment="Right"
-                Margin="5" Padding="5" Click="adminButtonClick"/>
+                Grid.Row="1" HorizontalAlignment="Left"
+                Margin="622,476,0,57" Padding="5" Click="adminButtonClick" Width="124"/>
     </Grid>
 
 </Window>

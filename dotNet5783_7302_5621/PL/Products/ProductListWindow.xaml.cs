@@ -31,11 +31,11 @@ namespace PL.Products
             ProductListView.ItemsSource = bl.Product.getProductList();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
             ProductListView.ItemsSource = bl.Product.getProductList(); 
-
         }
 
         private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             BO.Enums.category myCategory=(BO.Enums.category)CategorySelector.SelectedItem;
             ProductListView.ItemsSource = bl.Product.GetSelectionList(myCategory);
         }
@@ -52,9 +52,14 @@ namespace PL.Products
 
         }
 
-        private void doubleClickListView(object sender, MouseButtonEventArgs e)
+        private void updateProductDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+        }
+     
+        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int id= ((ProductForList)ProductListView.SelectedItem).ID;
+            new ProductWindow(id).ShowDialog();
         }
     }
 }

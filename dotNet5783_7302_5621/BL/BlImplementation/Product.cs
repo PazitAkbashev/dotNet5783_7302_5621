@@ -181,6 +181,7 @@ internal class Product : BlApi.IProduct
                 productForList.ID = item.ID;
                 productForList.Name = item.Name;
                 productForList.Price = item.Price;
+                productForList.category = item.Category;
                 tempList.Add(productForList);
             }
         }
