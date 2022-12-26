@@ -75,6 +75,7 @@ namespace PL.Products
 
         private void act_click(object sender, RoutedEventArgs e)
         {
+           // act.Background = bru
             if ((string)act.Content == "Add")
                 blProduct.Product.addProduct(myProduct);
             else

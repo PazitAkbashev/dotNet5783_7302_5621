@@ -56,10 +56,10 @@ namespace PL.Products
         {
         }
      
-        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int id= ((ProductForList)ProductListView.SelectedItem).ID;
-            new ProductWindow(id).ShowDialog();
-        }
+        //private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    int id= ((ProductForList)ProductListView.SelectedItem).ID;
+        //   // new ProductWindow(id).ShowDialog();
+        //}
     }
 }
