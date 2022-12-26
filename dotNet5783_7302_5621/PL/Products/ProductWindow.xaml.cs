@@ -22,6 +22,7 @@ namespace PL.Products
 {
     public partial class ProductWindow : Window
     {
+
         IBl blProduct = new Bl();
         BO.Product myProduct = new BO.Product();
 
