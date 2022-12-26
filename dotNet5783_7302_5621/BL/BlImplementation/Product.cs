@@ -112,7 +112,7 @@ internal class Product : BlApi.IProduct
         }
         catch(DalApi.DalAlreadyExistsException ex)
         {
-            throw new BO.BoAlreadyExist("DO Exception", ex);
+            throw new BO.BoAlreadyExist("the item is already exist", ex);
         }
     }
     /// <summary>

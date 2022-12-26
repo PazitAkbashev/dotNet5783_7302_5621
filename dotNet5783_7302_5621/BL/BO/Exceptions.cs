@@ -8,7 +8,7 @@ namespace BO;
 
 
 [Serializable]
-internal class negativeNum : Exception
+public class negativeNum : Exception
 {
     public negativeNum()
     {
@@ -70,7 +70,7 @@ public class BoAlreadyExist : Exception
 }
 
 [Serializable]
-internal class nullStr : Exception
+public class nullStr : Exception
 {
     public nullStr()
     {
@@ -90,7 +90,7 @@ internal class nullStr : Exception
 }
 
 [Serializable]
-internal class negativeDNum : Exception
+public class negativeDNum : Exception
 {
     public negativeDNum()
     {
@@ -110,7 +110,7 @@ internal class negativeDNum : Exception
 }
 
 [Serializable]
-internal class theSameNumbers : Exception
+public class theSameNumbers : Exception
 {
     public theSameNumbers()
     {
@@ -130,7 +130,7 @@ internal class theSameNumbers : Exception
 }
 
 [Serializable]
-internal class notEnoughProducts : Exception
+public class notEnoughProducts : Exception
 {
     public notEnoughProducts()
     {
