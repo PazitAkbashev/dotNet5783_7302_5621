@@ -30,36 +30,35 @@ namespace PL.Products
             InitializeComponent();
             ProductListView.ItemsSource = bl.Product.getProductList();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
-            ProductListView.ItemsSource = bl.Product.getProductList(); 
+            ProductListView.ItemsSource = bl.Product.getProductList();
         }
 
         private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            BO.Enums.category myCategory=(BO.Enums.category)CategorySelector.SelectedItem;
+            BO.Enums.category myCategory = (BO.Enums.category)CategorySelector.SelectedItem;
             ProductListView.ItemsSource = bl.Product.GetSelectionList(myCategory);
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
 
-        private void adminButtonClick(object sender, RoutedEventArgs e) => new ProductWindow().Show();
-
-        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void addButtonClick(object sender, RoutedEventArgs e)
         {
-
+            ProductWindow pw = new ProductWindow();
+            pw.ShowDialog();
+            ProductListView.ItemsSource = bl.Product.getProductList();
         }
 
         private void updateProductDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            int id = ((ProductForList)ProductListView.SelectedItem).ID;
+            new ProductWindow(id).ShowDialog();
+            ProductListView.ItemsSource = bl.Product.getProductList();
         }
      
-        //private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    int id= ((ProductForList)ProductListView.SelectedItem).ID;
-        //   // new ProductWindow(id).ShowDialog();
-        //}
+        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
     }
 }

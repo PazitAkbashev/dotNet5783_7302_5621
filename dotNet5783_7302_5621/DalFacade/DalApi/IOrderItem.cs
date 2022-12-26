@@ -7,5 +7,4 @@ namespace DalApi;
 /// </summary>
 public interface IOrderItem:ICrud<OrderItem>
 {
-    public IEnumerable<OrderItem> GetAll();
 }

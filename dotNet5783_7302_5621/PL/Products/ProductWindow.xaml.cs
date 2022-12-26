@@ -22,7 +22,6 @@ namespace PL.Products
 {
     public partial class ProductWindow : Window
     {
-
         IBl blProduct = new Bl();
         BO.Product myProduct = new BO.Product();
 
@@ -30,7 +29,6 @@ namespace PL.Products
         {
             InitializeComponent();
             act.Content = "Add";
-            id_label.Visibility= Visibility.Collapsed;
             category.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
         }
 
@@ -39,13 +37,13 @@ namespace PL.Products
             InitializeComponent();
             act.Content = "Update";
             BO.Product myProduct2 = blProduct.Product.getProductDetailsD(ID);
+            id.Text = myProduct2.ID.ToString();
+            id.IsEnabled = false;
             name.Text = myProduct2.Name;
             in_stock.Text = myProduct2.InStock.ToString();
             price.Text = myProduct2.Price.ToString();
             category.ItemsSource = Enum.GetValues(typeof(BO.Enums.category));
             category.Text = myProduct2.category.ToString();
-            id_label.Content = myProduct2.ID.ToString(); 
-            id.Visibility = Visibility.Hidden;
         }
 
 
@@ -76,12 +74,30 @@ namespace PL.Products
 
         private void act_click(object sender, RoutedEventArgs e)
         {
-           // act.Background = bru
-            if ((string)act.Content == "Add")
-                blProduct.Product.addProduct(myProduct);
-            else
-                blProduct.Product.updateProduct(myProduct);
-            this.Close();
+            try
+            {
+                if ((string)act.Content == "Add")
+                    blProduct.Product.addProduct(myProduct);
+                else
+                    blProduct.Product.updateProduct(myProduct);
+                this.Close();
+            }
+            catch (BO.BoDoesNotExist b)
+            {
+                MessageBox.Show(b.Message);
+            }
+            catch (BO.BoAlreadyExist b)
+            {
+                MessageBox.Show(b.Message);
+            }
+            catch (BO.negativeNum b)
+            {
+                MessageBox.Show(b.Message);
+            }
+            catch (BO.negativeDNum b)
+            {
+                MessageBox.Show(b.Message);
+            }
         }
     }
 }
