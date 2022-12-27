@@ -29,7 +29,7 @@
                       VerticalAlignment="Stretch"
                 SelectionChanged="Selector_SelectionChanged" Background="Black"/>
 
-            <Label x:Name="categorysLabel" Content="category selector" FontSize="20" Grid.Column="0" Background="#FF953030" Height="46" Margin="130,0,120,0" />
+            <Label x:Name="categorysLabel" Content="category selector" FontSize="20" Grid.Column="0" Background="#FF953030" Height="46" Margin="120,0,110,0" />
 
         </Grid>
 
