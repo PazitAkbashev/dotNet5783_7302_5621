@@ -74,7 +74,7 @@ internal class Order :BlApi.IOrder
         {
             orderID.negativeNumber();
             BO.Order tempOrder2 = new BO.Order();
-            DO.Order tempOrder = dalOrder.Order.Get(orderID);
+            DO.Order tempOrder = dalOrder.Order.GetSingle(x => x.ID == orderID);
             IEnumerable<DO.OrderItem> orderItems = dalOrder.OrderItem.GetAll();
             tempOrder2.ID = tempOrder.ID;
             tempOrder2.CustomerName = tempOrder.CustomerName;
@@ -97,7 +97,7 @@ internal class Order :BlApi.IOrder
                     myTotalPrice += item.Price;
                     BO.OrderItem myOrder = new BO.OrderItem();
                     myOrder.ID = item.ID;
-                    DO.Product tempProduct = dalOrder.Product.Get(item.ProductId);
+                    DO.Product tempProduct = dalOrder.Product.GetSingle(x => x.ID == item.ProductId);
                     myOrder.ProductName = tempProduct.Name;
                     myOrder.ProductID = item.ProductId;
                     myOrder.Price = item.Price;
@@ -156,7 +156,7 @@ internal class Order :BlApi.IOrder
                         {
                             BO.OrderItem myOrderItem = new BO.OrderItem();
                             myOrderItem.ID = item2.ID;
-                            DO.Product myProduct = dalOrder.Product.Get(item2.ID);
+                            DO.Product myProduct = dalOrder.Product.GetSingle(x => x.ID == item2.ID);
                             myOrderItem.ProductName = myProduct.Name;
                             myOrderItem.ProductID = item2.ProductId;
                             myOrderItem.Price = item2.Price;
@@ -225,7 +225,7 @@ internal class Order :BlApi.IOrder
                         {
                             BO.OrderItem myOrderItem = new BO.OrderItem();
                             myOrderItem.ID = item2.ID;
-                            DO.Product myProduct = dalOrder.Product.Get(item2.ID);
+                            DO.Product myProduct = dalOrder.Product.GetSingle(x => x.ID ==item2.ID);
                             myOrderItem.ProductName = myProduct.Name;
                             myOrderItem.ProductID = item2.ProductId;
                             myOrderItem.Price = item2.Price;

@@ -38,7 +38,7 @@ void productFunction()
             case 3:
                 Console.WriteLine("Enter the ID of the product you wants to update:");
                 int upID = int.Parse(Console.ReadLine()!);
-                Console.WriteLine($"the product you wants to update is:{dalProduct.Product.Get(upID)}");
+                Console.WriteLine($"the product you wants to update is:{dalProduct.Product.GetSingle(x => x.ID == upID)}");
                 Console.WriteLine("for the new product, enter the folowing: name,price,category(0-9),how many in stock:");
                 Product myP2 = new Product();
                 myP2.Name = Console.ReadLine()!;
@@ -51,7 +51,7 @@ void productFunction()
                 Console.WriteLine("Enter the ID of the product to get:");
                 int ID2;
                 ID2 = int.Parse(Console.ReadLine()!);
-                Console.WriteLine(dalProduct.Product.Get(ID2));
+                Console.WriteLine(dalProduct.Product.GetSingle(x => x.ID == ID2));
                 break;
             default:
                 break;
@@ -98,7 +98,7 @@ void orderFunction()
             case 3:
                 Console.WriteLine("Enter the ID of the order you wants to update:");
                 int upID2 = int.Parse(Console.ReadLine()!);
-                Console.WriteLine($"the order you wants to update is:{dalOrder.Order.Get(upID2)}");
+                Console.WriteLine($"the order you wants to update is:{dalOrder.Order.GetSingle(x => x.ID == upID2)}");
                 Console.WriteLine("for the new order, enter the folowing: customer-name,customer-email,customer-adress,order-date,ship-date,deliveryr-date:");
                 Order myO2 = new Order();
                 myO2.CustomerName = Console.ReadLine()!;
@@ -112,7 +112,7 @@ void orderFunction()
             case 4:
                 Console.WriteLine("Enter the ID of the order to get:");
                 int ID4 = int.Parse(Console.ReadLine()!);
-                Console.WriteLine(dalOrder.Order.Get(ID4));
+                Console.WriteLine(dalOrder.Order.GetSingle(x=>x.ID==ID4));
                 break;
             default:
                 break;
@@ -158,7 +158,7 @@ void orderItemFunction()
             case 3:
                 Console.WriteLine("Enter the ID of the order item you wants to update:");
                 int upID3 = int.Parse(Console.ReadLine()!);
-                Console.WriteLine($"the order item you wants to update is:{dalOrderItem.OrderItem.Get(upID3)}");
+                Console.WriteLine($"the order item you wants to update is:{dalOrderItem.OrderItem.GetSingle(x => x.ID == upID3)}");
                 Console.WriteLine("for the new order item, enter the folowing: product ID, order ID, price, amount:");
                 OrderItem myOI2 = new OrderItem();
                 myOI2.ProductId = int.Parse(Console.ReadLine()!);
@@ -171,7 +171,7 @@ void orderItemFunction()
                 Console.WriteLine("Enter the ID of the order item to get:");
                 int ID6;
                 ID6 = int.Parse(Console.ReadLine()!);
-                Console.WriteLine(dalOrderItem.OrderItem.Get(ID6));
+                Console.WriteLine(dalOrderItem.OrderItem.GetSingle(x => x.ID == ID6));
 
                 break;
             case 5:

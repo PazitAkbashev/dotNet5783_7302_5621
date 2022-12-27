@@ -3,14 +3,10 @@ using DalApi;
 namespace Dal;
 using System;
 using static Dal.DataSource;
-/// <summary>
-/// the Implementations file of product
-/// </summary>
+
+
 internal class DalProduct: IProduct
 {
-    /// <summary>
-    /// adding product to the product list
-    /// </summary>
     public int Add(Product p)
     {
         for (int i = 0; i < productList.Count-1; i++)
@@ -24,9 +20,7 @@ internal class DalProduct: IProduct
         productList.Add(p);
         return p.ID;
     }
-    /// <summary>
-    /// deleting product from the product list
-    /// </summary>
+
     public void Delete(int ID)
     {
         foreach(var item in productList)
@@ -40,9 +34,6 @@ internal class DalProduct: IProduct
         throw new DalDoesNoExistException("the product");
     }
 
-    /// <summary>
-    /// updating product in the product list
-    /// </summary>
     public void Update(Product p)
     {
         int counter = 0;
@@ -57,33 +48,14 @@ internal class DalProduct: IProduct
         }
         throw new DalDoesNoExistException("the product");
     }
-    /// <summary>
-    /// returning particular product by ID from the product list
-    /// </summary>
-    public Product Get(int ID)
+
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? select = null)
     {
-        foreach (var item in productList)
-        {
-            if (item.ID == ID)
-                return item;
-        }
-        throw new DalDoesNoExistException("the product");
+        return DataSource.productList.Where(Product => select is null ? true : select!(Product));
     }
 
-    /// <summary>
-    /// returning the all products in the product list
-    /// </summary>
-    public IEnumerable<Product> GetAll(Func<Product?, bool> func = null)
+    public Product GetSingle(Func<Product?, bool>? select)
     {
-        if (productList.Count == 0)
-        {
-            throw new DalDoesNoExistException("the product");
-        }
-        List<Product> newList = new List<Product>(productList.Count);
-        foreach (var item in productList)
-        {
-            newList.Add(item);
-        }
-        return newList;
+        return GetAll(select).SingleOrDefault() ?? throw new DalDoesNoExistException("Error-the product does not exist");
     }
 }
