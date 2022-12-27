@@ -12,6 +12,7 @@ public interface ICrud<T>
     public void Delete(int index);
     public void Update(T t);
     public T Get(int ID);
-    public IEnumerable<T?> GetAll(Func<T?,bool>func=null);
+    public IEnumerable<T?> GetAll(Func<T?,bool>?select=null);
+    public T? GetSingle(Func<T?,bool>?func);
 
 }

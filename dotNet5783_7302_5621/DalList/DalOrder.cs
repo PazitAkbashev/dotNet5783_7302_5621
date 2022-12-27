@@ -77,7 +77,7 @@ internal class DalOrder:IOrder
     /// <summary>
     /// returning the all orders in the list
     /// </summary>
-    public IEnumerable<Order> GetAll()
+    public IEnumerable<Order> GetAll(Func<Order?, bool> func = null)
     {
         if (orderList.Count == 0)
         {
