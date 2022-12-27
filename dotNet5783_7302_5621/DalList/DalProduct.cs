@@ -73,7 +73,7 @@ internal class DalProduct: IProduct
     /// <summary>
     /// returning the all products in the product list
     /// </summary>
-    public IEnumerable<Product> GetAll()
+    public IEnumerable<Product> GetAll(Func<Product?, bool> func = null)
     {
         if (productList.Count == 0)
         {
