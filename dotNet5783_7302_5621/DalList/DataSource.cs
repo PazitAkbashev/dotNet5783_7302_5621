@@ -113,15 +113,12 @@ internal static class DataSource
     }
 
 
-    /// <summary>
-    /// calling the all initialize functions
-    /// </summary>
+
     private static void s_Initialize()
     {
         product_Initialize();
         order_Initialize();
         orderItem_Initialize();
     }
-
 }
 

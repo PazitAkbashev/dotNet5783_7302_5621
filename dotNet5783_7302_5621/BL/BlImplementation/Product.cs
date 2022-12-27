@@ -40,16 +40,15 @@ internal class Product : BlApi.IProduct
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
-    /// <summary>
-    /// returning the product details for both customer and manager
-    /// </summary>
+  
+
     public BO.Product getProductDetailsD(int productID)
     {
         try
         {
             productID.negativeNumber();
             BO.Product prod2 = new BO.Product();
-            DO.Product prod = dalProduct.Product.Get(productID);
+            DO.Product prod = dalProduct.Product.GetSingle(x => x.ID == productID);
             prod2.ID = prod.ID;
             prod2.Name = prod.Name;
             prod2.InStock = prod.inStock;
@@ -62,10 +61,7 @@ internal class Product : BlApi.IProduct
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
-    /// <summary>
-    /// returning the product details for customer
-    /// </summary>
-    /// <exception cref="BO.BoDoesNotExist"></exception>
+
     public BO.ProductItem getProductDetailsC(int productID, BO.Cart cart)
     {
         try
@@ -75,7 +71,7 @@ internal class Product : BlApi.IProduct
             cart.CustomerAddress.notNull();
             cart.CustomerEmail.notNull();
             BO.ProductItem tempProdItem = new BO.ProductItem();
-            DO.Product tempProduct = dalProduct.Product.Get(productID);
+            DO.Product tempProduct = dalProduct.Product.GetSingle(x => x.ID == productID);
             tempProdItem.ID = tempProduct.ID;
             tempProdItem.Name = tempProduct.Name;
             tempProdItem.Price = tempProduct.Price;
@@ -91,9 +87,7 @@ internal class Product : BlApi.IProduct
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
-    /// <summary>
-    /// adding a product to the products list
-    /// </summary>
+
     public void addProduct(BO.Product product)
     {
         try
@@ -115,9 +109,7 @@ internal class Product : BlApi.IProduct
             throw new BO.BoAlreadyExist("the item is already exist", ex);
         }
     }
-    /// <summary>
-    /// deleting product from the products list
-    /// </summary>
+ 
     public void deleteProduct(int productID)
     {
         try
@@ -143,9 +135,7 @@ internal class Product : BlApi.IProduct
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
-    /// <summary>
-    /// updating product in the products list
-    /// </summary>
+
     public void updateProduct(BO.Product product)
     {
         try
