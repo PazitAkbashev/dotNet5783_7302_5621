@@ -7,5 +7,5 @@ namespace DalApi;
 /// </summary>
 public interface IOrder:ICrud<Order>
 {
-    public IEnumerable<Order?> GetAll(Func<Order?, bool> func = null);
+    //public IEnumerable<Order?> GetAll(Func<Order?, bool> func = null);
 }

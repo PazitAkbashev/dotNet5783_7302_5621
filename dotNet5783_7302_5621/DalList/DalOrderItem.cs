@@ -76,18 +76,17 @@ internal class DalOrderItem : IOrderItem
     /// <summary>
     /// getting the all order items from the order item list
     /// </summary>
-    public IEnumerable<OrderItem> GetAll(Func<OrderItem?, bool> func = null)
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? select = null)
     {
-        if (orderItemList.Count == 0)
-        {
-            throw new DalDoesNoExistException("the order item");
-        }
-        List<OrderItem> newList = new List<OrderItem>(orderItemList.Count);
-        foreach (var item in orderItemList)
-        {
-            newList.Add(item);
-        }
-        return newList;  
+        return DataSource.orderItemList.Where(OrderItem => select is null ? true : select!(OrderItem));
+    }
+
+    /// <summary>
+    /// returning the all orders in the list
+    /// </summary>
+    public OrderItem GetSingle(Func<OrderItem?, bool>? select)
+    {
+        return GetAll(select).SingleOrDefault() ?? throw new DalDoesNoExistException("Error-the order item does not exist");
     }
 }
 

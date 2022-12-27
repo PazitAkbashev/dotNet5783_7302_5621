@@ -73,17 +73,16 @@ internal class DalProduct: IProduct
     /// <summary>
     /// returning the all products in the product list
     /// </summary>
-    public IEnumerable<Product> GetAll(Func<Product?, bool> func = null)
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? select = null)
     {
-        if (productList.Count == 0)
-        {
-            throw new DalDoesNoExistException("the product");
-        }
-        List<Product> newList = new List<Product>(productList.Count);
-        foreach (var item in productList)
-        {
-            newList.Add(item);
-        }
-        return newList;
+        return DataSource.productList.Where(Product => select is null ? true : select!(Product));
+    }
+
+    /// <summary>
+    /// returning the all orders in the list
+    /// </summary>
+    public Product GetSingle(Func<Product?, bool>? select)
+    {
+        return GetAll(select).SingleOrDefault() ?? throw new DalDoesNoExistException("Error-the product does not exist");
     }
 }
