@@ -13,21 +13,20 @@
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-        VerticalAlignment="Stretch" Width="auto" Background="#FF953030">
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Background="#FF953030">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
 
-            <ComboBox 
-                
+            <ComboBox
                 Name ="CategorySelector"
                 Grid.Column="1"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
-                SelectionChanged="Selector_SelectionChanged" Background="Black"/>
+                SelectionChanged="Selector_SelectionChanged" Background="Black" >
+            </ComboBox>
 
             <Label x:Name="categorysLabel" Content="category selector" FontSize="20" Grid.Column="0" Background="#FF953030" Height="46" Margin="120,0,110,0" />
 

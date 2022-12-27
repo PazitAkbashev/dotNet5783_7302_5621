@@ -34,6 +34,10 @@
    
         <Image Margin="223,191,535,201" Source="/‏‏צילום מסך (365).png" Stretch="Fill"/>
         <Image Margin="235,75,543,334" Source="/‏‏צילום מסך (366).png" Stretch="Fill"/>
+        <Image Margin="233,262,548,151" Source="/‏‏צילום מסך (368).png" Stretch="Fill"/>
+       
+        <Image Margin="235,319,546,93" Source="/‏‏צילום מסך (371).png" Stretch="Fill"/>
+        <Image Margin="234,138,544,271" Source="/‏‏צילום מסך (369).png" Stretch="Fill" RenderTransformOrigin="1.286,-0.129"/>
 
 
 
