@@ -7,11 +7,34 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
         <Button x:Name="MainButton"
                 Content="Admin" 
+                FontWeight="ExtraBlack"
                 HorizontalAlignment="Center" 
-                Margin="0,155,0,0" 
-                VerticalAlignment="Top" Height="115" Width="136" Click="Admin_Click"/>
+                VerticalAlignment="Center" Height="115" Width="136" Click="Admin_Click" Grid.Column="1"/>
+      
+        <Image Margin="472,67,118,56" Source="/‏‏צילום מסך (359).png" Stretch="Fill" Grid.ColumnSpan="2"/>
+       
+        <Border x:Name="openingAd" 
+                BorderBrush="Black" 
+                BorderThickness="1" Background="#FF953030" 
+                Width="810" HorizontalAlignment="Left" 
+                Margin="0,0,0,360" 
+                Grid.Column="1">
+
+            <Label Content="welcome!" 
+                   FontSize ="30"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Left" 
+                   Height="54" Margin="69,0,0,0" 
+                   VerticalAlignment="Center" 
+                   Width="335"/>
+        </Border>
 
 
     </Grid>

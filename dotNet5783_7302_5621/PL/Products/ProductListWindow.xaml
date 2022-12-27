@@ -22,13 +22,14 @@
             </Grid.ColumnDefinitions >
 
             <ComboBox 
+                
                 Name ="CategorySelector"
                 Grid.Column="1"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
-                SelectionChanged="Selector_SelectionChanged"/>
+                SelectionChanged="Selector_SelectionChanged" Background="Black"/>
 
-            <Label Content="Label" HorizontalAlignment="Left" Margin="112,10,0,0" VerticalAlignment="Top" Grid.Column="0" />
+            <Label x:Name="categorysLabel" Content="                    category selector" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Background="#FF953030" Height="46" />
 
         </Grid>
 
@@ -45,7 +46,7 @@
 
         <Button Content="Add new Product"
                 Grid.Row="1" HorizontalAlignment="Left"
-                Margin="622,476,0,57" Padding="5" Click="addButtonClick" Width="124"/>
+                Margin="660,513,0,20" Padding="5" Click="addButtonClick" Width="124"/>
     </Grid>
 
 </Window>
