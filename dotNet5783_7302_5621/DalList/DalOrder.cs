@@ -13,7 +13,7 @@ internal class DalOrder:IOrder
     {
         foreach (var item in orderList)
         {
-            if (o.ID == item.ID)
+            if (o.ID == item?.ID)
             {
                 throw new DalAlreadyExistsException("the order");
             }
@@ -27,7 +27,7 @@ internal class DalOrder:IOrder
     {
         foreach (var item in orderList)
         {
-            if (ID == item.ID)
+            if (ID == item?.ID)
             {
                 orderList.Remove(item);
                 return;
@@ -41,7 +41,7 @@ internal class DalOrder:IOrder
         int counter = 0;
         foreach (var item in orderList)
         {
-            if (o.ID == item.ID)
+            if (o.ID == item?.ID)
             {
                 orderList[counter] = o;
                 return;

@@ -11,7 +11,7 @@ internal class DalProduct: IProduct
     {
         for (int i = 0; i < productList.Count-1; i++)
         {
-            if (p.ID == productList[i].ID)
+            if (p.ID == productList[i]?.ID)
             {
                 throw new DalAlreadyExistsException("the product");
             }
@@ -25,7 +25,7 @@ internal class DalProduct: IProduct
     {
         foreach(var item in productList)
         {
-            if (ID == item.ID)
+            if (ID == item?.ID)
             {
                 productList.Remove(item);
                 return;
@@ -39,7 +39,7 @@ internal class DalProduct: IProduct
         int counter = 0;
         foreach (var item in productList)
         {
-            if (p.ID == item.ID)
+            if (p.ID == item?.ID)
             {
                 productList[counter] = p;
                 return;
