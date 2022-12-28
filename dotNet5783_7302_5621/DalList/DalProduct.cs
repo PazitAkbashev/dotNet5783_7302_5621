@@ -34,12 +34,12 @@ internal class DalProduct: IProduct
         throw new DalDoesNoExistException("the product");
     }
 
-    public void Update(Product p)
+    public void Update(Product? p)
     {
         int counter = 0;
         foreach (var item in productList)
         {
-            if (p.ID == item?.ID)
+            if (p?.ID == item?.ID)
             {
                 productList[counter] = p;
                 return;

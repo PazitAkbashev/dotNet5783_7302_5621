@@ -17,5 +17,7 @@ public interface IProduct
     public void addProduct(Product product);
     public void deleteProduct(int productID);
     public void updateProduct(Product product);
-    public List<ProductForList?> GetSelectionList(Enums.category myCategory);
+    public IEnumerable<Product?> GetSelectionList(Func<Product?, bool>? select = null);
+
+    //public List<ProductForList?> GetSelectionList(Enums.category myCategory);
 }

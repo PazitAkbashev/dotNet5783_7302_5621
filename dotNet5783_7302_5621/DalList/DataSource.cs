@@ -7,9 +7,6 @@ namespace Dal;
 
 internal static class DataSource
 {
-    /// <summary>
-    /// class for the run indexs
-    /// </summary>
     public static class Config
     {
         public static int orderRunIndex = 100000;
@@ -23,9 +20,7 @@ internal static class DataSource
     internal static List<DO.Order?> orderList = new List<DO.Order?>(100);
     internal static List<DO.OrderItem?> orderItemList = new List<DO.OrderItem?>(200);
 
-    /// <summary>
-    /// Initializes the product list
-    /// </summary>
+ 
     private static void  product_Initialize()
     {
         for (int i=0 ; i<10; i++)
@@ -35,7 +30,7 @@ internal static class DataSource
             product.ID = myRandom.Next(100000, 1000000);  
             for(int j=0 ; j<i; j++)
             {
-                if (product.ID == productList[j].ID)
+                if (product.ID == productList[j]?.ID)
                 {
                     product.ID = myRandom.Next(100000, 1000000);
                     j=0;
@@ -73,9 +68,7 @@ internal static class DataSource
         }
     }
 
-    /// <summary>
-    /// Initializes the order list
-    /// </summary>
+ 
     private static void order_Initialize()
     {
         string temp="a";
@@ -92,22 +85,20 @@ internal static class DataSource
 
     }
 
-    /// <summary>
-    /// Initializes the order item list
-    /// </summary>
+ 
     private static void orderItem_Initialize()
     {
         for(int i=0;i<40;i++)
         {
             OrderItem orderItem = new OrderItem();
-            Product product = new Product();
+            Product? product = new Product();
             product = productList[myRandom.Next(0, productList.Count)];
 
             orderItem.ID = Config.getorderItemRunIndex();
-            orderItem.ProductId = product.ID;
-            orderItem.OrderId = orderList[myRandom.Next(0, orderList.Count)].ID;
+            orderItem.ProductId = product?.ID??0;
+            orderItem.OrderId = orderList[myRandom.Next(0, orderList.Count)]?.ID??0;
             orderItem.Amount = myRandom.Next(1, 5);
-            orderItem.Price = orderItem.Amount * product.Price;
+            orderItem.Price = orderItem.Amount * product?.Price??0;
             orderItemList.Add(orderItem);
         }
     }

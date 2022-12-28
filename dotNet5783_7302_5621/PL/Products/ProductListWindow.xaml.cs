@@ -1,6 +1,7 @@
 ﻿using BlApi;
 using BlImplementation;
 using BO;
+using DalApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace PL.Products
         private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BO.Enums.category myCategory = (BO.Enums.category)CategorySelector.SelectedItem;
-            ProductListView.ItemsSource = bl.Product.GetSelectionList(myCategory);
+            ProductListView.ItemsSource = bl.Product.GetSelectionList(x=>x?.category==myCategory);
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

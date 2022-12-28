@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
@@ -22,15 +23,15 @@ internal class Product : BlApi.IProduct
     {
         try
         {
-            IEnumerable<DO.Product> prod = dalProduct.Product.GetAll();
+            IEnumerable<DO.Product?> prod = dalProduct.Product.GetAll();
             List<BO.ProductForList> tempProdForList = new List<BO.ProductForList>();
             foreach (var item in prod)
             {
                 BO.ProductForList tempProduct = new BO.ProductForList();
-                tempProduct.ID = item.ID;
-                tempProduct.Name = item.Name;
-                tempProduct.Price = item.Price;
-                tempProduct.category = item.Category;
+                tempProduct.ID = item?.ID ?? 0;
+                tempProduct.Name = item?.Name;
+                tempProduct.Price = item?.Price??0;
+                tempProduct.category = item?.Category;
                 tempProdForList.Add(tempProduct);
             }
             return tempProdForList;
@@ -48,7 +49,7 @@ internal class Product : BlApi.IProduct
         {
             productID.negativeNumber();
             BO.Product prod2 = new BO.Product();
-            DO.Product prod = dalProduct.Product.GetSingle(x => x.ID == productID);
+            DO.Product prod = dalProduct.Product.GetSingle(x => x?.ID == productID);
             prod2.ID = prod.ID;
             prod2.Name = prod.Name;
             prod2.InStock = prod.inStock;
@@ -71,7 +72,7 @@ internal class Product : BlApi.IProduct
             cart.CustomerAddress.notNull();
             cart.CustomerEmail.notNull();
             BO.ProductItem tempProdItem = new BO.ProductItem();
-            DO.Product tempProduct = dalProduct.Product.GetSingle(x => x.ID == productID);
+            DO.Product tempProduct = dalProduct.Product.GetSingle(x => x?.ID == productID);
             tempProdItem.ID = tempProduct.ID;
             tempProdItem.Name = tempProduct.Name;
             tempProdItem.Price = tempProduct.Price;
@@ -115,15 +116,15 @@ internal class Product : BlApi.IProduct
         try
         {
             productID.negativeNumber();
-            IEnumerable<DO.Order> tempList1 = dalProduct.Order.GetAll();
-            IEnumerable<DO.Product> tempList2 = dalProduct.Product.GetAll();
+            IEnumerable<DO.Order?> tempList1 = dalProduct.Order.GetAll();
+            IEnumerable<DO.Product?> tempList2 = dalProduct.Product.GetAll();
             foreach (var item in tempList1)
             {
-                productID.equalsNumbers(item.ID);
+                productID.equalsNumbers(item?.ID??0);
             }
             foreach (var item in tempList2)
             {
-                if (item.ID == productID)
+                if (item?.ID == productID)
                 {
                     break;
                 }
@@ -156,26 +157,6 @@ internal class Product : BlApi.IProduct
         {
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
-    }
-
-
-    public List<ProductForList> GetSelectionList(BO.Enums.category myCategory)
-    {
-        IEnumerable<DO.Product> prod = dalProduct.Product.GetAll();
-        List<ProductForList> tempList = new List<ProductForList>();
-        foreach (var item in prod)
-        {
-            if(item.Category== (DO.Enums.Category)myCategory)
-            {
-                ProductForList productForList = new ProductForList();
-                productForList.ID = item.ID;
-                productForList.Name = item.Name;
-                productForList.Price = item.Price;
-                productForList.category = item.Category;
-                tempList.Add(productForList);
-            }
-        }
-        return tempList;
     }
 
 }

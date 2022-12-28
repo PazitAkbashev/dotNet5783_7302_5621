@@ -38,12 +38,12 @@ internal class DalOrderItem : IOrderItem
         throw new DalDoesNoExistException("the order item");
     }
  
-    public void Update(OrderItem o)
+    public void Update(OrderItem? o)
     {
         int counter = 0;
         foreach (var item in orderItemList)
         {
-            if (o.ID == item?.ID)
+            if (o?.ID == item?.ID)
             {
                 orderItemList[counter] = o;
                 return;

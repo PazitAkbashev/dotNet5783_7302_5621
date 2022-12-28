@@ -24,7 +24,7 @@ internal class Cart : BlApi.ICart
             cart.CustomerAddress.notNull();
             cart.CustomerName.notNull();
             cart.CustomerEmail.notNull();
-            DO.Product tempProduct = dalCart.Product.GetSingle(x => x.ID == productID);
+            DO.Product tempProduct = dalCart.Product.GetSingle(x => x?.ID == productID);
             bool flag = false;
             foreach (var item in cart.Items!)
             {
@@ -66,7 +66,7 @@ internal class Cart : BlApi.ICart
             cart.CustomerEmail.notNull();
             productID.negativeNumber();
             newAmount.negativeNumber();
-            DO.Product tempProduct = dalCart.Product.GetSingle(x => x.ID == productID);
+            DO.Product tempProduct = dalCart.Product.GetSingle(x => x?.ID == productID);
             foreach (var item in cart.Items!)
             {
                 if (item.ProductID == productID)
@@ -123,7 +123,7 @@ internal class Cart : BlApi.ICart
             cart.CustomerEmail.notNull();
             foreach (var item in cart.Items!)
             {
-                DO.Product tempProduct = dalCart.Product.GetSingle(x => x.ID ==item.ID);
+                DO.Product tempProduct = dalCart.Product.GetSingle(x => x?.ID ==item.ID);
                 item.Amount.negativeNumber();
                 tempProduct.inStock.inStockSmallerThanAmount(item.Amount);
             }
