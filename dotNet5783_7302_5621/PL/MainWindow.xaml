@@ -11,30 +11,33 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <Button x:Name="MainButton"
                 Content="Admin" 
                 FontWeight="ExtraBlack"
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" Height="115" Width="136" Click="Admin_Click" Grid.Column="1"/>
-      
+
         <Image Margin="472,67,118,56" Source="/‏‏צילום מסך (359).png" Stretch="Fill" Grid.ColumnSpan="2"/>
-       
+
         <Border x:Name="openingAd" 
                 BorderBrush="Black" 
                 BorderThickness="1" Background="#FF953030" 
-                Width="810" HorizontalAlignment="Left" 
-                Margin="0,0,0,360" 
+                Width="740" HorizontalAlignment="Left" 
+                Margin="70,0,0,360" 
                 Grid.Column="1">
 
             <Label Content="welcome!" 
                    FontSize ="30"
                    FontWeight="Bold"
                    HorizontalAlignment="Left" 
-                   Height="54" Margin="69,0,0,0" 
+                   Height="54" Margin="9,0,0,0" 
                    VerticalAlignment="Center" 
-                   Width="335"/>
+                   Width="160"/>
+
         </Border>
+        <Image Grid.ColumnSpan="2" Margin="0,2,730,360" Source="/‏‏צילום מסך (372).png" Stretch="Fill" OpacityMask="Black"/>
+        <Label Content="maneger" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="7,65,0,0" VerticalAlignment="Top" Width="65"/>
 
 
     </Grid>
