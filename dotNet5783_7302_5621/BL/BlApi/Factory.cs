@@ -9,10 +9,9 @@ namespace BlApi
 {
     public class Factory
     {
-        public IBl Get()
+        static public IBl Get()
         {
-            BlApi.IBl bl = new Bl();
-          //  Bl bl = new Bl();
+            Bl bl = new Bl();
             return bl;
         }
 

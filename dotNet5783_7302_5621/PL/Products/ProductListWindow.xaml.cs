@@ -23,8 +23,7 @@ namespace PL.Products
     /// </summary>
     public partial class ProductListWindow : Window
     {
-       private BlApi.IBl bl = BlApi.Factory.Get();
-
+        private BlApi.IBl? bl = BlApi.Factory.Get();
 
         public ProductListWindow()
         {
