@@ -1,5 +1,5 @@
-﻿using BlApi;
-using BlImplementation;
+﻿//using BlApi;
+//using BlImplementation;
 using BO;
 using DalApi;
 using System;
@@ -23,7 +23,7 @@ namespace PL.Products
     /// </summary>
     public partial class ProductListWindow : Window
     {
-        private IBl bl = new Bl();
+       private BlApi.IBl bl = BlApi.Factory.Get();
 
 
         public ProductListWindow()

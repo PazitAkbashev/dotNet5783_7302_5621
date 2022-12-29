@@ -15,7 +15,7 @@ namespace BlImplementation;
 /// </summary>
 internal class Product : BlApi.IProduct
 {
-    private DalApi.IDal dalProduct = new Dal.DalList();
+    private DalApi.IDal? dalProduct = DalApi.Factory.Get();
     /// <summary>
     /// returning the products list
     /// </summary>

@@ -10,7 +10,7 @@ namespace BlImplementation
     /// <summary>
     /// the main implementation file
     /// </summary>
-    public class Bl:BlApi.IBl
+    internal class Bl:BlApi.IBl
     {
         public BlApi.ICart Cart => new Cart();
         public BlApi.IOrder Order => new Order();

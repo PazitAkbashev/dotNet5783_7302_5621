@@ -12,7 +12,7 @@ void productFunction()
 {
     try
     {
-        IDal dalProduct = new Dal.DalList();
+        IDal? dalProduct = DalApi.Factory.Get();
         Console.WriteLine("Enter your choice:");
         Console.WriteLine("1 to add a product");
         Console.WriteLine("2 to delete a product");
@@ -68,7 +68,7 @@ void orderFunction()
 {
     try
     {
-        IDal dalOrder = new Dal.DalList();
+        IDal? dalOrder = DalApi.Factory.Get();
         TimeSpan OrderToShip = new(5, 0, 0, 0);
         TimeSpan ShipToDelivery = new(4, 0, 0, 0);
         Console.WriteLine("Enter your choice:");
@@ -130,7 +130,7 @@ void orderItemFunction()
 {
     try
     {
-        IDal dalOrderItem = new Dal.DalList();
+        IDal? dalOrderItem = DalApi.Factory.Get();
         Console.WriteLine("Enter your choice:");
         Console.WriteLine("1 to add an order item");
         Console.WriteLine("2 to delete an order item");

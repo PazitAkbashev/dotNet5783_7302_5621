@@ -1,7 +1,7 @@
-﻿using BlApi;
+﻿//using BlApi;
 using DalList;
 using BO;
-using BlImplementation;
+//using BlImplementation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
