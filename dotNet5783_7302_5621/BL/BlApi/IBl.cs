@@ -9,6 +9,7 @@ namespace BlApi;
 /// <summary>
 /// the main interface
 /// </summary>
+/// 
 public interface IBl
 {
         public ICart Cart { get; }
