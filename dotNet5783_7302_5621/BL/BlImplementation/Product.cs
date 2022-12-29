@@ -76,7 +76,7 @@ internal class Product : BlApi.IProduct
             tempProdItem.ID = tempProduct.ID;
             tempProdItem.Name = tempProduct.Name;
             tempProdItem.Price = tempProduct.Price;
-            tempProdItem.category = tempProduct.Category;
+            tempProdItem.category = tempProduct.Category??0;
             if (tempProduct.inStock > 0)
                 tempProdItem.InStock = true;
             else
@@ -159,4 +159,9 @@ internal class Product : BlApi.IProduct
         }
     }
 
+    public IEnumerable<DO.Product?> GetSelectionList(DO.Enums.Category myCategory)
+    {  
+        return dalProduct.Product.GetAll(x=>x?.Category== myCategory);
+    }
 }
+

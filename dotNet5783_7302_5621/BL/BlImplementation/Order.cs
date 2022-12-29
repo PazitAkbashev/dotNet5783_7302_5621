@@ -134,8 +134,8 @@ internal class Order :BlApi.IOrder
             {
                 if (item?.ID == orderNumber && item?.ShipDate > DateTime.Now)
                 {
-                    DO.Order? order = item;
-                    order.ShipDate = DateTime.Now;
+                    DO.Order order = item??default;
+                    order.ShipDate  = DateTime.Now;
                     BO.Order order2 = new BO.Order();
                     order2.ID = item?.ID??0;
                     order2.CustomerName = item?.CustomerName;
@@ -203,7 +203,7 @@ internal class Order :BlApi.IOrder
             {
                 if (item?.ID == orderNumber && item?.ShipDate > DateTime.Now)
                 {
-                    DO.Order? order = item;
+                    DO.Order order = item??default;
                     order.DeliveryrDate = DateTime.Now;
                     BO.Order order2 = new BO.Order();
                     order2.ID = item?.ID??0;
