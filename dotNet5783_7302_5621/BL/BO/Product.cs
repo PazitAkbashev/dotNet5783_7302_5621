@@ -6,9 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 namespace BO
 {
-    /// <summary>
-    /// the product methods
-    /// </summary>
     public class Product
     {
         public int ID { get; set; }

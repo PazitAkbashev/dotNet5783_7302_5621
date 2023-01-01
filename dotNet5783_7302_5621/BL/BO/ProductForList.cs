@@ -7,9 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 namespace BO
 {
-    /// <summary>
-    /// the product for list methods
-    /// </summary>
     public class ProductForList
     {
         public int ID { get; set; }

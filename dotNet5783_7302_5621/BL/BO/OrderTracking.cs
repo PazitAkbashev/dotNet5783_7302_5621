@@ -9,9 +9,6 @@ using System.Xml.Linq;
 using static BO.Enums;
 namespace BO
 {
-    /// <summary>
-    /// the order tracking methods
-    /// </summary>
     public class OrderTracking
     {
         public int ID { get; set; }

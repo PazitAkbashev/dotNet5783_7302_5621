@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 using static BO.Enums;
 namespace BO
 {
-    /// <summary>
-    /// the order methods
-    /// </summary>
     public class Order
     {
         public int ID;

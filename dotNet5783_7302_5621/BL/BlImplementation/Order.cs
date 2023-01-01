@@ -22,7 +22,7 @@ internal class Order :BlApi.IOrder
     {
         try
         {
-            IEnumerable<DO.Order?> tempOrderList = dalOrder.Order.GetAll();
+            IEnumerable<DO.Order?> tempOrderList = dalOrder!.Order.GetAll();
             List<BO.OrderForList> tempOrderForList = new List<BO.OrderForList>();
             foreach (var item in tempOrderList)
             {
@@ -74,7 +74,7 @@ internal class Order :BlApi.IOrder
         {
             orderID.negativeNumber();
             BO.Order tempOrder2 = new BO.Order();
-            DO.Order tempOrder = dalOrder.Order.GetSingle(x => x?.ID == orderID);
+            DO.Order tempOrder = dalOrder!.Order.GetSingle(x => x?.ID == orderID);
             IEnumerable<DO.OrderItem?> orderItems = dalOrder.OrderItem.GetAll();
             tempOrder2.ID = tempOrder.ID;
             tempOrder2.CustomerName = tempOrder.CustomerName;
@@ -129,7 +129,7 @@ internal class Order :BlApi.IOrder
     {
         try
         {
-            IEnumerable<DO.Order?> orders = dalOrder.Order.GetAll();
+            IEnumerable<DO.Order?> orders = dalOrder!.Order.GetAll();
             foreach (var item in orders)
             {
                 if (item?.ID == orderNumber && item?.ShipDate > DateTime.Now)
@@ -198,7 +198,7 @@ internal class Order :BlApi.IOrder
         try
         {
             orderNumber.negativeNumber();
-            IEnumerable<DO.Order?> orders = dalOrder.Order.GetAll();
+            IEnumerable<DO.Order?> orders = dalOrder!.Order.GetAll();
             foreach (var item in orders)
             {
                 if (item?.ID == orderNumber && item?.ShipDate > DateTime.Now)
@@ -268,7 +268,7 @@ internal class Order :BlApi.IOrder
         try
         {
             orderNumber.negativeNumber();
-            IEnumerable<DO.Order?> orders = dalOrder.Order.GetAll();
+            IEnumerable<DO.Order?> orders = dalOrder!.Order.GetAll();
             foreach (var item in orders)
             {
                 if (item?.ID == orderNumber)

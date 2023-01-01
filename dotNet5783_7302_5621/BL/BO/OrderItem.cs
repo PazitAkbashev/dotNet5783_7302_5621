@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 using static DO.Enums;
 namespace BO
 {
-    /// <summary>
-    /// the order item methods
-    /// </summary>
     public class OrderItem
     {
         public int ID { get; set; }

@@ -21,10 +21,10 @@ internal class Cart : BlApi.ICart
         try
         {
             productID.negativeNumber();
-            cart.CustomerAddress.notNull();
-            cart.CustomerName.notNull();
-            cart.CustomerEmail.notNull();
-            DO.Product tempProduct = dalCart.Product.GetSingle(x => x?.ID == productID);
+            cart.CustomerAddress!.notNull();
+            cart.CustomerName!.notNull();
+            cart.CustomerEmail!.notNull();
+            DO.Product tempProduct = dalCart!.Product.GetSingle(x => x?.ID == productID);
             bool flag = false;
             foreach (var item in cart.Items!)
             {
@@ -61,12 +61,12 @@ internal class Cart : BlApi.ICart
     {
         try
         {
-            cart.CustomerAddress.notNull();
-            cart.CustomerName.notNull();
-            cart.CustomerEmail.notNull();
+            cart.CustomerAddress!.notNull();
+            cart.CustomerName!.notNull();
+            cart.CustomerEmail!.notNull();
             productID.negativeNumber();
             newAmount.negativeNumber();
-            DO.Product tempProduct = dalCart.Product.GetSingle(x => x?.ID == productID);
+            DO.Product tempProduct = dalCart!.Product.GetSingle(x => x?.ID == productID);
             foreach (var item in cart.Items!)
             {
                 if (item.ProductID == productID)
@@ -118,12 +118,12 @@ internal class Cart : BlApi.ICart
     {
         try
         {
-            cart.CustomerAddress.notNull();
-            cart.CustomerName.notNull();
-            cart.CustomerEmail.notNull();
+            cart.CustomerAddress!.notNull();
+            cart.CustomerName!.notNull();
+            cart.CustomerEmail!.notNull();
             foreach (var item in cart.Items!)
             {
-                DO.Product tempProduct = dalCart.Product.GetSingle(x => x?.ID ==item.ID);
+                DO.Product tempProduct = dalCart!.Product.GetSingle(x => x?.ID ==item.ID);
                 item.Amount.negativeNumber();
                 tempProduct.inStock.inStockSmallerThanAmount(item.Amount);
             }
@@ -137,7 +137,7 @@ internal class Cart : BlApi.ICart
             int returnID;
             try
             {
-                returnID = dalCart.Order.Add(tempOrder);
+                returnID = dalCart!.Order.Add(tempOrder);
             }
             catch (DalApi.DalAlreadyExistsException ex)
             {

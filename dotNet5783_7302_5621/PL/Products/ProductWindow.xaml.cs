@@ -77,9 +77,9 @@ namespace PL.Products
             try
             {
                 if ((string)act.Content == "Add")
-                    blProduct.Product.addProduct(myProduct);
+                    blProduct!.Product.addProduct(myProduct);
                 else
-                    blProduct.Product.updateProduct(myProduct);
+                    blProduct!.Product.updateProduct(myProduct);
                 this.Close();
             }
             catch (BO.BoDoesNotExist b)

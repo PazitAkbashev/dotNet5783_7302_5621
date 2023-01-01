@@ -156,7 +156,7 @@ void orderFunction()
         case 1:
             try
             {
-                IEnumerable<BO.OrderForList> orderList = blOrder.Order.getOrderList();
+                IEnumerable<BO.OrderForList> orderList = blOrder.Order.getOrderList()!;
                 foreach (var item in orderList)
                 {
                     Console.WriteLine("id: {0} name: {1} status: {2} amount of items: {3} total price: {4}", item.ID, item.CustomerName, item.Status, item.AmountOfItems, item.TotalPrice);
@@ -361,7 +361,7 @@ void cartFunction()
 }
 
 
-///the main
+///the main program
 int choice;
 do
 {

@@ -1,5 +1,4 @@
-﻿//using BlApi;
-//using BlImplementation;
+﻿
 using BO;
 using DalApi;
 using System;
@@ -18,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace PL.Products
 {
-    /// <summary>
-    /// Interaction logic for ViewProductList.xaml
-    /// </summary>
     public partial class ProductListWindow : Window
     {
         private BlApi.IBl? bl = BlApi.Factory.Get;
@@ -36,8 +32,7 @@ namespace PL.Products
         private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BO.Enums.category myCategory = (BO.Enums.category)CategorySelector.SelectedItem;
-            ProductListView.ItemsSource = bl.Product.getProductList(x=> x.category == myCategory);
-            //maby there is a mistake here
+            ProductListView.ItemsSource = bl!.Product.getProductList(x=> x.category == myCategory);
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -55,7 +50,7 @@ namespace PL.Products
         {
             int id = ((ProductForList)ProductListView.SelectedItem).ID;
             new ProductWindow(id).ShowDialog();
-            ProductListView.ItemsSource = bl.Product.getProductList();
+            ProductListView.ItemsSource = bl!.Product.getProductList();
         }
      
         private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
