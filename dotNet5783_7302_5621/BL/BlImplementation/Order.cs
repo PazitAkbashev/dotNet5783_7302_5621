@@ -9,8 +9,10 @@ using DalApi;
 using DO;
 using Tools;
 namespace BlImplementation;
+
+
 /// <summary>
-/// class with all the order implementation functions 
+/// the order implementation class
 /// </summary>
 internal class Order :BlApi.IOrder
 {
@@ -285,9 +287,9 @@ internal class Order :BlApi.IOrder
                     Tuple<DateTime?, string> shipDate = new Tuple<DateTime?, string>(item?.ShipDate, "ship date");
                     Tuple<DateTime?, string> deliveryDate = new Tuple<DateTime?, string>(item?.DeliveryrDate, "delivery date");
                     myOrderTracking.myList = new List<Tuple<DateTime?, string?>>();
-                    myOrderTracking.myList.Add(orderDate);
-                    myOrderTracking.myList.Add(shipDate);
-                    myOrderTracking.myList.Add(deliveryDate);
+                    myOrderTracking.myList.Add(orderDate!);
+                    myOrderTracking.myList.Add(shipDate!);
+                    myOrderTracking.myList.Add(deliveryDate!);
                     return myOrderTracking;
                 }
             }

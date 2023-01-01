@@ -1,7 +1,7 @@
 ﻿
 namespace DO;
 /// <summary>
-/// including the all enums in the project
+/// including the all DO enums 
 /// </summary>
 public struct Enums
 {

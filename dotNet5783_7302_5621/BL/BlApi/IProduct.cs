@@ -11,11 +11,10 @@ namespace BlApi;
 /// </summary>
 public interface IProduct
 {
-    public IEnumerable<BO.ProductForList> getProductList(Func<ProductForList, bool> func = null);
+    public IEnumerable<BO.ProductForList> getProductList(Func<ProductForList, bool> func = null!);
     public Product getProductDetailsD(int productID);
     public ProductItem getProductDetailsC(int productID,Cart cart);
     public void addProduct(Product product);
     public void deleteProduct(int productID);
     public void updateProduct(Product product);
-    //public IEnumerable<DO.Product?> GetSelectionList(DO.Enums.Category myCategory);
 }

@@ -7,6 +7,9 @@ using static DO.Enums;
 using static BO.Enums;
 namespace BO
 {
+    /// <summary>
+    /// the order for list methods
+    /// </summary>
     public class OrderForList
     {
         public int ID { get; set; }

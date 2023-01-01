@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 namespace DalApi;
 
+/// <summary>
+/// the DO exceptions
+/// </summary>
 
 public class DalDoesNoExistException : Exception
 {

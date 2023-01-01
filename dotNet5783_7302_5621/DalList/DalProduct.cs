@@ -4,7 +4,9 @@ namespace Dal;
 using System;
 using static Dal.DataSource;
 
-
+/// <summary>
+/// the product implementation class
+/// </summary>
 internal class DalProduct: IProduct
 {
     public int Add(Product p)

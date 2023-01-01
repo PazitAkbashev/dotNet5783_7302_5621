@@ -7,8 +7,10 @@ using BlApi;
 using BO;
 using Tools;
 namespace BlImplementation;
+
+
 /// <summary>
-/// class with all the cart implementation functions 
+/// the cart implementation class
 /// </summary>
 internal class Cart : BlApi.ICart
 {
@@ -56,7 +58,9 @@ internal class Cart : BlApi.ICart
         }
     }
 
-
+    /// <summary>
+    /// updating the amount of products
+    /// </summary>
     public BO.Cart updateAmountOfProduct(BO.Cart cart, int productID, int newAmount)
     {
         try

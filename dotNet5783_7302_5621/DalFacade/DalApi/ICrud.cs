@@ -1,6 +1,5 @@
 ﻿
 using DO;
-
 namespace DalApi;
 
 /// <summary>

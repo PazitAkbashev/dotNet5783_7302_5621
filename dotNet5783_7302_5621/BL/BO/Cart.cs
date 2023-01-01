@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using static DO.Enums;
 namespace BO
 {
+    /// <summary>
+    /// the cart methods
+    /// </summary>
     public class Cart
     {
         public string? CustomerName { get; set; }

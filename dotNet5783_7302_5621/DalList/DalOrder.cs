@@ -6,7 +6,9 @@ using System.Collections.Generic;
 namespace Dal;
 using static Dal.DataSource;
 
-
+/// <summary>
+/// the order implementation class
+/// </summary>
 internal class DalOrder:IOrder
 {
     public int Add(Order o)

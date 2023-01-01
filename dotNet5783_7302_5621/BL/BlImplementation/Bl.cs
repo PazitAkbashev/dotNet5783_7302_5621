@@ -4,11 +4,10 @@ using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace BlImplementation
 {
     /// <summary>
-    /// the main implementation file
+    /// the main implementation class
     /// </summary>
     internal class Bl:BlApi.IBl
     {

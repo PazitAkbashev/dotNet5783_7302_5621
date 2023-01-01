@@ -4,10 +4,10 @@ using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace BlApi;
+
 /// <summary>
-/// the main interface
+/// the main BL interface
 /// </summary>
 /// 
 public interface IBl

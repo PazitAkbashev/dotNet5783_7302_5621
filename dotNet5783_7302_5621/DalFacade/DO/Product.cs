@@ -1,6 +1,7 @@
 ﻿
 namespace DO;
 using static DO.Enums;
+
 /// <summary>
 /// the product methods
 /// </summary>

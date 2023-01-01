@@ -8,7 +8,9 @@ using System;
 using System.Collections;
 namespace Dal;
 
-
+/// <summary>
+/// the order item implementation class
+/// </summary>
 internal class DalOrderItem : IOrderItem
 {
     public int Add(OrderItem o)
