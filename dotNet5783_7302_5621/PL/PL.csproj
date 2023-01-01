@@ -13,6 +13,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Products\רקע עריכה ועדכון מוצר.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\BL\BL.csproj" />
 	</ItemGroup>
 
@@ -20,6 +24,10 @@
 	  <Folder Include="Images\" />
 	  <Folder Include="OrderItems\" />
 	  <Folder Include="Orders\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Products\רקע עריכה ועדכון מוצר.png" />
 	</ItemGroup>
 
 </Project>

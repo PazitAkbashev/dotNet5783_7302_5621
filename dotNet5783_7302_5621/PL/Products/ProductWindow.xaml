@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="ProductWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Products/רקע עריכה ועדכון מוצר.png" Stretch="Uniform"/>
+        </Grid.Background>
         <TextBox x:Name="id" HorizontalAlignment="Center" Margin="0,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
     
         
@@ -21,17 +24,7 @@
         <ComboBox x:Name="category" HorizontalAlignment="Center" Margin="0,142,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
         <Label Content="Category:" HorizontalAlignment="Left" Margin="258,138,0,0" VerticalAlignment="Top"/>
         <Button x:Name="act" Content="Act" HorizontalAlignment="Left" Margin="272,378,0,0" VerticalAlignment="Top"  Width="43" Click="act_click"/>
-        <Image Margin="485,57,25,36" Source="/‏‏צילום מסך (363).png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="-1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-   
+        
         <Image Margin="223,191,535,201" Source="/‏‏צילום מסך (365).png" Stretch="Fill"/>
         <Image Margin="235,75,543,334" Source="/‏‏צילום מסך (366).png" Stretch="Fill"/>
         <Image Margin="233,262,548,151" Source="/‏‏צילום מסך (368).png" Stretch="Fill"/>

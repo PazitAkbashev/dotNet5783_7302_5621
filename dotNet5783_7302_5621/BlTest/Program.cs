@@ -12,7 +12,7 @@ using BO;
 ///the product function
 void productFunction()
 {
-    BlApi.IBl? blProduct = BlApi.Factory.Get();
+    BlApi.IBl? blProduct = BlApi.Factory.Get;
     Console.WriteLine("Please enter your choice:");
     Console.WriteLine("0 to Exit");
     Console.WriteLine("1 to get the products list");
@@ -140,7 +140,7 @@ void productFunction()
 ///the order function
 void orderFunction()
 {
-    BlApi.IBl? blOrder = BlApi.Factory.Get();
+    BlApi.IBl? blOrder = BlApi.Factory.Get;
     Console.WriteLine("Please enter your choice:");
     Console.WriteLine("0 to Exit");
     Console.WriteLine("1 to get the orders list");
@@ -242,7 +242,7 @@ void orderFunction()
 ///the cart function
 void cartFunction()
 {
-    BlApi.IBl? blCart = BlApi.Factory.Get();
+    BlApi.IBl? blCart = BlApi.Factory.Get;
     Console.WriteLine("Please enter your choice:");
     Console.WriteLine("0 to Exit");
     Console.WriteLine("1 to add a product to the cart");

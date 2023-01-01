@@ -31,6 +31,6 @@ namespace PL
       
 
 
-        private BlApi.IBl? bl = BlApi.Factory.Get();
+        private BlApi.IBl? bl = BlApi.Factory.Get;
     }
 }

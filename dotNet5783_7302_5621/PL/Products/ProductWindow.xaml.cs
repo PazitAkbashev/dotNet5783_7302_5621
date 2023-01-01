@@ -22,7 +22,7 @@ namespace PL.Products
 {
     public partial class ProductWindow : Window
     {
-        BlApi.IBl? blProduct = BlApi.Factory.Get();
+        BlApi.IBl? blProduct = BlApi.Factory.Get;
         BO.Product myProduct = new BO.Product();
 
         public ProductWindow()

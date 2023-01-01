@@ -23,7 +23,7 @@ namespace PL.Products
     /// </summary>
     public partial class ProductListWindow : Window
     {
-        private BlApi.IBl? bl = BlApi.Factory.Get();
+        private BlApi.IBl? bl = BlApi.Factory.Get;
 
         public ProductListWindow()
         {
@@ -36,7 +36,7 @@ namespace PL.Products
         private void Selector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BO.Enums.category myCategory = (BO.Enums.category)CategorySelector.SelectedItem;
-            ProductListView.ItemsSource = bl.Product.GetSelectionList((DO.Enums.Category)myCategory);
+            ProductListView.ItemsSource = bl.Product.getProductList(x=> x.category == myCategory);
             //maby there is a mistake here
         }
 
@@ -48,7 +48,7 @@ namespace PL.Products
         {
             ProductWindow pw = new ProductWindow();
             pw.ShowDialog();
-            ProductListView.ItemsSource = bl.Product.getProductList();
+            ProductListView.ItemsSource = bl!.Product.getProductList();
         }
 
         private void updateProductDoubleClick(object sender, MouseButtonEventArgs e)

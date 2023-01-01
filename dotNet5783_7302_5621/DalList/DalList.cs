@@ -6,11 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Dal;
 
-internal sealed class DalList :IDal
+internal sealed class DalList : IDal
 {
-    private DalList() { }
+    private DalList()
+    {
+        Order = new DalOrder();
+        Product = new DalProduct();
+        OrderItem = new DalOrderItem();
+    }
     public static IDal Instance { get; } = new DalList();
-    public IProduct Product => new DalProduct();
-    public IOrder Order => new DalOrder();
-    public IOrderItem OrderItem => new DalOrderItem();
+    public IProduct Product { get; }
+    public IOrder Order { get; }
+    public IOrderItem OrderItem { get; }
 }

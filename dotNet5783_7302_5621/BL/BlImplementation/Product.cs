@@ -19,11 +19,11 @@ internal class Product : BlApi.IProduct
     /// <summary>
     /// returning the products list
     /// </summary>
-    public IEnumerable<BO.ProductForList> getProductList()
+    public IEnumerable<BO.ProductForList> getProductList(Func <ProductForList,bool> func= null)
     {
         try
         {
-            IEnumerable<DO.Product?> prod = dalProduct.Product.GetAll();
+            IEnumerable<DO.Product?> prod = dalProduct!.Product.GetAll();
             List<BO.ProductForList> tempProdForList = new List<BO.ProductForList>();
             foreach (var item in prod)
             {
@@ -31,10 +31,10 @@ internal class Product : BlApi.IProduct
                 tempProduct.ID = item?.ID ?? 0;
                 tempProduct.Name = item?.Name;
                 tempProduct.Price = item?.Price??0;
-                tempProduct.category = item?.Category;
+                tempProduct.category = (BO.Enums.category) item?.Category!;
                 tempProdForList.Add(tempProduct);
             }
-            return tempProdForList;
+            return func  is null? tempProdForList : tempProdForList.Where(func);
         }
         catch (DalApi.DalDoesNoExistException ex)
         {
@@ -159,9 +159,9 @@ internal class Product : BlApi.IProduct
         }
     }
 
-    public IEnumerable<DO.Product?> GetSelectionList(DO.Enums.Category myCategory)
-    {  
-        return dalProduct.Product.GetAll(x=>x?.Category== myCategory);
-    }
+    //public IEnumerable<DO.Product?> GetSelectionList(DO.Enums.Category myCategory)
+    //{  
+    //    return dalProduct.Product.GetAll(x=>x?.Category== myCategory);
+    //}
 }
 

@@ -8,12 +8,16 @@
         Title="ProductListWindow" Height="640" Width="800">
 
     <Grid Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="371*"/>
+            <ColumnDefinition Width="29*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Background="#FF953030">
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Background="#FF953030" Grid.ColumnSpan="2">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -34,8 +38,7 @@
 
         <ListView 
             x:Name ="ProductListView"
-            Grid.Row="1"
-                  d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="updateProductDoubleClick" SelectionChanged="ProductListView_SelectionChanged">
+                  d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="updateProductDoubleClick" SelectionChanged="ProductListView_SelectionChanged" Grid.ColumnSpan="2" Margin="0,46,0,0" Grid.RowSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -45,7 +48,7 @@
 
         <Button Content="Add new Product"
                 Grid.Row="1" HorizontalAlignment="Left"
-                Margin="660,513,0,20" Padding="5" Click="addButtonClick" Width="124"/>
+                Margin="660,513,0,20" Padding="5" Click="addButtonClick" Width="124" Grid.ColumnSpan="2"/>
     </Grid>
 
 </Window>

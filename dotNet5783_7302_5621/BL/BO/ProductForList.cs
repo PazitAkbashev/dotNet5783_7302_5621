@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static DO.Enums;
 namespace BO
 {
     /// <summary>
@@ -16,7 +15,7 @@ namespace BO
         public int ID { get; set; }
         public string? Name { get; set; }
         public double Price { get; set; }
-        public Category? category { get; set; }
+        public BO.Enums.category? category { get; set; }
         public override string ToString() => 
             $@"id={ID}
 name={Name}
