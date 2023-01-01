@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:PL.Products"
         mc:Ignorable="d"
         Title="ProductWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="0,10,10,0">
         <Grid.Background>
-            <ImageBrush ImageSource="/Products/רקע עריכה ועדכון מוצר.png" Stretch="Uniform"/>
+            <ImageBrush Stretch="Uniform" ImageSource="/רקע עריכה ועדכון מוצר.png" TileMode="None"/>
         </Grid.Background>
         <TextBox x:Name="id" HorizontalAlignment="Center" Margin="0,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
-    
-        
-        
+
+
+
         <Label x:Name="Id" Content="Id:" HorizontalAlignment="Left" Margin="280,74,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="name" HorizontalAlignment="Center" Margin="0,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_1" Text=""/>
         <Label Content="Name:" HorizontalAlignment="Left" Margin="269,199,0,0" VerticalAlignment="Top"/>
@@ -24,11 +24,11 @@
         <ComboBox x:Name="category" HorizontalAlignment="Center" Margin="0,142,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
         <Label Content="Category:" HorizontalAlignment="Left" Margin="258,138,0,0" VerticalAlignment="Top"/>
         <Button x:Name="act" Content="Act" HorizontalAlignment="Left" Margin="272,378,0,0" VerticalAlignment="Top"  Width="43" Click="act_click"/>
-        
+
         <Image Margin="223,191,535,201" Source="/‏‏צילום מסך (365).png" Stretch="Fill"/>
         <Image Margin="235,75,543,334" Source="/‏‏צילום מסך (366).png" Stretch="Fill"/>
         <Image Margin="233,262,548,151" Source="/‏‏צילום מסך (368).png" Stretch="Fill"/>
-       
+
         <Image Margin="235,319,546,93" Source="/‏‏צילום מסך (371).png" Stretch="Fill"/>
         <Image Margin="234,138,544,271" Source="/‏‏צילום מסך (369).png" Stretch="Fill" RenderTransformOrigin="1.286,-0.129"/>
 
