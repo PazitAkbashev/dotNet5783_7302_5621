@@ -16,9 +16,13 @@
                 Content="Admin" 
                 FontWeight="ExtraBlack"
                 HorizontalAlignment="Center" 
-                VerticalAlignment="Center" Height="115" Width="136" Click="Admin_Click" Grid.Column="1"/>
+                VerticalAlignment="Top" Height="115" Width="136" Click="Admin_Click" Grid.Column="1" Margin="0,176,0,0">
+            <Button.Background>
+                <ImageBrush Stretch="None" TileMode="None"/>
+            </Button.Background>
+        </Button>
 
-        <Image Margin="472,67,118,56" Source="/‏‏צילום מסך (359).png" Stretch="Fill" Grid.ColumnSpan="2"/>
+        <Image Margin="468,79,122,44" Source="/‏‏צילום מסך (359).png" Stretch="Fill" Grid.ColumnSpan="2"/>
 
         <Border x:Name="openingAd" 
                 BorderBrush="Black" 
