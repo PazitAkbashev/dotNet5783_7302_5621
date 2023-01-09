@@ -39,6 +39,7 @@ internal class Cart : BlApi.ICart
                     cart.TotalPrice += item.Price;
                 }
             }
+
             if (flag == false)
             {
                 tempProduct.inStock.negativeNumber();
