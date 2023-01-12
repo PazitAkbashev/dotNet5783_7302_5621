@@ -5,6 +5,10 @@ using System.Diagnostics;
 using static DO.Enums;
 namespace Dal;
 
+/// <summary>
+/// definding the data source
+/// ****************************should be replace be xaml file****************************
+/// </summary>
 internal static class DataSource
 {
     public static class Config

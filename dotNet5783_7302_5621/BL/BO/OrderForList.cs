@@ -9,6 +9,7 @@ namespace BO
 {
     /// <summary>
     /// the order for list methods
+    ///  Business Object
     /// </summary>
     public class OrderForList
     {

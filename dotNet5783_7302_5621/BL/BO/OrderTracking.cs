@@ -11,6 +11,7 @@ namespace BO
 {
     /// <summary>
     /// the order tracking methods
+    ///  Business Object
     /// </summary>
     public class OrderTracking
     {

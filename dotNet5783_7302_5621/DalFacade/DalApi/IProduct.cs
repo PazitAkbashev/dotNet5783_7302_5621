@@ -2,9 +2,9 @@
 using DO;
 namespace DalApi;
 
-
 /// <summary>
-/// the product interface
+/// Application Program Interface : DL=>BL
+///  the product interface
 /// </summary>
 public interface IProduct:ICrud<Product>
 {

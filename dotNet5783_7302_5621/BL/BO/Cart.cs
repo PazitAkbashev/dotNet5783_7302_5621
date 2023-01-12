@@ -9,6 +9,7 @@ namespace BO
 {
     /// <summary>
     /// the cart methods
+    /// Business Object
     /// </summary>
     public class Cart
     {

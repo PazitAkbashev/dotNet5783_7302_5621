@@ -9,6 +9,7 @@ namespace BO
 {
     /// <summary>
     /// the product for list methods
+    ///  Business Object
     /// </summary>
     public class ProductForList
     {
@@ -17,11 +18,7 @@ namespace BO
         public double Price { get; set; }
         public BO.Enums.category? category { get; set; }
         public override string ToString() => 
-            $@"id={ID}
-name={Name}
-price={Price}
-category={category} 
-";
+            $@"id={ID} name={Name} price={Price} category={category} ";
 
     }
 }

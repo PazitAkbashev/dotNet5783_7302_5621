@@ -3,7 +3,8 @@ using DO;
 namespace DalApi;
 
 /// <summary>
-/// the order interface
+/// Application Program Interface : DL=>BL
+/// thr order interface
 /// </summary>
 public interface IOrder:ICrud<Order>
 {

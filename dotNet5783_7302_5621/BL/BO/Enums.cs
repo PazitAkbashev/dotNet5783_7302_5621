@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 namespace BO;
 
+/// <summary>
+/// including the all BO enums 
+/// Business Object
+/// </summary>
 public class Enums
 {
     public enum category { Starters, MainCourses, SideDishes, Drinks, Deserts }

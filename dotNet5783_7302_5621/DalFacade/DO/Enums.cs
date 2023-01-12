@@ -2,6 +2,7 @@
 namespace DO;
 /// <summary>
 /// including the all DO enums 
+/// Data Object
 /// </summary>
 public struct Enums
 {

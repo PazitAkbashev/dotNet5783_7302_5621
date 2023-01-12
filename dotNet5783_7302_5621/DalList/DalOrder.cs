@@ -11,20 +11,21 @@ using static Dal.DataSource;
 /// </summary>
 internal class DalOrder:IOrder
 {
+    //adding *new* order to the order list
     public int Add(Order o)
     {
-        foreach (var item in orderList)
+        foreach (var item in orderList) //if order already exist
         {
-            if (o.ID == item?.ID)
+            if (o.ID == item?.ID)  
             {
                 throw new DalAlreadyExistsException("the order");
             }
         }
-        o.ID = myRandom.Next(100000, 1000000);
-        orderList.Add(o);
+        o.ID = myRandom.Next(100000, 1000000);  //if not exist giving random ID contain 6 digits
+        orderList.Add(o);  //call itself again to check the ID does'nt exist yet
         return o.ID;
     }
-  
+    //deleting order from the order list 
     public void Delete(int ID)
     {
         foreach (var item in orderList)
@@ -35,15 +36,16 @@ internal class DalOrder:IOrder
                 return;
             }
         }
-        throw new DalDoesNoExistException("the order");
+        throw new DalDoesNoExistException("the order");  //f the order does'nt exist at all
     }
-   
+
+   //update existing order in the order list
     public void Update(Order? o)
     {
         int counter = 0;
         foreach (var item in orderList)
         {
-            if (o?.ID == item?.ID)
+            if (o?.ID == item?.ID)  //identify by ID wich is 'key'
             {
                 orderList[counter] = o;
                 return;

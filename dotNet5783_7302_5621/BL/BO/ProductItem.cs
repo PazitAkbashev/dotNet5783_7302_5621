@@ -8,6 +8,7 @@ namespace BO
 {
     /// <summary>
     /// the product item methods
+    ///  Business Object
     /// </summary>
     public class ProductItem
     {

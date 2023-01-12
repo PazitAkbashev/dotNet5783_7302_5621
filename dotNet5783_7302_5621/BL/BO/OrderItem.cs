@@ -9,6 +9,7 @@ namespace BO
 {
     /// <summary>
     /// the order item methods
+    ///  Business Object
     /// </summary>
     public class OrderItem
     {

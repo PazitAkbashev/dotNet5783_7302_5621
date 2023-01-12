@@ -6,9 +6,11 @@ using static Dal.DataSource;
 
 /// <summary>
 /// the product implementation class
+/// functions on the product list
 /// </summary>
 internal class DalProduct: IProduct
 {
+    //adding a *new* product to the products list
     public int Add(Product p)
     {
         for (int i = 0; i < productList.Count-1; i++)
@@ -23,6 +25,7 @@ internal class DalProduct: IProduct
         return p.ID;
     }
 
+    //deliting a product from the products list
     public void Delete(int ID)
     {
         foreach(var item in productList)
@@ -35,7 +38,7 @@ internal class DalProduct: IProduct
         }
         throw new DalDoesNoExistException("the product");
     }
-
+    //updating a product in the products list
     public void Update(Product? p)
     {
         int counter = 0;

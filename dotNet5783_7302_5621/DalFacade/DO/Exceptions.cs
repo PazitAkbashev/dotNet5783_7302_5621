@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace DalApi;
 
 /// <summary>
-/// the DO exceptions
+/// the DO exceptions -> Data Object
 /// </summary>
 
 public class DalDoesNoExistException : Exception
@@ -39,6 +39,7 @@ public class DalConfigException : Exception
     public DalConfigException(string msg) : base(msg) { }
     public DalConfigException(string msg, Exception ex) : base(msg, ex) { }
 }
+
 
 
 

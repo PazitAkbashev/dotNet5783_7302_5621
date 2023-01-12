@@ -11,8 +11,10 @@ namespace Dal;
 /// <summary>
 /// the order item implementation class
 /// </summary>
+
 internal class DalOrderItem : IOrderItem
 {
+    //adding an item to order
     public int Add(OrderItem o)
     {
         foreach (var item in orderItemList)

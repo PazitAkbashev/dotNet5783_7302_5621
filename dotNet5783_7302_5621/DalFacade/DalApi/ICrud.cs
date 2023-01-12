@@ -4,6 +4,7 @@ namespace DalApi;
 
 /// <summary>
 /// the main Dal interface
+/// (Application Program Interface : DL=>BL)
 /// </summary>
 public interface ICrud<T> where T:struct
 {
