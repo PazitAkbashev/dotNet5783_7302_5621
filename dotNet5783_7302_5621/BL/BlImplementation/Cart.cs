@@ -28,6 +28,9 @@ internal class Cart : BlApi.ICart
             cart.CustomerEmail!.notNull();
             DO.Product tempProduct = dalCart!.Product.GetSingle(x => x?.ID == productID);
             bool flag = false;
+
+            //var tempArr = cart.Items!.Where(x => x.ID == productID).Select);
+
             foreach (var item in cart.Items!)
             {
                 if (item.ProductID == productID)

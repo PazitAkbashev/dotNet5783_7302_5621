@@ -115,6 +115,7 @@ internal class Order :BlApi.IOrder
                     }
                 }
             }
+     
             tempOrder2.TotalPrice = myTotalPrice;
             return tempOrder2;
         }

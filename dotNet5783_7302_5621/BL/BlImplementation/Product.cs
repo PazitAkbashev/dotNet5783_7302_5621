@@ -27,15 +27,21 @@ internal class Product : BlApi.IProduct
         {
             IEnumerable<DO.Product?> prod = dalProduct!.Product.GetAll();
             List<BO.ProductForList> tempProdForList = new List<BO.ProductForList>();
+            
+            //instead the foreach
+            //var tempArr = from item in prod 
+                        //  select new {ID=item?.ID??0,Name=item?.Name,Price=item?.Price??0, category = (BO.Enums.category)item?.Category!};
+
             foreach (var item in prod)
             {
                 BO.ProductForList tempProduct = new BO.ProductForList();
                 tempProduct.ID = item?.ID ?? 0;
                 tempProduct.Name = item?.Name;
-                tempProduct.Price = item?.Price??0;
-                tempProduct.category = (BO.Enums.category) item?.Category!;
+                tempProduct.Price = item?.Price ?? 0;
+                tempProduct.category = (BO.Enums.category)item?.Category!;
                 tempProdForList.Add(tempProduct);
             }
+
             return func  is null? tempProdForList : tempProdForList.Where(func);
         }
         catch (DalApi.DalDoesNoExistException ex)
@@ -127,6 +133,9 @@ internal class Product : BlApi.IProduct
             productID.negativeNumber();
             IEnumerable<DO.Order?> tempList1 = dalProduct!.Order.GetAll();
             IEnumerable<DO.Product?> tempList2 = dalProduct.Product.GetAll();
+
+
+
             foreach (var item in tempList1)
             {
                 productID.equalsNumbers(item?.ID ?? 0);
