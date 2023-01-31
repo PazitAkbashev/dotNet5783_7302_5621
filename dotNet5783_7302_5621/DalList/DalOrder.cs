@@ -3,6 +3,8 @@ using DO;
 using DalList;
 using DalApi;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+
 namespace Dal;
 using static Dal.DataSource;
 
@@ -10,11 +12,13 @@ using static Dal.DataSource;
 /// the order implementation class
 /// </summary>
 internal class DalOrder:IOrder
-{
+{ 
+
     //adding *new* order to the order list
     public int Add(Order o)
-    {
-        foreach (var item in orderList) //if order already exist
+    {//if order already exist
+        
+        foreach (var item in orderList) 
         {
             if (o.ID == item?.ID)  
             {
