@@ -17,6 +17,19 @@ internal class DalOrderItem : IOrderItem
     //adding an item to order
     public int Add(OrderItem o)
     {
+        //linq:
+        //if (orderItemList.Any(item => o.ID == item?.ID))
+        //{
+        //    throw new DalAlreadyExistsException("the order item");
+        //}
+
+        //another option: (i think its better)
+        //var matchingItem = orderItemList.Where(item => o.ID == item?.ID).Select(item => item).FirstOrDefault();
+        //if (matchingItem != null)
+        //{
+        //    throw new DalAlreadyExistsException("the order item");
+        //}
+
         foreach (var item in orderItemList)
         {
             if (o.ID == item?.ID)
@@ -31,6 +44,15 @@ internal class DalOrderItem : IOrderItem
 
     public void Delete( int ID)
     {
+        //linq:
+        //var itemsToRemove = orderItemList.Where(item => ID == item?.ID);
+        //if (itemsToRemove.Any())
+        //{
+        //    var itemToRemove = itemsToRemove.First();
+        //    orderItemList.Remove(itemToRemove);
+        //    return;
+        //}
+
         foreach (var item in orderItemList)
         {
             if (ID == item?.ID)
@@ -44,6 +66,14 @@ internal class DalOrderItem : IOrderItem
  
     public void Update(OrderItem? o)
     {
+        //linq:
+        //var itemToUpdate = orderItemList.Select((item, index) => new { Item = item, Index = index }).FirstOrDefault(x => o?.ID == x.Item?.ID);
+        //if (itemToUpdate != null)
+        //{
+        //    orderItemList[itemToUpdate.Index] = o;
+        //    return;
+        //}
+
         int counter = 0;
         foreach (var item in orderItemList)
         {

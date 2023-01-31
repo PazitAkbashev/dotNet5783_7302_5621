@@ -4,6 +4,7 @@ using DalList;
 using DalApi;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Reflection;
 
 namespace Dal;
 using static Dal.DataSource;
@@ -17,7 +18,14 @@ internal class DalOrder:IOrder
     //adding *new* order to the order list
     public int Add(Order o)
     {//if order already exist
-        
+
+        //sql:
+        //if (orderList.Any(item => item?.ID == o.ID))
+        //{
+        //    throw new DalAlreadyExistsException("the order");
+        //}
+
+
         foreach (var item in orderList) 
         {
             if (o.ID == item?.ID)  
@@ -30,8 +38,17 @@ internal class DalOrder:IOrder
         return o.ID;
     }
     //deleting order from the order list 
+
     public void Delete(int ID)
-    {
+    { 
+       // sql:
+        //var itemToRemove = orderList.FirstOrDefault(item => ID == item?.ID);
+        //if (itemToRemove != null)
+        //{
+        //    orderList.Remove(itemToRemove);
+        //    return;
+        //}
+
         foreach (var item in orderList)
         {
             if (ID == item?.ID)
@@ -46,6 +63,13 @@ internal class DalOrder:IOrder
    //update existing order in the order list
     public void Update(Order? o)
     {
+        //sql:
+        //var index = orderList.FindIndex(item => item.ID == o.ID);
+        //if (index != -1)
+        //{
+        //    orderList[index] = o;
+        //}
+
         int counter = 0;
         foreach (var item in orderList)
         {
