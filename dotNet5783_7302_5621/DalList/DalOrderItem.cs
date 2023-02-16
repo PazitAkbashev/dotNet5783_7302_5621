@@ -17,19 +17,12 @@ internal class DalOrderItem : IOrderItem
     //adding an item to order
     public int Add(OrderItem o)
     {
-        //linq:
-        //if (orderItemList.Any(item => o.ID == item?.ID))
-        //{
-        //    throw new DalAlreadyExistsException("the order item");
-        //}
-
         //another option: (i think its better)
         //var matchingItem = orderItemList.Where(item => o.ID == item?.ID).Select(item => item).FirstOrDefault();
         //if (matchingItem != null)
         //{
         //    throw new DalAlreadyExistsException("the order item");
         //}
-
         foreach (var item in orderItemList)
         {
             if (o.ID == item?.ID)
@@ -52,7 +45,6 @@ internal class DalOrderItem : IOrderItem
         //    orderItemList.Remove(itemToRemove);
         //    return;
         //}
-
         foreach (var item in orderItemList)
         {
             if (ID == item?.ID)
@@ -67,13 +59,13 @@ internal class DalOrderItem : IOrderItem
     public void Update(OrderItem? o)
     {
         //linq:
-        //var itemToUpdate = orderItemList.Select((item, index) => new { Item = item, Index = index }).FirstOrDefault(x => o?.ID == x.Item?.ID);
+        //var itemToUpdate = orderItemList.Select((item, index) =>
+        //new { Item = item, Index = index }).FirstOrDefault(x => o?.ID == x.Item?.ID);
         //if (itemToUpdate != null)
         //{
         //    orderItemList[itemToUpdate.Index] = o;
         //    return;
         //}
-
         int counter = 0;
         foreach (var item in orderItemList)
         {
@@ -89,12 +81,14 @@ internal class DalOrderItem : IOrderItem
    
     public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? select = null)
     {
-        return DataSource.orderItemList.Where(OrderItem => select is null ? true : select!(OrderItem));
+        return DataSource.orderItemList.Where(OrderItem => select is null
+        ? true : select!(OrderItem));
     }
 
     public OrderItem GetSingle(Func<OrderItem?, bool>? select)
     {
-        return GetAll(select).SingleOrDefault() ?? throw new DalDoesNoExistException("Error-the order item does not exist");
+        return GetAll(select).SingleOrDefault() ?? 
+            throw new DalDoesNoExistException("Error-the order item does not exist");
     }
 }
 

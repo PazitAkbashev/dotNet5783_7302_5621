@@ -24,8 +24,6 @@ internal class DalOrder:IOrder
         //{
         //    throw new DalAlreadyExistsException("the order");
         //}
-
-
         foreach (var item in orderList) 
         {
             if (o.ID == item?.ID)  
@@ -37,8 +35,8 @@ internal class DalOrder:IOrder
         orderList.Add(o);  //call itself again to check the ID does'nt exist yet
         return o.ID;
     }
-    //deleting order from the order list 
 
+    //deleting order from the order list 
     public void Delete(int ID)
     { 
        // sql:
@@ -48,7 +46,6 @@ internal class DalOrder:IOrder
         //    orderList.Remove(itemToRemove);
         //    return;
         //}
-
         foreach (var item in orderList)
         {
             if (ID == item?.ID)

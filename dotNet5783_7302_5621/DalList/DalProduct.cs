@@ -8,12 +8,16 @@ using static Dal.DataSource;
 /// the product implementation class
 /// functions on the product list
 /// </summary>
-internal class DalProduct: IProduct
+internal class DalProduct : IProduct
 {
     //adding a *new* product to the products list
     public int Add(Product p)
     {
-        for (int i = 0; i < productList.Count-1; i++)
+        //if (productList.Where(p => p.ID == product.ID).Select(p => p.ID).Any())
+        //{
+        //   throw new DalAlreadyExistsException("the product");
+        //}
+        for (int i = 0; i < productList.Count - 1; i++)
         {
             if (p.ID == productList[i]?.ID)
             {
@@ -26,9 +30,11 @@ internal class DalProduct: IProduct
     }
 
     //deliting a product from the products list
+    
     public void Delete(int ID)
     {
-        foreach(var item in productList)
+
+        foreach (var item in productList)
         {
             if (ID == item?.ID)
             {
