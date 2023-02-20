@@ -19,11 +19,14 @@ internal class DalOrder:IOrder
     public int Add(Order o)
     {//if order already exist
 
-        //sql:
-        //if (orderList.Any(item => item?.ID == o.ID))
-        //{
-        //    throw new DalAlreadyExistsException("the order");
-        //}
+     //   var matchingOrders = orderList
+     //.Where(item => item.ID == o.ID)
+     //.Select(item => item);
+
+     //   if (matchingOrders.Any())
+     //   {
+     //       throw new DalAlreadyExistsException("the order");
+     //   }
         foreach (var item in orderList) 
         {
             if (o.ID == item?.ID)  
@@ -38,14 +41,13 @@ internal class DalOrder:IOrder
 
     //deleting order from the order list 
     public void Delete(int ID)
-    { 
-       // sql:
-        //var itemToRemove = orderList.FirstOrDefault(item => ID == item?.ID);
-        //if (itemToRemove != null)
-        //{
-        //    orderList.Remove(itemToRemove);
-        //    return;
-        //}
+    {
+        // sql:
+    //    orderList = orderList
+    //.Where(item => item.ID != ID)
+    //.Select(item => item)
+    //.ToList();
+
         foreach (var item in orderList)
         {
             if (ID == item?.ID)
@@ -61,11 +63,11 @@ internal class DalOrder:IOrder
     public void Update(Order? o)
     {
         //sql:
-        //var index = orderList.FindIndex(item => item.ID == o.ID);
-        //if (index != -1)
-        //{
-        //    orderList[index] = o;
-        //}
+     //   orderList = orderList
+     //.Select((item, index) => item.ID == o.ID ? o : item)
+     //.Where(item => item.ID == o.ID)
+     //.Concat(orderList.Where(item => item.ID != o.ID))
+     //.ToList();
 
         int counter = 0;
         foreach (var item in orderList)
