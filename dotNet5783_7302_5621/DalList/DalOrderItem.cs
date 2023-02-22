@@ -18,7 +18,9 @@ internal class DalOrderItem : IOrderItem
     public int Add(OrderItem o)
     {
         //another option: (i think its better)
-        //var matchingItem = orderItemList.Where(item => o.ID == item?.ID).Select(item => item).FirstOrDefault();
+        //var matchingItem = orderItemList
+        //.Where(item => o.ID == item?.ID)
+        //.Select(item => item).FirstOrDefault();
         //if (matchingItem != null)
         //{
         //    throw new DalAlreadyExistsException("the order item");
@@ -38,7 +40,8 @@ internal class DalOrderItem : IOrderItem
     public void Delete( int ID)
     {
         //linq:
-        //var itemsToRemove = orderItemList.Where(item => ID == item?.ID);
+        //var itemsToRemove = orderItemList
+        //.Where(item => ID == item?.ID);
         //if (itemsToRemove.Any())
         //{
         //    var itemToRemove = itemsToRemove.First();

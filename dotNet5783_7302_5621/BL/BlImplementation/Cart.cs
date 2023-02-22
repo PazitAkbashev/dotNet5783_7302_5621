@@ -29,8 +29,19 @@ internal class Cart : BlApi.ICart
             DO.Product tempProduct = dalCart!.Product.GetSingle(x => x?.ID == productID);
             bool flag = false;
 
-            //var tempArr = cart.Items!.Where(x => x.ID == productID).Select);
 
+            //linq
+    //        var itemsToUpdate = cart.Items!
+    //.Where(item => item.ProductID == productID)
+    //.Select(item => {
+    //    tempProduct.inStock.negativeNumber();
+    //    item.Amount++;
+    //    item.TotalPrice += item.Price;
+    //    cart.TotalPrice += item.Price;
+    //    return item;
+    //})
+    //.ToList();
+    //flag = itemsToUpdate.Any();
             foreach (var item in cart.Items!)
             {
                 if (item.ProductID == productID)
@@ -75,6 +86,39 @@ internal class Cart : BlApi.ICart
             productID.negativeNumber();
             newAmount.negativeNumber();
             DO.Product tempProduct = dalCart!.Product.GetSingle(x => x?.ID == productID);
+
+
+
+            //linq
+            //var itemToUpdate = cart.Items!
+            //.Where(item => item.ProductID == productID)
+            //.Select(item =>
+            //{
+            //    if (item.Amount < newAmount)
+            //    {
+            //        if (tempProduct.inStock >= (newAmount - item.Amount))
+            //        {
+            //            item.TotalPrice += ((newAmount - item.Amount) * tempProduct.Price);
+            //            cart.TotalPrice += ((newAmount - item.Amount) * tempProduct.Price);
+            //            item.Amount = newAmount;
+            //        }
+            //    }
+            //    else if (item.Amount > newAmount)
+            //    {
+            //        item.TotalPrice -= ((item.Amount - newAmount) * tempProduct.Price);
+            //        cart.TotalPrice -= ((item.Amount - newAmount) * tempProduct.Price);
+            //        item.Amount = newAmount;
+            //    }
+            //    else if (newAmount == 0)
+            //    {
+            //        cart.Items.Remove(item);
+            //        cart.TotalPrice = 0;
+            //    }
+            //    return item;
+            //}
+      //  }
+    //.FirstOrDefault();
+
             foreach (var item in cart.Items!)
             {
                 if (item.ProductID == productID)

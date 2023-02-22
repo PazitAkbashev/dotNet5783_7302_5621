@@ -33,6 +33,8 @@ internal class DalProduct : IProduct
     
     public void Delete(int ID)
     {
+        //linq:
+        //productList = productList.Where(item => item?.ID != ID).ToList();
 
         foreach (var item in productList)
         {
@@ -47,6 +49,10 @@ internal class DalProduct : IProduct
     //updating a product in the products list
     public void Update(Product? p)
     {
+        //linq
+        //productList = productList
+        //.Select((item, index) => index == counter && p?.ID == item?.ID ? p : item).ToList();
+
         int counter = 0;
         foreach (var item in productList)
         {
