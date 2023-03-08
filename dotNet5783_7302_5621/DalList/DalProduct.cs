@@ -13,10 +13,7 @@ internal class DalProduct : IProduct
     //adding a *new* product to the products list
     public int Add(Product p)
     {
-        //if (productList.Where(p => p.ID == product.ID).Select(p => p.ID).Any())
-        //{
-        //   throw new DalAlreadyExistsException("the product");
-        //}
+        GetSingle(item => item?.ID == p.ID);
         for (int i = 0; i < productList.Count - 1; i++)
         {
             if (p.ID == productList[i]?.ID)
@@ -33,26 +30,13 @@ internal class DalProduct : IProduct
     
     public void Delete(int ID)
     {
-        //linq:
-        //productList = productList.Where(item => item?.ID != ID).ToList();
-
-        foreach (var item in productList)
-        {
-            if (ID == item?.ID)
-            {
-                productList.Remove(item);
-                return;
-            }
-        }
-        throw new DalDoesNoExistException("the product");
+        if (!productList.Remove(GetSingle(item => item?.ID == ID)))
+            throw new DalDoesNoExistException("the product"); //if remove function returned with false
     }
+
     //updating a product in the products list
     public void Update(Product? p)
     {
-        //linq
-        //productList = productList
-        //.Select((item, index) => index == counter && p?.ID == item?.ID ? p : item).ToList();
-
         int counter = 0;
         foreach (var item in productList)
         {

@@ -2,7 +2,7 @@
 namespace DalApi;
 using System.Xml.Linq;
 /// <summary>
-/// 
+/// loading the DAL configuration from the dal-config.xml file.
 /// </summary>
 
 static class DalConfig

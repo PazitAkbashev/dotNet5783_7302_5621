@@ -2,10 +2,10 @@
 using System.Reflection;
 using static DalApi.DalConfig;
 /// <summary>
-/// 
+/// returns a singleton instance of a specific data access layer based on the configuration settings.
 /// </summary>
 public static class Factory
-{
+{ 
     public static IDal? Get()
     {
         string dalType = s_dalName

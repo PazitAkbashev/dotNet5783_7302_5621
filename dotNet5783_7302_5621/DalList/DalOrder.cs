@@ -14,19 +14,10 @@ using static Dal.DataSource;
 /// </summary>
 internal class DalOrder:IOrder
 { 
-
     //adding *new* order to the order list
     public int Add(Order o)
     {//if order already exist
-
-     //   var matchingOrders = orderList
-     //.Where(item => item.ID == o.ID)
-     //.Select(item => item);
-
-     //   if (matchingOrders.Any())
-     //   {
-     //       throw new DalAlreadyExistsException("the order");
-     //   }
+    
         foreach (var item in orderList) 
         {
             if (o.ID == item?.ID)  
@@ -42,33 +33,13 @@ internal class DalOrder:IOrder
     //deleting order from the order list 
     public void Delete(int ID)
     {
-        // sql:
-    //    orderList = orderList
-    //.Where(item => item.ID != ID)
-    //.Select(item => item)
-    //.ToList();
-
-        foreach (var item in orderList)
-        {
-            if (ID == item?.ID)
-            {
-                orderList.Remove(item);
-                return;
-            }
-        }
+        orderList.Remove(GetSingle(item => item?.ID == ID));
         throw new DalDoesNoExistException("the order");  //f the order does'nt exist at all
     }
 
    //update existing order in the order list
     public void Update(Order? o)
     {
-        //sql:
-     //   orderList = orderList
-     //.Select((item, index) => item.ID == o.ID ? o : item)
-     //.Where(item => item.ID == o.ID)
-     //.Concat(orderList.Where(item => item.ID != o.ID))
-     //.ToList();
-
         int counter = 0;
         foreach (var item in orderList)
         {
@@ -87,7 +58,7 @@ internal class DalOrder:IOrder
         return DataSource.orderList.Where(Order => select is null ? true : select!(Order));
     }
 
-    public Order GetSingle(Func<Order?, bool>? select)
+    public Order GetSingle(Func<Order?, bool>? select) //may be use to get value from DL easly, return order
     {
         return GetAll(select).SingleOrDefault() ?? throw new DalDoesNoExistException("Error-the order does not exist");
     }

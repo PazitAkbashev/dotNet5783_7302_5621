@@ -13,6 +13,10 @@ public struct OrderItem
     public int OrderId { get; set; }
     public double Price { get; set; }
     public int Amount { get; set; }
-    public override string ToString() => $@"Item unique-id={ID}, Item Order-id={OrderId},Product-id={ProductId},Price= {Price},Amount in stock= {Amount}";
+    public override string ToString() => $@"Item unique-id={ID},
+                                         Item Order-id={OrderId},
+                                         Product-id={ProductId},
+                                         Price= {Price},
+                                         Amount in stock= {Amount}";
     //convert this "to strring" into one global function
 }
