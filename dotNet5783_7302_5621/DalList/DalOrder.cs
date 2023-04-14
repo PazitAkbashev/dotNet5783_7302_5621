@@ -17,11 +17,14 @@ internal class DalOrder:IOrder
     //adding *new* order to the order list
     public int Add(Order o)
     {//if order already exist
-        if (orderList.Contains(o))
-            throw new DalAlreadyExistsException("the order");
-        foreach (var item in orderList) 
+     // int size = orderList.Count;
+     //// orderList.Add();
+     // Order tempOrder = GetSingle(item => item?.ID == o.ID);
+     // if(tempOrder.ID != null)  //if coldnt find - the order doesnt exist
+     //     throw new DalAlreadyExistsException("the order");
+        foreach (var item in orderList)
         {
-            if (o.ID == item?.ID)  
+            if (o.ID == item?.ID)
             {
                 throw new DalAlreadyExistsException("the order");
             }

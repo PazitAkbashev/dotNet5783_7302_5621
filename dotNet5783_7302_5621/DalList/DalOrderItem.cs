@@ -17,14 +17,6 @@ internal class DalOrderItem : IOrderItem
     //adding an item to order
     public int Add(OrderItem o)
     {
-        //another option: (i think its better)
-        //var matchingItem = orderItemList
-        //.Where(item => o.ID == item?.ID)
-        //.Select(item => item).FirstOrDefault();
-        //if (matchingItem != null)
-        //{
-        //    throw new DalAlreadyExistsException("the order item");
-        //}
         foreach (var item in orderItemList)
         {
             if (o.ID == item?.ID)

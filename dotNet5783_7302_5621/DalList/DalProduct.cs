@@ -14,6 +14,13 @@ internal class DalProduct : IProduct
     public int Add(Product p)
     {
         GetSingle(item => item?.ID == p.ID);
+        //foreach (var item in productList)
+        //{
+        //    if (p.ID == item?.ID)
+        //    {
+        //        throw new DalAlreadyExistsException("the product");
+        //    }
+        //}
         for (int i = 0; i < productList.Count - 1; i++)
         {
             if (p.ID == productList[i]?.ID)
