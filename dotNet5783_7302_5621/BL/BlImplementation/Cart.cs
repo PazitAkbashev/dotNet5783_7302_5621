@@ -27,21 +27,9 @@ internal class Cart : BlApi.ICart
             cart.CustomerName!.notNull();
             cart.CustomerEmail!.notNull();
             DO.Product tempProduct = dalCart!.Product.GetSingle(x => x?.ID == productID);
+
             bool flag = false;
 
-
-            //linq
-    //        var itemsToUpdate = cart.Items!
-    //.Where(item => item.ProductID == productID)
-    //.Select(item => {
-    //    tempProduct.inStock.negativeNumber();
-    //    item.Amount++;
-    //    item.TotalPrice += item.Price;
-    //    cart.TotalPrice += item.Price;
-    //    return item;
-    //})
-    //.ToList();
-    //flag = itemsToUpdate.Any();
             foreach (var item in cart.Items!)
             {
                 if (item.ProductID == productID)
@@ -56,8 +44,9 @@ internal class Cart : BlApi.ICart
 
             if (flag == false)
             {
-                tempProduct.inStock.negativeNumber();
                 BO.OrderItem neworderitem = new BO.OrderItem();
+
+                tempProduct.inStock.negativeNumber();
                 neworderitem.ProductID = productID;
                 neworderitem.Price = tempProduct.Price;
                 neworderitem.TotalPrice = tempProduct.Price;
@@ -86,38 +75,6 @@ internal class Cart : BlApi.ICart
             productID.negativeNumber();
             newAmount.negativeNumber();
             DO.Product tempProduct = dalCart!.Product.GetSingle(x => x?.ID == productID);
-
-
-
-            //linq
-            //var itemToUpdate = cart.Items!
-            //.Where(item => item.ProductID == productID)
-            //.Select(item =>
-            //{
-            //    if (item.Amount < newAmount)
-            //    {
-            //        if (tempProduct.inStock >= (newAmount - item.Amount))
-            //        {
-            //            item.TotalPrice += ((newAmount - item.Amount) * tempProduct.Price);
-            //            cart.TotalPrice += ((newAmount - item.Amount) * tempProduct.Price);
-            //            item.Amount = newAmount;
-            //        }
-            //    }
-            //    else if (item.Amount > newAmount)
-            //    {
-            //        item.TotalPrice -= ((item.Amount - newAmount) * tempProduct.Price);
-            //        cart.TotalPrice -= ((item.Amount - newAmount) * tempProduct.Price);
-            //        item.Amount = newAmount;
-            //    }
-            //    else if (newAmount == 0)
-            //    {
-            //        cart.Items.Remove(item);
-            //        cart.TotalPrice = 0;
-            //    }
-            //    return item;
-            //}
-      //  }
-    //.FirstOrDefault();
 
             foreach (var item in cart.Items!)
             {
@@ -180,6 +137,7 @@ internal class Cart : BlApi.ICart
                 tempProduct.inStock.inStockSmallerThanAmount(item.Amount);
             }
             DO.Order tempOrder = new DO.Order();
+
             tempOrder.CustomerName = cart.CustomerName;
             tempOrder.CustomerAdress = cart.CustomerAddress;
             tempOrder.CustomerEmail = cart.CustomerEmail;
@@ -187,6 +145,7 @@ internal class Cart : BlApi.ICart
             tempOrder.ShipDate = DateTime.MinValue;
             tempOrder.DeliveryrDate = DateTime.MinValue;
             int returnID;
+
             try
             {
                 returnID = dalCart!.Order.Add(tempOrder);
@@ -198,6 +157,7 @@ internal class Cart : BlApi.ICart
             foreach (var item in cart.Items)
             {
                 DO.OrderItem tempOrderItem = new DO.OrderItem();
+
                 tempOrderItem.ID = item.ID;
                 tempOrderItem.Price = item.Price;
                 tempOrderItem.Amount = item.Amount;

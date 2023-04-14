@@ -18,7 +18,11 @@ namespace BO
         public orderStatus? Status { get; set; }
         public int AmountOfItems { get; set; }
         public double TotalPrice { get; set; }
-        public override string ToString() => $@"customer-id={ID},customer-name={CustomerName},status= {Status},
-amount-of-items= {AmountOfItems},total-price={TotalPrice}";
+        public override string ToString() => 
+                                            $@"customer-id={ID},
+                                            customer-name={CustomerName},
+                                            status= {Status},
+                                            amount-of-items= {AmountOfItems},
+                                            total-price={TotalPrice}";
     }
 }

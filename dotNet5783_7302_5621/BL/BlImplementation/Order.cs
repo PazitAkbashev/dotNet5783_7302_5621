@@ -10,13 +10,13 @@ using DO;
 using Tools;
 namespace BlImplementation;
 
-
 /// <summary>
 /// the order implementation class
 /// </summary>
 internal class Order :BlApi.IOrder
 {
     private DalApi.IDal? dalOrder = DalApi.Factory.Get();
+
     /// <summary>
     /// returning the order list 
     /// </summary>
@@ -25,10 +25,13 @@ internal class Order :BlApi.IOrder
         try
         {
             IEnumerable<DO.Order?> tempOrderList = dalOrder!.Order.GetAll();
+
             List<BO.OrderForList> tempOrderForList = new List<BO.OrderForList>();
+
             foreach (var item in tempOrderList)
             {
                 BO.OrderForList tempOrder = new BO.OrderForList();
+
                 tempOrder.ID = item?.ID??0;
                 tempOrder.CustomerName = item?.CustomerName;
                 if (item?.OrderDate > DateTime.Now && item?.ShipDate < DateTime.Now)

@@ -6,16 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Dal;
 /// <summary>
-/// 
+/// using singletone
 /// </summary>
-internal sealed class DalList : IDal
+internal sealed class DalList : IDal  //sealed prevent inheritance
 {
+    //c- tor
     private DalList()
     {
         Order = new DalOrder();
         Product = new DalProduct();
         OrderItem = new DalOrderItem();
     }
+
     public static IDal Instance { get; } = new DalList();
     public IProduct Product { get; }
     public IOrder Order { get; }

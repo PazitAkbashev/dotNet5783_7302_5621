@@ -35,13 +35,14 @@ internal class Product : BlApi.IProduct
             foreach (var item in prod)
             {
                 BO.ProductForList tempProduct = new BO.ProductForList();
+
                 tempProduct.ID = item?.ID ?? 0;
                 tempProduct.Name = item?.Name;
                 tempProduct.Price = item?.Price ?? 0;
                 tempProduct.category = (BO.Enums.category)item?.Category!;
+
                 tempProdForList.Add(tempProduct);
             }
-
             return func  is null? tempProdForList : tempProdForList.Where(func);
         }
         catch (DalApi.DalDoesNoExistException ex)
@@ -49,6 +50,7 @@ internal class Product : BlApi.IProduct
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
+
     /// <summary>
     /// returning the product details
     /// </summary>
@@ -58,7 +60,9 @@ internal class Product : BlApi.IProduct
         {
             productID.negativeNumber();
             BO.Product prod2 = new BO.Product();
+
             DO.Product prod = dalProduct!.Product.GetSingle(x => x?.ID == productID);
+
             prod2.ID = prod.ID;
             prod2.Name = prod.Name;
             prod2.InStock = prod.inStock;
@@ -71,6 +75,7 @@ internal class Product : BlApi.IProduct
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
+
     /// <summary>
     /// returning the product details
     /// </summary>
@@ -83,7 +88,9 @@ internal class Product : BlApi.IProduct
             cart.CustomerAddress!.notNull();
             cart.CustomerEmail!.notNull();
             BO.ProductItem tempProdItem = new BO.ProductItem();
+
             DO.Product tempProduct = dalProduct!.Product.GetSingle(x => x?.ID == productID);
+
             tempProdItem.ID = tempProduct.ID;
             tempProdItem.Name = tempProduct.Name;
             tempProdItem.Price = tempProduct.Price;
@@ -99,6 +106,7 @@ internal class Product : BlApi.IProduct
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
+
     /// <summary>
     /// adding product to the products list
     /// </summary>
@@ -111,11 +119,13 @@ internal class Product : BlApi.IProduct
             product.Name!.notNull();
             product.InStock.negativeNumber();
             DO.Product tempProduct = new DO.Product();
+
             tempProduct.ID = product.ID;
             tempProduct.Name = product.Name;
             tempProduct.Price = product.Price;
             tempProduct.inStock = product.InStock;
             tempProduct.Category = (DO.Enums.Category)product.category;
+
             dalProduct!.Product.Add(tempProduct);
         }
         catch(DalApi.DalAlreadyExistsException ex)
@@ -123,6 +133,7 @@ internal class Product : BlApi.IProduct
             throw new BO.BoAlreadyExist("the item is already exist", ex);
         }
     }
+
     /// <summary>
     /// deleting product from the list
     /// </summary>
@@ -154,6 +165,7 @@ internal class Product : BlApi.IProduct
             throw new BO.BoDoesNotExist("DO Exception", ex);
         }
     }
+
     /// <summary>
     /// updating product in the list
     /// </summary>
@@ -166,6 +178,7 @@ internal class Product : BlApi.IProduct
             product.Price.negativeDoubleNum();
             product.InStock.negativeNumber();
             DO.Product tempProduct = new DO.Product();
+
             tempProduct.ID = product.ID;
             tempProduct.Name = product.Name;
             tempProduct.Price = product.Price;

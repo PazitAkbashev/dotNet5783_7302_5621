@@ -11,23 +11,17 @@ namespace Dal;
 /// </summary>
 internal static class DataSource
 {
-    public static class Config
-    {
-        public static int orderRunIndex = 100000;
-        public static int orderItemRunIndex = 100000;
-        public static int getOrderRunIndex() { return ++orderRunIndex; }
-        public static int getorderItemRunIndex() { return ++orderItemRunIndex; }
-    }
     static DataSource() { s_Initialize(); }
-    internal readonly static Random myRandom = new Random();
-    internal static List<DO.Product?> productList = new List<DO.Product?>(50);
-    internal static List<DO.Order?> orderList = new List<DO.Order?>(100);
-    internal static List<DO.OrderItem?> orderItemList = new List<DO.OrderItem?>(200);
 
+    internal readonly static Random myRandom = new Random();
+   
+    internal static List<DO.Product?> productList = new List<DO.Product?>(50);  //list of the product
+    internal static List<DO.Order?> orderList = new List<DO.Order?>(100);  //list of the orderList
+    internal static List<DO.OrderItem?> orderItemList = new List<DO.OrderItem?>(200); //list of the orderItems
  
     private static void  product_Initialize()
     {
-        for (int i=0 ; i<10; i++)
+        for (int i = 0; i < 10; i++) 
         {
             Product product = new Product();
             product.Category = (Enums.Category)myRandom.Next(0, 5);
@@ -71,8 +65,15 @@ internal static class DataSource
             productList.Add(product);
         }
     }
+    public static class Config
+    {
+        public static int orderRunIndex = 100000;
 
- 
+        public static int orderItemRunIndex = 100000;
+        public static int getOrderRunIndex() { return ++orderRunIndex; }
+        public static int getorderItemRunIndex() { return ++orderItemRunIndex; }
+    }
+
     private static void order_Initialize()
     {
         string temp="a";
@@ -86,7 +87,6 @@ internal static class DataSource
             order.CustomerAdress = "" + (Enums.CustomerAdress)myRandom.Next(0, 6);
             orderList.Add(order);
         }
-
     }
 
  
@@ -95,9 +95,10 @@ internal static class DataSource
         for(int i=0;i<40;i++)
         {
             OrderItem orderItem = new OrderItem();
-            Product? product = new Product();
-            product = productList[myRandom.Next(0, productList.Count)];
 
+            Product? product = new Product();
+
+            product = productList[myRandom.Next(0, productList.Count)];
             orderItem.ID = Config.getorderItemRunIndex();
             orderItem.ProductId = product?.ID??0;
             orderItem.OrderId = orderList[myRandom.Next(0, orderList.Count)]?.ID??0;
@@ -106,8 +107,6 @@ internal static class DataSource
             orderItemList.Add(orderItem);
         }
     }
-
-
 
     private static void s_Initialize()
     {

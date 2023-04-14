@@ -13,20 +13,14 @@ public class DalDoesNoExistException : Exception
 {
     public DalDoesNoExistException(string type) : base($"{type} was not found") { }
 }
-
-
 public class DalAlreadyExistsException : Exception
 {
     public DalAlreadyExistsException(string type) : base($"{type} already exists") { }
 }
-
-
 public class DalDoesNoExistOrAlreadyShippedException : Exception
 {
     public DalDoesNoExistOrAlreadyShippedException(string type) : base($"{type} was not found or order already shipped") { }
 }
-
-
 public class DalDoesNoExistOrAlreadyShippedButDidntSuppliedException : Exception
 {
     public DalDoesNoExistOrAlreadyShippedButDidntSuppliedException(string type) : base($"{type} was not found or order already shipped") { }
