@@ -1,8 +1,7 @@
-﻿
-using DO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using static DO.Enums;
+using DO;
 namespace Dal;
 
 /// <summary>

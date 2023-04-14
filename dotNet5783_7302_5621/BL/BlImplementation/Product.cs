@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using BlApi;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Data.Common;
+//using System.Linq;
+//using System.Security.Cryptography.X509Certificates;
+//using System.Text;
+//using System.Threading.Tasks;
+//using BlApi;
 using BO;
-using DalApi;
 using Tools;
 namespace BlImplementation;
-
 
 /// <summary>
 /// the product implementation class
@@ -27,11 +25,7 @@ internal class Product : BlApi.IProduct
         {
             IEnumerable<DO.Product?> prod = dalProduct!.Product.GetAll();
             List<BO.ProductForList> tempProdForList = new List<BO.ProductForList>();
-            
-            //instead the foreach
-            //var tempArr = from item in prod 
-                        //  select new {ID=item?.ID??0,Name=item?.Name,Price=item?.Price??0, category = (BO.Enums.category)item?.Category!};
-
+           
             foreach (var item in prod)
             {
                 BO.ProductForList tempProduct = new BO.ProductForList();

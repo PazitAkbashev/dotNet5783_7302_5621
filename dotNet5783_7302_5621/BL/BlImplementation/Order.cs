@@ -44,17 +44,6 @@ internal class Order :BlApi.IOrder
                 int myAmountOfItems = 0;
                 IEnumerable<DO.OrderItem?> tempOrderItemList = dalOrder.OrderItem.GetAll();
                
-                //linq
-                //var myOrderItems = tempOrderItemList
-    //.Where(item1 => item1?.OrderId == item?.ID)
-    //.Select(item1 =>
-    //{
-    //    myTotalPrice += item1?.Price ?? 0;
-    //    myAmountOfItems++;
-    //    return item1;
-    //})
-    //.ToList();
-
                 foreach (var item1 in tempOrderItemList)
                 {
                     if (item1?.OrderId == item?.ID)
@@ -108,32 +97,6 @@ internal class Order :BlApi.IOrder
                 tempOrder2.Status = BO.Enums.orderStatus.Supplied;
             double myTotalPrice = 0;
 
-            //linq
-    //        var myOrderItems = orderItems
-    //.Where(item => item?.OrderId == orderID)
-    //.Select(item =>
-    //{
-    //    myTotalPrice += item?.Price ?? 0;
-    //    BO.OrderItem myOrder = new BO.OrderItem();
-    //    myOrder.ID = item?.ID ?? 0;
-    //    DO.Product tempProduct = dalOrder.Product.GetSingle(x => x?.ID == item?.ProductId);
-    //    myOrder.ProductName = tempProduct.Name;
-    //    myOrder.ProductID = item?.ProductId ?? 0;
-    //    myOrder.Price = item?.Price ?? 0;
-    //    myOrder.Amount = item?.Amount ?? 0;
-    //    myOrder.TotalPrice = item?.Price * item?.Amount ?? 0;
-    //    try
-    //    {
-    //        tempOrder2.Items!.Add(myOrder);
-    //    }
-    //    catch (DalApi.DalAlreadyExistsException ex)
-    //    {
-    //        throw new BO.BoAlreadyExist("DO Exception", ex);
-    //    }
-    //    return myOrder;
-    //})
-    //.ToList();
-
             foreach (var item in orderItems)
             {
                 if (item?.OrderId == orderID)
@@ -174,71 +137,6 @@ internal class Order :BlApi.IOrder
     {
         try
         {
-            //linq
-            /*
-              DO.Order? order = dalOrder!.Order.GetAll()
-    .Where(item => item?.ID == orderNumber && item?.ShipDate > DateTime.Now)
-    .Select(item =>
-    {
-        item!.ShipDate = DateTime.Now;
-        return item;
-    })
-    .FirstOrDefault();
-
-if (order != null)
-{
-    BO.Order order2 = new BO.Order()
-    {
-        ID = order.ID,
-        CustomerName = order.CustomerName,
-        CustomerEmail = order.CustomerEmail,
-        CustomerAddress = order.CustomerAdress,
-        Status = BO.Enums.orderStatus.Shipped,
-        OrderDate = order.OrderDate,
-        ShipDate = DateTime.Now,
-        DeliveryrDate = order.DeliveryrDate
-    };
-
-    IEnumerable<DO.OrderItem?> orderItems = dalOrder.OrderItem.GetAll();
-    double myTotalPrice = 0;
-
-    var orderItemsFiltered = orderItems
-        .Where(item2 => item2?.ID == order2.ID);
-
-    order2.Items = orderItemsFiltered
-        .Select(item2 =>
-        {
-            BO.OrderItem myOrderItem = new BO.OrderItem()
-            {
-                ID = item2?.ID??0,
-                ProductName = dalOrder.Product.GetSingle(x => x?.ID == item2?.ID)?.Name,
-                ProductID = item2?.ProductId??0,
-                Price = item2?.Price??0,
-                Amount = item2?.Amount??0,
-                TotalPrice = item2?.Price * item2?.Amount??0
-            };
-
-            return myOrderItem;
-        })
-        .ToList();
-
-    myTotalPrice = order2.Items.Sum(item => item.TotalPrice);
-    order2.TotalPrice = myTotalPrice;
-
-    try
-    {
-        dalOrder.Order.Update(order);
-    }
-    catch (DalApi.DalAlreadyExistsException ex)
-    {
-        throw new BO.BoAlreadyExist("DO Exception", ex);
-    }
-
-    return order2;
-}
-
-             * */
-
             IEnumerable<DO.Order?> orders = dalOrder!.Order.GetAll();
             foreach (var item in orders)
             {

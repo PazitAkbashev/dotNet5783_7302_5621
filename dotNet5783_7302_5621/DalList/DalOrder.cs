@@ -17,7 +17,8 @@ internal class DalOrder:IOrder
     //adding *new* order to the order list
     public int Add(Order o)
     {//if order already exist
-    
+        if (orderList.Contains(o))
+            throw new DalAlreadyExistsException("the order");
         foreach (var item in orderList) 
         {
             if (o.ID == item?.ID)  
