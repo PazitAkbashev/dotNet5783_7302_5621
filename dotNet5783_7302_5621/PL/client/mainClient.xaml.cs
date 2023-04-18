@@ -72,7 +72,7 @@ namespace PL.client
                     Cart temp = bl.cart.AddProduct(Cart, selectProduct.Id);
                     ProductsList = bl.Product.GetProductsItem(Cart);
                     Cart = null;
-                    Cart = temp;
+                    Cart = temp;  
                 }
                 catch (Exception ex)
                 {
