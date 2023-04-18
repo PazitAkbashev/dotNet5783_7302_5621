@@ -12,6 +12,14 @@ internal class DalOrderItem:IOrderItem
         OrderItemArr.Add(newOrderItem);
         return newOrderItem.ID;
     }
+            {
+                throw new DalAlreadyExistsException("the order item");
+            }
+        }
+        o.ID = Config.getorderItemRunIndex();
+        orderItemList.Add(o);
+        return o.ID;
+    }
 
 
     public  void Update(OrderItem order)
