@@ -1,6 +1,4 @@
-﻿using BlApi;
-using BlImplementation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using PL.Products;
+using BlApi;
+using BLImplementation;
+using PL.manager;
+using PL.client;
+
 namespace PL
 {
     /// <summary>
@@ -22,13 +24,42 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        static readonly IBL bl = BlApi.Factory.Get;
+
+        public bool _simulatorClick
+        {
+            get { return (bool)GetValue(_simulatorClickProperty); }
+            set { SetValue(_simulatorClickProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for _simulatorClick.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty _simulatorClickProperty =
+            DependencyProperty.Register("_simulatorClick", typeof(bool), typeof(MainWindow));
+
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Admin_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
+        /// <summary>
+        /// when you click on the "manager" in the main window the main product window will open
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mainProduct(object sender, RoutedEventArgs e)
+        {
+            new MainManager().Show();
+        }
 
-        private BlApi.IBl? bl = BlApi.Factory.Get;
+        private void MainClient(object sender, RoutedEventArgs e)
+        {
+            new mainClient().Show();
+        }
+
+        private void OrderTracking(object sender, RoutedEventArgs e)
+        {
+            new OrderTrackingWindow().Show();   
+        }
     }
 }

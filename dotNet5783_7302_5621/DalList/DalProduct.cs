@@ -1,62 +1,46 @@
-﻿using DO;
-using DalApi;
-namespace Dal;
-using System;
+﻿
+using DO;
 using static Dal.DataSource;
+namespace Dal;
+using DalApi;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 
-/// <summary>
-/// the product implementation class
-/// functions on the product list
-/// </summary>
-internal class DalProduct : IProduct
+internal class DalProduct:IProduct
 {
-    //adding a *new* product to the products list
-    public int Add(Product p)
+    public  int Add(Product newProduct)   
     {
-        GetSingle(item => item?.ID == p.ID);
-        for (int i = 0; i < productList.Count - 1; i++)
-        {
-            if (p.ID == productList[i]?.ID)
-            {
-                throw new DalAlreadyExistsException("the product");
-            }
-        }
-        p.ID = myRandom.Next(100000, 1000000);
-        productList.Add(p);
-        return p.ID;
+
+        productArr.Add( newProduct);
+        return newProduct.ID;
     }
 
-    //deliting a product from the products list
-    
-    public void Delete(int ID)
+    public  Product Get(int id)
     {
-        if (!productList.Remove(GetSingle(item => item?.ID == ID)))
-            throw new DalDoesNoExistException("the product"); //if remove function returned with false
+        return productArr.Find(x=> x?.ID == id) ?? throw new Exception(); 
     }
 
-    //updating a product in the products list
-    public void Update(Product? p)
+
+    public  IEnumerable<Product?> GetAll(Func<Product?, bool>? func = null)
     {
-        int counter = 0;
-        foreach (var item in productList)
-        {
-            if (p?.ID == item?.ID)
-            {
-                productList[counter] = p;
-                return;
-            }
-            counter++;
-        }
-        throw new DalDoesNoExistException("the product");
+        return func is null ? productArr.Select(x=>x) : productArr.Where(func);
     }
 
-    public IEnumerable<Product?> GetAll(Func<Product?, bool>? select = null)
+    public  void Delete(int id)
     {
-        return DataSource.productList.Where(Product => select is null ? true : select!(Product));
-    }
+        int index = productArr.FindIndex(x => x?.ID == id);
+        if (index == -1)
+            throw new Exception();
+        productArr.RemoveAt(index);
+     }
 
-    public Product GetSingle(Func<Product?, bool>? select)
+
+    public  void Update(Product product)
     {
-        return GetAll(select).SingleOrDefault() ?? throw new DalDoesNoExistException("Error-the product does not exist");
+        int index = productArr.FindIndex(x => x?.ID == product.ID);
+        if (index == -1)
+            throw new Exception();
+        productArr[index] = product;
     }
 }
+

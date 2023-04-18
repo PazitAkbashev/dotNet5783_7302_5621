@@ -5,44 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
-        <Button x:Name="MainButton"
-                Content="Admin" 
-                FontWeight="ExtraBlack"
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Top" Height="115" Width="136" Click="Admin_Click" Grid.Column="1" Margin="322,176,0,0">
-            <Button.Background>
-                <ImageBrush Stretch="None" TileMode="None"/>
-            </Button.Background>
-        </Button>
-
-        <Image Margin="468,79,122,44" Source="/‏‏צילום מסך (359).png" Stretch="Fill" Grid.ColumnSpan="2"/>
-
-        <Border x:Name="openingAd" 
-                BorderBrush="Black" 
-                BorderThickness="1" Background="#FF953030" 
-                Width="740" HorizontalAlignment="Left" 
-                Margin="70,0,0,360" 
-                Grid.Column="1">
-
-            <Label Content="welcome!" 
-                   FontSize ="30"
-                   FontWeight="Bold"
-                   HorizontalAlignment="Left" 
-                   Height="54" Margin="9,0,0,0" 
-                   VerticalAlignment="Center" 
-                   Width="160"/>
-
-        </Border>
-        <Image Grid.ColumnSpan="2" Margin="0,2,730,360" Source="/‏‏צילום מסך (372).png" Stretch="Fill" OpacityMask="Black"/>
-        <Label Content="maneger" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="7,65,0,0" VerticalAlignment="Top" Width="65"/>
-
-
+        Title="MainWindow" Height="640" Width="800">
+    <Grid x:Name="MainGrid">
+        <Button Content="manager" HorizontalAlignment="Left" Click="mainProduct" Margin="26,85,0,0" VerticalAlignment="Top" Height="89" Width="244" FontFamily="Sitka Small Semibold" FontSize="24" FontWeight="Bold" FontStyle="Italic" />
+        <Button Content="client" HorizontalAlignment="Left" Click="MainClient" Margin="500,85,0,0" VerticalAlignment="Top" Height="89" Width="244" FontFamily="Sitka Small Semibold" FontSize="24" FontWeight="Bold" FontStyle="Italic" />
+        <Button Content="Order Tracking" HorizontalAlignment="Left" Click="OrderTracking" Margin="500,261,0,0" VerticalAlignment="Top" Height="89" Width="244" FontFamily="Sitka Small Semibold" FontSize="24" FontWeight="Bold" FontStyle="Italic" />
     </Grid>
+
 </Window>

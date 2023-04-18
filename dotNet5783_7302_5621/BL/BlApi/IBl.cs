@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-namespace BlApi;
 
-/// <summary>
-/// Application Program Interface : BL=>PL
-/// the main BL interface
-/// </summary>
-/// 
-public interface IBl
+namespace BlApi
 {
-        public ICart Cart { get; }
-        public IOrder Order { get; }
-        public IProduct Product { get; }
+    public interface IBL      //לא סגורה על זה
+    {
+        IOrder Order { get; }
+        IProduct Product { get;}
+        ICart cart { get; }
+    }
 }
-
-

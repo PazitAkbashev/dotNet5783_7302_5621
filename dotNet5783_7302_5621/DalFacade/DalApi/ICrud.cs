@@ -1,16 +1,17 @@
-﻿
-using DO;
-namespace DalApi;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-/// <summary>
-/// the main Dal interface
-/// (Application Program Interface : DL=>BL)
-/// </summary>
-public interface ICrud<T> where T:struct
+namespace DalApi
 {
-    public int Add(T t);
-    public void Delete(int index);
-    public void Update(T? t);
-    public T GetSingle(Func<T?, bool>? func);
-    public IEnumerable<T?> GetAll(Func<T?,bool>? select=null);
+    public interface ICrud<T> where T : struct
+    {
+        int Add(T Entity);
+        void Delete(int Entity);  
+        IEnumerable<T?> GetAll(Func<T?,bool>? func = null);    
+        void Update (T Entity);
+        T Get (int Entity); 
+    }
 }

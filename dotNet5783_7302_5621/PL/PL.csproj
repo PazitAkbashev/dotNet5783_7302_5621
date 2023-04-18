@@ -13,20 +13,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Products\רקע עריכה ועדכון מוצר.png" />
+	  <Compile Remove="OrderItems\**" />
+	  <Compile Remove="Orders\**" />
+	  <EmbeddedResource Remove="OrderItems\**" />
+	  <EmbeddedResource Remove="Orders\**" />
+	  <None Remove="OrderItems\**" />
+	  <None Remove="Orders\**" />
+	  <Page Remove="OrderItems\**" />
+	  <Page Remove="Orders\**" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\BL\BL.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="OrderItems\" />
-	  <Folder Include="Orders\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Resource Include="Products\רקע עריכה ועדכון מוצר.png" />
 	</ItemGroup>
 
 </Project>

@@ -1,22 +1,14 @@
-﻿
-using static DO.Enums;
-namespace DO; 
+﻿namespace DO;
 
-/// <summary>
-/// the order item methods
-/// Data Object
-/// </summary>
 public struct OrderItem
 {
     public int ID { get; set; }
-    public int ProductId { get; set; }
-    public int OrderId { get; set; }
+    public int ProductID { get; set; }
+    public int OrderID { get; set; }
     public double Price { get; set; }
     public int Amount { get; set; }
-    public override string ToString() => $@"Item unique-id={ID},
-                                         Item Order-id={OrderId},
-                                         Product-id={ProductId},
-                                         Price= {Price},
-                                         Amount in stock= {Amount}";
-    //convert this "to strring" into one global function
+    public override string ToString()
+    {
+        return this.ToStringProperty();
+    }
 }

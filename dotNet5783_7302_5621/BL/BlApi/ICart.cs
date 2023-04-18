@@ -1,18 +1,34 @@
-﻿using BO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlApi;
-/// <summary>
-/// Application Program Interface : BL=>PL
-/// the cart interface
-/// </summary>
-public interface ICart
+namespace BlApi
 {
-    public Cart addProductToCart(Cart cart, int productID);
-    public Cart updateAmountOfProduct(Cart cart, int productID, int newAmount);
-    public void confirmCart(Cart cart);
+    public interface ICart 
+    {
+        /// <summary>
+        /// Add new product to the cart
+        /// </summary>
+        /// <param name="cert"></param>
+        /// <param name="ID"></param>
+        BO.Cart AddProduct(BO.Cart cart, int ID);
+
+        /// <summary>
+        /// update amount of product at cart by id and amount
+        /// </summary>
+        /// <param name="cert"></param>
+        /// <param name="ID"></param>
+        /// <param name="anount"></param>
+        BO.Cart UpdateAmount(BO.Cart cart, int ID, int amount);
+
+        /// <summary>
+        /// check thr cart for new order
+        /// </summary>
+        /// <param name="cart"></param>
+        int OrderConfirmation(BO.Cart cart);
+
+
+    }
 }

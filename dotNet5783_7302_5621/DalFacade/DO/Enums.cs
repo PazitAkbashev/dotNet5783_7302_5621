@@ -1,17 +1,20 @@
 ﻿
 namespace DO;
-/// <summary>
-/// including the all DO enums 
-/// Data Object
-/// </summary>
-public struct Enums
+
+public enum Category
 {
-    public enum Category { Starters, MainCourses, SideDishes , Drinks, Deserts }
-    public enum Starters {Salmon, BeefFilleTartar, SoupOfTheDay, crispyChickenWings }
-    public enum MainCourses { RibEyeSteak, RoastedChickenBreast, GrilledBeefFillet, DuckBreast }
-    public enum SideDishes { Rice,Fries, ChoppedSalad, Antipasto }
-    public enum Drinks {Beer,RedWine,Water, Cocktail }
-    public enum Deserts { HomeMadeIceCream, HotSouffle, CoconutCrèmeBrulee, PistachioMousse }
-    public enum CustomerName {Miriam,Pazit,Yehudit,Shira,Yael,Tehila,Tamar,Michal,Yosef,Beni}
-    public enum CustomerAdress {Jerusalem,TelAviv,Ashdod,Netania,BeerSheva,Eilat }
+    Dresses,
+    pants,
+    jackets,
+    Shirts,
 }
+
+//public enum Status
+//{
+
+
+
+//}
+
+
+

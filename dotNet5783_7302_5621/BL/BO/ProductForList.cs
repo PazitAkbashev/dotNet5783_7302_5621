@@ -1,24 +1,23 @@
-﻿using System;
+﻿using DO;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace BO
-{
-    /// <summary>
-    /// the product for list methods
-    ///  Business Object
-    /// </summary>
-    public class ProductForList
-    {
-        public int ID { get; set; }
-        public string? Name { get; set; }
-        public double Price { get; set; }
-        public BO.Enums.category? category { get; set; }
-        public override string ToString() => 
-            $@"id={ID} name={Name} price={Price} category={category} ";
 
+namespace BO;
+
+public class ProductForList
+{
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public double Price { get; set; }
+    public Category Category { get; set; }
+    public int Amount { get; set; } 
+
+    public override string ToString()
+    {
+        return this.ToStringProperty();
     }
+
 }

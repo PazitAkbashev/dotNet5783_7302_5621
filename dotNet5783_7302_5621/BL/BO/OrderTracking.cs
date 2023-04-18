@@ -1,24 +1,21 @@
 ﻿using DO;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
-using static BO.Enums;
-namespace BO
-{
-    /// <summary>
-    /// the order tracking methods
-    ///  Business Object
-    /// </summary>
-    public class OrderTracking
-    {
-        public int ID { get; set; }
-        public orderStatus? Status { get; set; }
-        public List<Tuple<DateTime?, string?>>? myList { get; set; }
-        public override string ToString() => $@"Order-tracking-id={ID},status={Status}";
-    }
 
+namespace BO;
+
+public class OrderTracking
+{
+    public int Id { get; set; }
+    public OrderStatus Status { get; set; }
+    public List<Tuple<DateTime?, OrderStatus>>? Tracking { get; set; }
+
+    public override string ToString()
+    {
+        return this.ToStringProperty();
+    }
 }

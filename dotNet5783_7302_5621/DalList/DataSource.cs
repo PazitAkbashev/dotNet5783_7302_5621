@@ -1,117 +1,109 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using static DO.Enums;
-using DO;
+﻿using DO;
 namespace Dal;
-
-/// <summary>
-/// definding the data source
-/// ****************************should be replace be xaml file****************************
-/// </summary>
 internal static class DataSource
 {
-    static DataSource() { s_Initialize(); }
-
-    internal readonly static Random myRandom = new Random();
-   
-    internal static List<DO.Product?> productList = new List<DO.Product?>(50);  //list of the product
-    internal static List<DO.Order?> orderList = new List<DO.Order?>(100);  //list of the orderList
-    internal static List<DO.OrderItem?> orderItemList = new List<DO.OrderItem?>(200); //list of the orderItems
- 
-    private static void  product_Initialize()
+    static DataSource()
     {
-        for (int i = 0; i < 10; i++) 
+        sInitialize();
+    }
+
+    internal readonly static Random rand = new();
+    internal static List <Product?> productArr = new List <Product?>();
+    internal static List<Order?> OrderArr = new List<Order?>();
+    internal static List <OrderItem?> OrderItemArr = new List <OrderItem?>();
+    internal static int countOfProductArry = 0;
+
+
+    internal static int _nextIdOreder = 1000;
+    internal static int _nextIdOrederItem = 1000;
+
+    private static void CreateProducts()
+    {
+        string[] namesArr = new string[] { "meri", "lihi", "yellowJacket", "blueJacket", "StripedShirt", "WhiteShirt", "jeans", "Shorts", "ElegantPpants", "ClassicPants" };//contune to add more 8 
+
+        Category[] categoriesArr = new Category[] { Category.Dresses, Category.Dresses, Category.jackets, Category.jackets, Category.Shirts, Category.Shirts, Category.pants, Category.pants, Category.pants, Category.pants };
+
+        for (int i = 0; i < 10; i++)
         {
             Product product = new Product();
-            product.Category = (Enums.Category)myRandom.Next(0, 5);
-            product.ID = myRandom.Next(100000, 1000000);  
-            for(int j=0 ; j<i; j++)
-            {
-                if (product.ID == productList[j]?.ID)
-                {
-                    product.ID = myRandom.Next(100000, 1000000);
-                    j=0;
-                }
-            }
-            switch(product.Category)
-            {
-                case Enums.Category.Starters:
-                    product.Name = "" + (Enums.Starters)myRandom.Next(0, 4);
-                    product.Price = myRandom.Next(50, 90);
-                    break;
-                case Enums.Category.MainCourses:
-                    product.Name = "" + (Enums.MainCourses)myRandom.Next(0, 4);
-                    product.Price = myRandom.Next(100, 170);
-
-                    break;
-                case Enums.Category.SideDishes:
-                    product.Name = "" + (Enums.SideDishes)myRandom.Next(0, 4);
-                    product.Price = myRandom.Next(30, 50);
-                                          
-                    break;
-                case Enums.Category.Drinks:
-                    product.Name = "" + (Enums.Drinks)myRandom.Next(0, 4);
-                    product.Price = myRandom.Next(25, 40);
-
-                    break;
-                case Enums.Category.Deserts:
-                    product.Name = "" + (Enums.Deserts)myRandom.Next(0, 4);
-                    product.Price = myRandom.Next(30, 45);
-
-                    break;
-            }
-            product.inStock = myRandom.Next(0, 50);
-            productList.Add(product);
+            product.ID = rand.Next(100000, 1000000);
+            product.Name = namesArr[i];
+            product.inStock = i * 5;
+            product.Price = rand.Next(50, 300);
+            product.Category = categoriesArr[i];
+            productArr.Add(product);
         }
     }
-    public static class Config
-    {
-        public static int orderRunIndex = 100000;
 
-        public static int orderItemRunIndex = 100000;
-        public static int getOrderRunIndex() { return ++orderRunIndex; }
-        public static int getorderItemRunIndex() { return ++orderItemRunIndex; }
-    }
 
-    private static void order_Initialize()
+
+    private static void CreateOrder()
     {
-        string temp="a";
-        for (int i = 0; i < 20; i++)
+        string[] costumerNameArr = new string[] {"Hadas Zehevi","Avigail Cohen","Avigail Levi","Efrat Avitan" ,
+            "Ayala Nisani","Shira kubin","Teheila yahav","Gefen Shalom","Yair Macluf","Avishag Hazan",
+        "Mical shooshan","Nati Segal","Yahakov Avidan","Meir Cohen","Avishai Shitrit","Nati Levi","ronit chaim","shira chaim","hadar levi","chana refi"};
+        string[] costumerAdress = new string[] { "Atehena 5 Elad", "Hashoshana 47 Givataim" , "Atehena 48 Elad", "Hashoshana 37 Givataim","rabi akiva 9","hashoshana 4" ,"Atehena 5 Elad", "Hashoshana 47 Givataim" , "Atehena 48 Elad","karo 6 ", "Atehena 5 Elad", "Hashoshana 47 Givataim", "Atehena 48 Elad", "Hashoshana 37 Givataim", "rabi akiva 9", "hashoshana 4", "rabi akiva 19", "hashoshana 47", "rabi akiva 99", "hashoshana 40" };//ass more names
+        int AmountOfOrders = 20;
+        int days=rand.Next(10,20);
+        for (int i = 0; i < AmountOfOrders; i++)
         {
             Order order = new Order();
-            order.ID =Config.getOrderRunIndex();
-            order.CustomerName = "" + (Enums.CustomerName)myRandom.Next(0, 10);
-            order.CustomerEmail = order.CustomerName +temp+ "@gmail.com";
-            temp+=1;
-            order.CustomerAdress = "" + (Enums.CustomerAdress)myRandom.Next(0, 6);
-            orderList.Add(order);
+            order.OrderID = _nextIdOreder++;
+            order.CustomerName = costumerNameArr[i];
+            order.CustomerEmail = costumerNameArr[i] + "@gmail.com";
+            order.OrderDate = DateTime.Now.AddDays(-days);
+            order.CustomerAdress = costumerAdress[i];
+            order.OrderShipDate = null;
+            order.OrderDeliveryDate = null;
+            if (i < AmountOfOrders * 0.4)
+            {
+                days = rand.Next(10, 20);
+                TimeSpan shipTime = new TimeSpan(days, 0, 0, 0);
+                order.OrderShipDate = order.OrderDate + shipTime;
+            }
+            if (i < AmountOfOrders * 0.48*0.6)
+            {
+                days = rand.Next(1, 10);
+                TimeSpan deliverTime = new TimeSpan(days, 0, 0, 0);
+                order.OrderDeliveryDate = order.OrderShipDate + deliverTime;
+            }
+            OrderArr.Add(order);
         }
     }
-
- 
-    private static void orderItem_Initialize()
+    private static void CreateOrderItem()
     {
-        for(int i=0;i<40;i++)
+        int index1, index2;
+        for (int i = 0; i < 20; i++)
         {
-            OrderItem orderItem = new OrderItem();
-
-            Product? product = new Product();
-
-            product = productList[myRandom.Next(0, productList.Count)];
-            orderItem.ID = Config.getorderItemRunIndex();
-            orderItem.ProductId = product?.ID??0;
-            orderItem.OrderId = orderList[myRandom.Next(0, orderList.Count)]?.ID??0;
-            orderItem.Amount = myRandom.Next(1, 5);
-            orderItem.Price = orderItem.Amount * product?.Price??0;
-            orderItemList.Add(orderItem);
+            index1 = rand.Next(1, 5);
+            for (int j = 0; j < index1; j++)
+            {
+                OrderItem orderItem = new OrderItem();
+                orderItem.ID = _nextIdOrederItem++;
+                orderItem.Amount = rand.Next(1, 4);
+                index2 = rand.Next(0,10);
+                orderItem.ProductID = productArr[index2]?.ID ?? 0;
+                orderItem.OrderID = OrderArr[i]?.OrderID ?? 0;
+                orderItem.Price = productArr[index2]?.Price* orderItem.Amount ?? 0;
+                OrderItemArr.Add(orderItem); 
+            }
         }
     }
 
-    private static void s_Initialize()
+    private static void sInitialize()
     {
-        product_Initialize();
-        order_Initialize();
-        orderItem_Initialize();
+        CreateProducts();
+        CreateOrder();
+        CreateOrderItem();
+        XmlTools.SaveListToXMLSerializer(OrderArr, @"..\xml\Orders.xml");
+        XmlTools.SaveListToXMLSerializer(productArr, @"..\xml\Products.xml");
+        XmlTools.SaveListToXMLSerializer(OrderItemArr, @"..\xml\OrderItems.xml");
     }
 }
+
+
+
+
+
+
 

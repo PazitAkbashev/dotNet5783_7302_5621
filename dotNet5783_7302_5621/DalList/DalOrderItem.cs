@@ -1,97 +1,46 @@
-﻿
-using DO;
-using DalList;
-using DalApi;
+﻿using DO;
 using static Dal.DataSource;
-using System.Collections.Generic;
-using System;
-using System.Collections;
 namespace Dal;
+using DalApi;
 
-/// <summary>
-/// the order item implementation class
-/// </summary>
-
-internal class DalOrderItem : IOrderItem
+internal class DalOrderItem:IOrderItem
 {
-    //adding an item to order
-    public int Add(OrderItem o)
+
+    public int Add(OrderItem newOrderItem)
     {
-        //another option: (i think its better)
-        //var matchingItem = orderItemList
-        //.Where(item => o.ID == item?.ID)
-        //.Select(item => item).FirstOrDefault();
-        //if (matchingItem != null)
-        //{
-        //    throw new DalAlreadyExistsException("the order item");
-        //}
-        foreach (var item in orderItemList)
-        {
-            if (o.ID == item?.ID)
-            {
-                throw new DalAlreadyExistsException("the order item");
-            }
-        }
-        o.ID = Config.getorderItemRunIndex();
-        orderItemList.Add(o);
-        return o.ID;
+        newOrderItem.ID = DataSource._nextIdOrederItem++;
+        OrderItemArr.Add(newOrderItem);
+        return newOrderItem.ID;
     }
 
-    public void Delete( int ID)
+
+    public  void Update(OrderItem order)
     {
-        //linq:
-        //var itemsToRemove = orderItemList
-        //.Where(item => ID == item?.ID);
-        //if (itemsToRemove.Any())
-        //{
-        //    var itemToRemove = itemsToRemove.First();
-        //    orderItemList.Remove(itemToRemove);
-        //    return;
-        //}
-        foreach (var item in orderItemList)
-        {
-            if (ID == item?.ID)
-            {
-                orderItemList.Remove(item);
-                return;
-            }
-        }
-        throw new DalDoesNoExistException("the order item");
-    }
- 
-    public void Update(OrderItem? o)
-    {
-        //linq:
-        //var itemToUpdate = orderItemList.Select((item, index) =>
-        //new { Item = item, Index = index }).FirstOrDefault(x => o?.ID == x.Item?.ID);
-        //if (itemToUpdate != null)
-        //{
-        //    orderItemList[itemToUpdate.Index] = o;
-        //    return;
-        //}
-        int counter = 0;
-        foreach (var item in orderItemList)
-        {
-            if (o?.ID == item?.ID)
-            {
-                orderItemList[counter] = o;
-                return;
-            }
-            counter++;
-        }
-        throw new DalDoesNoExistException("the order item");
-    }
-   
-    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? select = null)
-    {
-        return DataSource.orderItemList.Where(OrderItem => select is null
-        ? true : select!(OrderItem));
+        int index = OrderItemArr.FindIndex(x => x?.ID == order.ID);
+        if (index == -1)
+            throw new Exception();
+        OrderItemArr[index] = order;
     }
 
-    public OrderItem GetSingle(Func<OrderItem?, bool>? select)
+
+    public  void Delete(int id)
     {
-        return GetAll(select).SingleOrDefault() ?? 
-            throw new DalDoesNoExistException("Error-the order item does not exist");
+
+        int index = OrderItemArr.FindIndex(x => x?.ID == id);
+        if (index == -1)
+            throw new Exception();
+        OrderItemArr.RemoveAt(index);
     }
+
+    public  OrderItem Get(int id)
+    {
+        return OrderItemArr.Find(x => x?.ID == id) ?? throw new Exception();
+    }
+
+    public  IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? func = null)   //לסדר כמו  בפרודקט ולסדר גם באחרים
+    {
+        IEnumerable<OrderItem?> list = OrderItemArr.Select(x=> x);
+        return func is null ? list : list.Where(func);
+    }
+
 }
-
