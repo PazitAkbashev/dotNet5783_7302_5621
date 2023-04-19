@@ -1,6 +1,4 @@
-﻿
-
-using DalApi;
+﻿using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
@@ -17,8 +15,6 @@ internal class DalOrder : IOrder
 {
     string path = @"..\xml\Orders.xml";
     string configPath = @"..\xml\config.xml";
-    //string dir = @"..\bin\xml\";
-
 
     XElement ordersRoot;
 
