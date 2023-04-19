@@ -8,11 +8,17 @@ using System.Text;
 
 namespace BLImplementation
 {
+    /// <summary>
+    /// the cart implementation class
+    /// </summary>
     internal class BlCart : BlApi.ICart
     {
         DalApi.IDal? dal = DalApi.Factory.Get();
 
         [MethodImpl(MethodImplOptions.Synchronized)]
+        /// <summary>
+        /// adding product to cart
+        /// </summary>
         public Cart AddProduct(Cart cart, int ID)
         {
             if (cart.Items == null)
@@ -52,7 +58,9 @@ namespace BLImplementation
             return cart;
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        /// <summary>
+        ///confirming the order and cart 
+        /// </summary>
         public int OrderConfirmation(Cart cart)
         {
 
@@ -138,13 +146,14 @@ namespace BLImplementation
             return idOrder;
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        /// <summary>
+        /// updating the amount of products
+        /// </summary>
         public Cart UpdateAmount(Cart cart, int ID, int amount)
         {
             int index = cart.Items.FindIndex(x => x.ProductId == ID);
 
             DO.Product product = new DO.Product();
-
             try
             {
                 product = dal.Product.Get(ID);
@@ -173,6 +182,4 @@ namespace BLImplementation
             return cart;
         }
     }
-
-
 }

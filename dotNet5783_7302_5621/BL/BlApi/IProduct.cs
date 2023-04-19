@@ -1,11 +1,10 @@
-﻿
-using BO;
-
+﻿using BO;
 namespace BlApi;
-
+/// <summary>
+/// the product interface
+/// </summary>
 public interface IProduct
 {
-
     /// <summary>
     /// return all product for client
     /// </summary>

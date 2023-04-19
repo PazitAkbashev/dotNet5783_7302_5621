@@ -5,17 +5,19 @@ using System.Runtime.CompilerServices;
 
 namespace BLImplementation
 {
+    /// <summary>
+    /// the order implementation class
+    /// </summary>
     internal class BLOrder : IOrder
     {
         DalApi.IDal? dal = DalApi.Factory.Get();
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
         public Order DeliveredOrder(int id)
         {
             if (id < 0)
                 throw new Exception("negativ id\n");
-
             DO.Order dOrder = new DO.Order();
+
             try
             {
                 dOrder = dal.Order.Get(id);
@@ -25,7 +27,7 @@ namespace BLImplementation
                 throw new NotExistException(ex.Message);
             }
 
-            if (dOrder.OrderShipDate == null)//בידקה אם ההזמנה נשלחה בכלל
+            if (dOrder.OrderShipDate == null)
                 throw new Exception("the order is not\n");
 
             if (dOrder is DO.Order order)
@@ -36,10 +38,11 @@ namespace BLImplementation
             return GetOrder(id);
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        /// <summary>
+        /// returning the order details for both customer and manager
+        /// </summary>
         public Order GetOrder(int id)
         {
-
             DO.Order dOrder = new DO.Order();
             try
             {
@@ -49,7 +52,6 @@ namespace BLImplementation
             {
                 throw new NotExistException(ex.Message);
             }
-
             IEnumerable<DO.OrderItem?> orderItems;
 
             try
@@ -60,7 +62,6 @@ namespace BLImplementation
             {
                 throw new NotExistException(ex.Message);
             }
-
 
             return new BO.Order()
             {
@@ -85,8 +86,12 @@ namespace BLImplementation
                         }
             };
         }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        /// <summary>
+        /// returning the orders
+        /// </summary>
+        /// <param name="func"></param>
+        /// <returns></returns>
+        /// <exception cref="NotExistException"></exception>
         public IEnumerable<OrderForList> GetOrders(Func<BO.OrderForList, bool> func = null)
         {
             try
@@ -107,8 +112,12 @@ namespace BLImplementation
                 throw new NotExistException(ex.Message);
             }
         }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="NotExistException"></exception>
         public OrderTracking OrderTracking(int id)
         {
             DO.Order dOrder = new DO.Order();
@@ -132,15 +141,22 @@ namespace BLImplementation
                 }
             };
         }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
         OrderStatus GetSatus(DO.Order? order)
         {
             return order?.OrderDeliveryDate != null ? OrderStatus.Delievered :
                 order?.OrderShipDate != null ? OrderStatus.Shipped : OrderStatus.Paid;
         }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public Order SentOrder(int id)
         {
             if (id < 0)
@@ -159,8 +175,11 @@ namespace BLImplementation
 
             return GetOrder(id);
         }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="BO.NotExistException"></exception>
         public BO.Order GetTheOldOne()
         {
             IEnumerable<IGrouping<int?, DO.OrderItem?>> orderItems = from item in dal.OrderItem.GetAll()
@@ -186,19 +205,31 @@ namespace BLImplementation
             return orders.OrderBy(x => x.status).ThenBy(x => x.OrderDate).First();
 
         }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public Order UpdateOrder()
         {
             throw new NotImplementedException("we did't do this function thus for bonus only\n");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dOrder"></param>
+        /// <returns></returns>
         private OrderStatus GetStatus(DO.Order? dOrder)
         {
             return dOrder?.OrderDeliveryDate != null ? OrderStatus.Delievered :
                 dOrder?.OrderShipDate != null ? OrderStatus.Shipped : OrderStatus.Paid;
         }
-
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="NotExistException"></exception>
         private IEnumerable<OrderItem> GetOrderItemList(int id)
         {
             try

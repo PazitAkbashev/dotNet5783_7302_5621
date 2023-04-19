@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BlApi
 {
-    public interface IBL      //לא סגורה על זה
+    /// <summary>
+    /// the main BL interface
+    /// </summary>
+    public interface IBL
     {
         IOrder Order { get; }
         IProduct Product { get;}

@@ -4,9 +4,9 @@ Miriam's and Pazit's dot-net project
 hiiii puchacho
 my last change
 
-בונוסים
-#1 שימוש בBiding
-#2 שימוש בmulty biding עבור מניעת אפשרות ליצירת הזמנה ושליחת/מסירת הזמנה
-#3 שכלול DalConfig על ידי חלוקה לproject namespace class
-#4 שימוש במתודת הרחבה עבור הדפסת אובייקטים
-#5 שימוש בreflaction בהדפסת אובייקטים
+bonuses:
+#1 using binding.
+#2 using multy biding for prevent creating and delivering / sending order.
+#3 improvement DalConfig by dividing into project namespace class.
+#4 Using extension method to print objects.
+#5 using reflaction to print objects.

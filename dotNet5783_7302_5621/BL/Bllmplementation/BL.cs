@@ -2,6 +2,9 @@
 
 namespace BLImplementation
 {
+    /// <summary>
+    /// the main implementation class
+    /// </summary>
     internal class BL : IBL
     {
         public IOrder Order => new BLOrder();

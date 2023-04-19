@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BlApi
 {
+    /// <summary>
+    /// the cart interface
+    /// </summary>
     public interface ICart 
     {
         /// <summary>
@@ -28,7 +31,5 @@ namespace BlApi
         /// </summary>
         /// <param name="cart"></param>
         int OrderConfirmation(BO.Cart cart);
-
-
     }
 }
